@@ -1,7 +1,7 @@
 import { PhoneCall, Mail, MapPinHouse } from 'lucide-react';
 const Contact = () => {
   return (
-    <div className="bg-[#318000] text-white py-20">
+    <div className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -55,7 +55,7 @@ const Contact = () => {
             <div className="bg-white rounded-lg shadow-md p-6 mb-4">
               <div className="flex items-center mb-2">
                 <PhoneCall className="text-[#318000] h-6 w-6 mr-2" />
-                <p className="text-[#318000] font-bold">+263 77 123 4567</p>
+                <p className="text-[#318000] font-bold">+263 78 223 5693</p>
               </div>
               <div className="flex items-center mb-2">
                 <Mail className="text-[#318000] h-6 w-6 mr-2" />
@@ -64,7 +64,7 @@ const Contact = () => {
               <div className="flex items-center">
                 <MapPinHouse className="text-[#318000] h-6 w-6 mr-2" />
                 <p className="text-[#318000]">
-                  123 Example Street, Harare, Zimbabwe
+                  998 Woodlands Waterfalls, Harare, Zimbabwe
                 </p>
               </div>
             </div>

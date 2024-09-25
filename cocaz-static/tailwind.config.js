@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Open Sans', 'Playwrite Deutschland Grundschrift', 'sans-serif'],
+        serif: ['Cardo', 'serif'],
+      },
+    },
   },
   plugins: [],
 }

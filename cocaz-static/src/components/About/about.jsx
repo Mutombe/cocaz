@@ -2,13 +2,13 @@ import { Award, TrendingUp, Handshake } from 'lucide-react';
 
 const About = () => {
   return (
-    <div className="bg-[#318000] text-white py-20">
+    <div className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold mb-8">About COCAZ</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <p className="text-gray-200 mb-4">
-              COCAZ is the Content Creation Association of Zimbabwe, founded in 2018 with the mission of empowering and supporting content creators across various industries. We believe in the power of creativity and its ability to inspire, educate, and entertain.
+              COCAZ is the Content Creation Association of Zimbabwe, founded in 2020 with the mission of empowering and supporting content creators across various industries. We believe in the power of creativity and its ability to inspire, educate, and entertain.
             </p>
             <p className="text-gray-200 mb-8">
               Our team of industry experts provides comprehensive services to help our members maximize their potential, from marketing and monetization strategies to professional development and networking opportunities.
