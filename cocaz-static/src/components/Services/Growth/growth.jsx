@@ -53,7 +53,7 @@ const ImpressiveGrowth = () => {
         <GrowthMetric 
           icon={BarChart2}
           title="Content Reach"
-          value="500K+"
+          value="1M+"
           description="Monthly views across all platforms"
         />
         <GrowthMetric 

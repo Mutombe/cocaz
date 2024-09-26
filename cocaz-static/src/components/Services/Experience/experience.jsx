@@ -8,10 +8,12 @@ const Experience = () => {
 
   const timelineData = [
     { year: 2020, event: 'COCAZ founded', details: 'COCAZ was established with the vision of connecting Zimbabwean content creators with businesses seeking innovative marketing solutions.' },
-    { year: 2021, event: 'Partnership with Sunsoya begins', details: 'We initiated our first major partnership with Sunsoya, setting the stage for numerous successful campaigns.' },
-    { year: 2022, event: 'Expanded to 100+ content creators', details: 'Our network grew significantly, allowing us to offer a diverse range of influencers across various niches.' },
-    { year: 2023, event: 'Launched talent management services', details: 'We expanded our offerings to include comprehensive talent management for top-tier content creators.' },
-    { year: 2024, event: 'Reached 1000+ successful campaigns', details: 'A major milestone that showcases our expertise and the trust businesses place in our services.' },
+    { year: 2021, event: 'Expanded to 100+ content creators', details: 'Our network grew significantly, allowing us to offer a diverse range of influencers across various niches.' },
+    { year: 2022, event: 'Launched talent management services', details: 'We expanded our offerings to include comprehensive talent management for top-tier content creators.' },
+    { year: 2023, event: 'Partnership with CoolSplash', details: 'We initiated our first major partnership with CoolSplash, setting the stage for numerous successful marketing campaigns.' },
+    { year: 2024, event: 'Collaboration with Simuka Upenye Intergrated Youth Academy', details: 'A major milestone that showcases our expertise and the trust businesses place in our services.' },
+    { year: 2024, event: 'Partnership with Sunsoya', details: 'We partnered with Sunsoya to help the company establish its presence in the digital space.' },
+    { year: 2024, event: 'Merging Zambian and Zimbabwean Content Creators', details: 'We merged our network with Zambian and Zimbabwean content creators, providing an Afrocentric Experience to content consumers' },
   ];
 
   const approachData = [
@@ -72,6 +74,7 @@ const Experience = () => {
         <h3 className="text-xl font-semibold mb-2">Sunsoya</h3>
         <p className="mb-4 text-gray-700 dark:text-gray-300">We've successfully brokered and managed a series of impactful marketing campaigns between Sunsoya and our network of influencers. These collaborations have significantly boosted Sunsoya's brand visibility and engagement across social media platforms.</p>
         <div className="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center h-32">
+          <image src="../assets/sunsoya.jpg" alt="Sunsoya Logo" />
           <p className="font-semibold text-gray-600 dark:text-gray-400">Sunsoya Logo Placeholder</p>
         </div>
       </div>

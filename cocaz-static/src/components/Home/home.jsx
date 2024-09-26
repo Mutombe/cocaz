@@ -160,7 +160,7 @@ const Home = () => {
 
         {/* Social Media */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold mb-4">Connect with Us</h2>
+          <h2 className="text-center text-3xl font-bold mb-4 ">Connect with Us</h2>
           <motion.div 
             className="flex justify-center space-x-4"
             initial={{ opacity: 0, y: 20 }}

@@ -22,23 +22,23 @@ const CreatorTestimonial = ({ name, category, testimonial, avatar }) => (
 const TrustedByCreators = () => {
   const testimonials = [
     {
-      name: "Master H",
-      category: "Dancehall Artist",
+      name: "Frets Donzvo",
+      category: "Comedian/Artist",
       testimonial: "COCAZ has been instrumental in elevating my career. Their guidance and support have opened doors I never thought possible.",
-      avatar: "https://via.placeholder.com/150" // Replace with actual avatar URL
+      avatar: "../assets/frets.jpg"
+    },
+    {
+      name: "Rutendo",
+      category: "Actress",
+      testimonial: "COCAZ's network and resources have helped me turn my passion into a thriving career. I'm grateful for their continuous support.",
+      avatar: "../assets/rue.jpg"
     },
     {
       name: "Jah Signal",
       category: "Musician",
       testimonial: "Since joining COCAZ, my fan base has grown exponentially. Their strategies for audience engagement are unparalleled.",
-      avatar: "https://via.placeholder.com/150" // Replace with actual avatar URL
+      avatar: "../assets/jahsignal.jpg"
     },
-    {
-      name: "Tanya M.",
-      category: "Lifestyle Vlogger",
-      testimonial: "COCAZ's network and resources have helped me turn my passion into a thriving career. I'm grateful for their continuous support.",
-      avatar: "https://via.placeholder.com/150" // Replace with actual avatar URL
-    }
   ];
 
   return (
