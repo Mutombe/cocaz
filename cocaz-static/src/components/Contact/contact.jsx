@@ -1,5 +1,15 @@
 import { PhoneCall, Mail, MapPinHouse } from 'lucide-react';
+import { useState } from 'react';
+import ThankYouModal from '../ThankYou/thankYou';
 const Contact = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [name, setName] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
   return (
     <div className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,8 +25,11 @@ const Contact = () => {
                   type="text"
                   id="name"
                   name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-[#318000] leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Enter your name"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -29,6 +42,7 @@ const Contact = () => {
                   name="email"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-[#318000] leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Enter your email"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -40,11 +54,12 @@ const Contact = () => {
                   name="message"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-[#318000] leading-tight focus:outline-none focus:shadow-outline"
                   rows={5}
+                  required
                   placeholder="Enter your message"
                 ></textarea>
               </div>
               <button
-                type="submit"
+                onClick={handleSubmit}
                 className="bg-[#FFD500] hover:bg-[#DDB200] text-[#318000] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Submit
@@ -52,6 +67,13 @@ const Contact = () => {
             </form>
           </div>
           <div>
+          {showModal && (
+          <ThankYouModal
+            name={name}
+            message="Thank you for contacting us. We will get back to you shortly!"
+            onClose={() => setShowModal(false)}
+          />
+        )}
             <div className="bg-white rounded-lg shadow-md p-6 mb-4">
               <div className="flex items-center mb-2">
                 <PhoneCall className="text-[#318000] h-6 w-6 mr-2" />

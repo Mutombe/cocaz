@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Camera, CalendarClock, UsersRound, Star, ThumbsUp, Instagram, Facebook, Twitter, Award, UserCheck, BarChart, SquareCheckBig } from 'lucide-react';
@@ -169,7 +168,7 @@ const Home = () => {
             transition={{ duration: 0.5 }}
           >
             {[
-              { icon: Instagram, link: "https://www.instagram.com/cocaz_official/" },
+              { icon: Instagram, link: "https://www.instagram.com/cocaz_official/", },
               { icon: Facebook, link: "https://www.facebook.com/cocaz.official" },
               { icon: Twitter, link: "https://twitter.com/cocaz_official" }
             ].map((item, index) => (

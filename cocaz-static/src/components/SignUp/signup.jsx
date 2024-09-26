@@ -1,10 +1,22 @@
+import React, { useState } from 'react';
+import ThankYouModal from '../ThankYou/thankYou';
+
 const SignUp = () => {
+  const [showModal, setShowModal] = useState(false); 
+  const [name, setName] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+
   return (
     <div className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold mb-8">Join COCAZ</h1>
         <div className="bg-white rounded-lg shadow-md p-8">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block text-[#318000] font-bold mb-2">
                 Name
@@ -13,8 +25,11 @@ const SignUp = () => {
                 type="text"
                 id="name"
                 name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-[#318000] leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter your name"
+                required
               />
             </div>
             <div className="mb-4">
@@ -27,18 +42,7 @@ const SignUp = () => {
                 name="email"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-[#318000] leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter your email"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="password" className="block text-[#318000] font-bold mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-[#318000] leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Enter a password"
+                required
               />
             </div>
             <div className="mb-4">
@@ -51,6 +55,7 @@ const SignUp = () => {
                 name="profession"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-[#318000] leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter your profession"
+                required
               />
             </div>
             <div className="mb-4">
@@ -58,11 +63,11 @@ const SignUp = () => {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
                   id="termsCheckbox"
+                  required
                 />
                 <label className="form-check-label" htmlFor="termsCheckbox">
-                  I agree to the <a href="#" className="text-[#FFD500]">terms and conditions</a>
+                  <a href="#" className="text-black"> I agree to the terms and conditions</a>
                 </label>
               </div>
             </div>
@@ -75,6 +80,14 @@ const SignUp = () => {
           </form>
         </div>
       </div>
+
+      {showModal && (
+        <ThankYouModal
+          name={name} // Pass user's name to personalize the message
+          message="You have successfully signed up for our services. We will keep you updated with the latest news."
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 };
