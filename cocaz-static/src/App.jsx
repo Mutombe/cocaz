@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import About from './components/About/about';
 import Services from './components/Services/services';
@@ -18,6 +17,7 @@ import ErrorBoundary from './components/Error/error';
 import Navbar from './components/Navbar/navbar';
 import { ThemeProvider } from './components/themeContext';
 import { useTheme } from './components/themeContext';
+import Gallery from './components/Gallery/gallery';
 
 
 const ThemedComponent = ({ children }) => {
@@ -51,10 +51,11 @@ const App = () => {
                 <Route path="/services/talent-management" element={<TalentManagement />} />
                 <Route path="/history/4+-years-of-experience" element={<Experience />} />
                 <Route path="history/hundreds-of-satisfied-clients" element={<SatisfiedClients />} />
-                  <Route path="/achievements/impressive-growth" element={<ImpressiveGrowth />} />
-                  <Route path="achievements/industry-awards" element={<IndustryAwards />} />
-                  <Route path="achievements/trusted-by-creators" element={<TrustedByCreators />} />
-                  <Route path="/history/successful-projects" element={<SuccessfulProjects />} />
+                <Route path="/achievements/impressive-growth" element={<ImpressiveGrowth />} />
+                <Route path="achievements/industry-awards" element={<IndustryAwards />} />
+                <Route path="achievements/trusted-by-creators" element={<TrustedByCreators />} />
+                <Route path="/history/successful-projects" element={<SuccessfulProjects />} />
+                <Route path="/history/Gallery" element={<Gallery />} />
               </Routes>
             </div>
           </ThemedComponent>

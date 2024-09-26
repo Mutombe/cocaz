@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Film, Video, Camera, Edit, PenTool, Play } from 'lucide-react';
 

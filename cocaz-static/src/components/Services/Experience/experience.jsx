@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { ChevronDown, ChevronUp } from 'lucide-react';
@@ -74,8 +74,7 @@ const Experience = () => {
         <h3 className="text-xl font-semibold mb-2">Sunsoya</h3>
         <p className="mb-4 text-gray-700 dark:text-gray-300">We've successfully brokered and managed a series of impactful marketing campaigns between Sunsoya and our network of influencers. These collaborations have significantly boosted Sunsoya's brand visibility and engagement across social media platforms.</p>
         <div className="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center h-32">
-          <image src="../assets/sunsoya.jpg" alt="Sunsoya Logo" />
-          <p className="font-semibold text-gray-600 dark:text-gray-400">Sunsoya Logo Placeholder</p>
+          <img src="../assets/sunsoya.jpg" alt="Sunsoya Logo" className="max-h-full max-w-full object-contain rounded-lg" />
         </div>
       </div>
       

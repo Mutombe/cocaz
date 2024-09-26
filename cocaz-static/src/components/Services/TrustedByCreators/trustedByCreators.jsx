@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { UserCheck, ThumbsUp, TrendingUp } from 'lucide-react';
 

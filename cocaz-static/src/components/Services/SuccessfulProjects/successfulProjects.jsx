@@ -1,13 +1,11 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Code, Palette, Music, Video } from 'lucide-react';
+import { CheckCircle, Coffee, Utensils, ShoppingBag } from 'lucide-react';
 
 const SuccessfulProjects = () => {
   const projects = [
-    { name: 'TechSphere', icon: Code, description: 'Revolutionary AI-driven development platform' },
-    { name: 'ArtisticVision', icon: Palette, description: 'Next-gen digital art creation suite' },
-    { name: 'SoundScape', icon: Music, description: 'Immersive audio production environment' },
-    { name: 'CinematicWonders', icon: Video, description: 'Cloud-based video editing powerhouse' },
+    { name: 'CoolSplash', icon: Coffee, description: 'Innovative marketing campaigns for the drink manufacturing giant' },
+    { name: 'Sunsoya', icon: Utensils, description: 'Digital presence boost for the cooking oil manufacturing leader' },
+    { name: 'Steers', icon: ShoppingBag, description: 'Engaging content strategies for the restaurant and fast food chain' },
   ];
 
   return (
@@ -15,19 +13,19 @@ const SuccessfulProjects = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gradient-to-r from-teal-400 to-blue-500 p-8 rounded-lg shadow-lg mt-8"
+      className="bg-gradient-to-r from-[#318000] to-[#5fd75f] p-8 rounded-lg shadow-lg mt-8"
     >
       <motion.div
         whileHover={{ scale: 1.05 }}
         className="flex items-center mb-6"
       >
         <CheckCircle className="text-white w-10 h-10 mr-4" />
-        <h2 className="text-3xl font-bold text-white">Successful Projects</h2>
+        <h2 className="text-3xl font-bold text-white">COCAZ Success Stories</h2>
       </motion.div>
       <p className="text-white text-lg mb-6">
-        Our portfolio of successful projects stands as a testament to our innovation, dedication, and transformative impact across various industries. Each project represents a unique challenge conquered and a new frontier explored in the realm of digital creativity and technological advancement.
+        At COCAZ, we've had the privilege of partnering with some of Zimbabwe's most renowned brands. Our innovative approaches and network of talented content creators have helped these companies reach new heights in their digital marketing efforts.
       </p>
-      <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -44,9 +42,9 @@ const SuccessfulProjects = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-4 bg-white text-blue-600 font-semibold py-2 px-4 rounded-full hover:bg-yellow-300 transition-colors duration-300"
+              className="mt-4 bg-white text-[#318000] font-semibold py-2 px-4 rounded-full hover:bg-yellow-300 transition-colors duration-300"
             >
-              Learn More
+              View Case Study
             </motion.button>
           </motion.div>
         ))}
