@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
-import About from './components/About/about';
 import Services from './components/Services/services';
-import Home from './components/Home/home';
 import Contact from './components/Contact/contact';
 import SignUp from './components/SignUp/signup';
 import Experience from './components/Services/Experience/experience';
@@ -17,7 +15,14 @@ import ErrorBoundary from './components/Error/error';
 import Navbar from './components/Navbar/navbar';
 import { ThemeProvider } from './components/themeContext';
 import { useTheme } from './components/themeContext';
-import Gallery from './components/Gallery/gallery';
+import NotFound from './components/NotFound/notFound';
+import Loading from './components/Loading/loading';
+import { Suspense, lazy } from 'react';
+
+const Home = lazy(() => import('./components/Home/home'));
+const About = lazy(() => import('./components/About/about'));
+const Gallery = lazy(() => import('./components/Gallery/gallery'));
+// ... import other components lazily ...
 
 
 const ThemedComponent = ({ children }) => {
@@ -35,11 +40,12 @@ const App = () => {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <Router>
+        <Router basename={import.meta.env.BASE_URL}>
         <div className="min-h-screen flex flex-col raleway">
           <Navbar />
             <ThemedComponent>
-            <div className="flex-grow">
+              <div className="flex-grow">
+              <Suspense fallback={<div><Loading /></div>}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
@@ -55,8 +61,10 @@ const App = () => {
                 <Route path="achievements/industry-awards" element={<IndustryAwards />} />
                 <Route path="achievements/trusted-by-creators" element={<TrustedByCreators />} />
                 <Route path="/history/successful-projects" element={<SuccessfulProjects />} />
-                <Route path="/history/Gallery" element={<Gallery />} />
-              </Routes>
+                  <Route path="/history/Gallery" element={<Gallery />} />
+                  <Route path="*" element={<NotFound />} />
+                  </Routes>
+              </Suspense>
             </div>
           </ThemedComponent>
           </div>
