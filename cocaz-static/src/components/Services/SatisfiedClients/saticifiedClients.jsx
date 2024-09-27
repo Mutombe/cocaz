@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star, ArrowRight } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 const SatisfiedClients = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -55,6 +56,12 @@ const SatisfiedClients = () => {
       author: "CEO, ZimBeauty Co."
     }
   ];
+
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate("/contact")
+  }
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % clientSuccesses.length);
@@ -161,7 +168,7 @@ const SatisfiedClients = () => {
       >
         <h2 className="text-2xl font-semibold mb-4">Ready to Join Our Success Stories?</h2>
         <p className="mb-4">Experience the COCAZ difference and take your brand or career to new heights. Contact us today to start your journey towards content creation success!</p>
-        <button className="bg-white text-[#318000] dark:bg-gray-900 dark:text-[#5fd75f] font-bold py-2 px-4 rounded hover:bg-opacity-90 dark:hover:bg-opacity-90 transition duration-300">
+        <button onClick={handleClick} className="bg-white text-[#318000] dark:bg-gray-900 dark:text-[#5fd75f] font-bold py-2 px-4 rounded hover:bg-opacity-90 dark:hover:bg-opacity-90 transition duration-300">
           Get Started Now
         </button>
       </motion.div>
