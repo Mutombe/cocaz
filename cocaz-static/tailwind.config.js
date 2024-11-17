@@ -7,8 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Open Sans', 'Playwrite Deutschland Grundschrift', 'sans-serif'],
-        serif: ['Cardo', 'serif'],
+        roboto: ['Geist', 'sans-serif'],
       },
     },
   },

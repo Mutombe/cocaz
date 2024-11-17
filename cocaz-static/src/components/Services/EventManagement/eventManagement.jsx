@@ -23,7 +23,7 @@ const EventManagement = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-20 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg"
+      className="container mx-auto px-4 py-20 text-gray-900 dark:text-gray-100 rounded-lg"
     >
       <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Event Management Services</h1>
       

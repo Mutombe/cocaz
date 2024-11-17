@@ -24,7 +24,7 @@ const TalentManagement = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg"
+      className="container mx-auto px-4 py-8 text-gray-900 dark:text-gray-100 rounded-lg"
     >
       <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Talent Management</h1>
       <p className="mb-4 text-gray-700 dark:text-gray-300">At COCAZ, we're proud to represent and nurture some of Zimbabwe's most exciting content creators and artists. Our talent management services are designed to help artists reach their full potential and achieve their career goals.</p>

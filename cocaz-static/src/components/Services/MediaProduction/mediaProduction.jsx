@@ -19,7 +19,7 @@ const MediaProduction = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg"
+      className="container mx-auto px-4 py-8 text-gray-900 dark:text-gray-100 rounded-lg"
     >
       <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Media Production Services</h1>
       <p className="mb-4 text-gray-700 dark:text-gray-300">At COCAZ, we're passionate about bringing stories to life through cutting-edge media production. Our team of skilled professionals is dedicated to creating captivating content that resonates with audiences across Zimbabwe and beyond.</p>

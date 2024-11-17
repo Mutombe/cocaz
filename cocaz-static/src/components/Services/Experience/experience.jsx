@@ -28,7 +28,7 @@ const Experience = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg"
+      className="container mx-auto px-4 py-8 text-gray-900 dark:text-gray-100 rounded-lg"
     >
       <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Our Experience</h1>
       <p className="mb-4 text-gray-700 dark:text-gray-300">Since our inception in 2020, COCAZ has been at the forefront of connecting talented content creators with businesses seeking innovative marketing solutions. Our experience spans a wide range of industries and campaign types, allowing us to deliver results-driven strategies for our clients.</p>

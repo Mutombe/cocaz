@@ -13,7 +13,7 @@ const SuccessfulProjects = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gradient-to-r from-[#318000] to-[#5fd75f] p-8 rounded-lg shadow-lg mt-8"
+      className=" p-8 rounded-lg shadow-lg mt-8"
     >
       <motion.div
         whileHover={{ scale: 1.05 }}
