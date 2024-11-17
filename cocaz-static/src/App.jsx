@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import Footer from "./components/footer/footer";
 import Services from "./components/Services/services";
 import Contact from "./components/Contact/contact";
 import SignUp from "./components/SignUp/signup";
@@ -104,6 +105,7 @@ const App = () => {
                 </Suspense>
               </AnimatePresence>
             </ThemedComponent>
+            <Footer />
           </div>
         </Router>
       </ThemeProvider>
