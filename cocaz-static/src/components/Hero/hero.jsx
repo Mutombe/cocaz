@@ -1,10 +1,10 @@
-import React from "react";
+
 import { Camera, CalendarClock, UserCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
 import { Pen } from "lucide-react";
 import AnimatedBackground from "../Enhanced/enhanced";
+import React, { useState, useEffect, useCallback } from 'react';
 
 const MotionLink = motion(Link);
 
@@ -29,44 +29,60 @@ const CardVariants = {
   },
 };
 
-const phrases = ["Welcome to COCAZ", "Lets Influence", "Lets create together"];
+
+
+const phrases = ["Welcome to COCAZ", "Let's Influence", "Let's create together"];
 
 const HeroTypewriter = () => {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-  const [displayedChars, setDisplayedChars] = useState([]);
+  const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const currentPhrase = phrases[currentPhraseIndex];
+  const [isWaiting, setIsWaiting] = useState(false);
+
+  const TYPING_SPEED = 150;
+  const DELETING_SPEED = 100;
+  const WAITING_TIME = 2000;
+
+  const getCurrentPhrase = useCallback(() => {
+    return phrases[currentPhraseIndex];
+  }, [currentPhraseIndex]);
 
   useEffect(() => {
     let timeout;
 
-    const updateText = () => {
-      if (!isDeleting) {
-        // Typing
-        if (displayedChars.length < currentPhrase.length) {
-          const newChar = currentPhrase[displayedChars.length];
-          setDisplayedChars((prev) => [...prev, newChar]);
-          timeout = setTimeout(updateText, 180);
+    if (isWaiting) {
+      timeout = setTimeout(() => {
+        setIsWaiting(false);
+        setIsDeleting(true);
+      }, WAITING_TIME);
+      return () => clearTimeout(timeout);
+    }
+
+    const handleTyping = () => {
+      const currentPhrase = getCurrentPhrase();
+
+      if (!isDeleting && !isWaiting) {
+        if (currentText.length < currentPhrase.length) {
+          const nextChar = currentPhrase[currentText.length];
+          setCurrentText(prev => prev + nextChar);
+          timeout = setTimeout(handleTyping, TYPING_SPEED);
         } else {
-          timeout = setTimeout(() => setIsDeleting(true), 1500);
+          setIsWaiting(true);
         }
-      } else {
-        // Deleting
-        if (displayedChars.length > 0) {
-          setDisplayedChars((prev) => prev.slice(0, -1));
-          timeout = setTimeout(updateText, 130);
+      } else if (isDeleting) {
+        if (currentText.length > 0) {
+          setCurrentText(prev => prev.slice(0, -1));
+          timeout = setTimeout(handleTyping, DELETING_SPEED);
         } else {
           setIsDeleting(false);
-          timeout = setTimeout(() => {
-            setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-          }, 800);
+          setCurrentPhraseIndex(prev => (prev + 1) % phrases.length);
         }
       }
     };
 
-    timeout = setTimeout(updateText, 100);
+    timeout = setTimeout(handleTyping, isDeleting ? DELETING_SPEED : TYPING_SPEED);
     return () => clearTimeout(timeout);
-  }, [displayedChars, isDeleting, currentPhraseIndex, currentPhrase]);
+  }, [currentText, isDeleting, isWaiting, getCurrentPhrase]);
 
   return (
     <motion.div
@@ -78,9 +94,9 @@ const HeroTypewriter = () => {
       <div className="relative">
         <motion.h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 bg-clip-text text-transparent leading-tight relative">
           <AnimatePresence mode="popLayout">
-            {displayedChars.map((char, index) => (
+            {currentText.split('').map((char, index) => (
               <motion.span
-                key={index + char}
+                key={`${index}-${char}-${currentPhraseIndex}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
                   opacity: 1,
@@ -89,11 +105,11 @@ const HeroTypewriter = () => {
                 exit={{
                   opacity: 0,
                   y: -10,
-                  transition: { duration: 0.1 },
+                  transition: { duration: 0.1 }
                 }}
                 transition={{
                   duration: 0.2,
-                  ease: "easeOut",
+                  ease: "easeOut"
                 }}
               >
                 {char}
@@ -101,41 +117,52 @@ const HeroTypewriter = () => {
             ))}
           </AnimatePresence>
 
-          {/* Pen and its effects */}
+          {/* Animated cursor/pen */}
           <motion.div
             className="absolute top-1/2 -translate-y-1/2"
             style={{
-              left: `${displayedChars.length * 2.2}rem`,
+              left: `${currentText.length * 2.2}rem`,
             }}
+            initial={{ opacity: 1 }}
             animate={{
               y: [-2, 2],
-              transition: {
+              opacity: isWaiting ? [1, 0.5, 1] : 1,
+            }}
+            transition={{
+              y: {
                 duration: 1.2,
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "easeInOut",
               },
+              opacity: {
+                duration: 0.8,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }
             }}
           >
             <motion.div
               animate={{
                 scale: [1, 1.1, 1],
-                transition: {
+                rotate: isDeleting ? 180 : -45,
+              }}
+              transition={{
+                scale: {
                   duration: 2,
                   repeat: Infinity,
                   repeatType: "reverse",
                   ease: "easeInOut",
                 },
+                rotate: {
+                  duration: 0.3,
+                }
               }}
             >
-              <Pen
-                className={`w-8 h-8 text-yellow-400 transform -rotate-45 transition-all duration-500 ease-in-out ${
-                  isDeleting ? "scale-x-[-1]" : ""
-                }`}
-              />
+              <Pen className="w-8 h-8 text-yellow-400" />
             </motion.div>
 
-            {/* Magical glow effect */}
+            {/* Glow effect */}
             <motion.div
               className="absolute inset-0 bg-yellow-400 rounded-full blur-xl opacity-30"
               animate={{
@@ -156,6 +183,7 @@ const HeroTypewriter = () => {
   );
 };
 
+
 const BackgroundAnimation = () => (
   <motion.div
     className="absolute inset-0 z-0 rounded-lg"
@@ -173,7 +201,7 @@ const BackgroundAnimation = () => (
     <div
       className="absolute inset-0 bg-cover bg-center opacity-20"
       style={{
-        backgroundImage: "url('../assets/logo3.jpeg')",
+        backgroundImage: "url('../assets/boot-camp.jpg')",
         backgroundBlendMode: "multiply",
         filter: "grayscale(100%) brightness(100%)",
       }}

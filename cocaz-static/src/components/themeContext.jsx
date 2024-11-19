@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { motion } from "framer-motion";
 
 const themes = {
-  default: {
+  green: {
     primary: 'bg-gradient-to-br from-green-700 via-green-800 to-green-900',
     secondary: 'bg-gradient-to-r from-yellow-400 to-yellow-500',
     text: 'text-white',
@@ -12,17 +12,7 @@ const themes = {
     buttonText: 'text-green-900',
     nav: 'bg-gradient-to-r from-green-900 via-green-800 to-green-900',
   },
-  sunset: {
-    primary: 'bg-gradient-to-br from-orange-500 via-red-500 to-purple-800',
-    secondary: 'bg-gradient-to-r from-yellow-300 to-orange-400',
-    text: 'text-white',
-    accent: 'text-yellow-300',
-    card: 'bg-gradient-to-br from-orange-600/50 to-red-700/50 backdrop-blur-sm',
-    button: 'bg-gradient-to-r from-yellow-300 to-orange-400 hover:from-yellow-400 hover:to-orange-500',
-    buttonText: 'text-red-900',
-    nav: 'bg-gradient-to-r from-purple-900 via-red-800 to-orange-900',
-  },
-  forest: {
+  default: {
     primary: 'bg-gradient-to-br from-emerald-600 via-green-700 to-teal-900',
     secondary: 'bg-gradient-to-r from-lime-300 to-emerald-400',
     text: 'text-white',
@@ -63,7 +53,7 @@ export const ThemeProvider = ({ children }) => {
 
   const toggleTheme = () => {
     setTheme(prevTheme => {
-      const themeOrder = ['default', 'sunset', 'ocean', 'forest'];
+      const themeOrder = ['default', 'green'];
       const currentIndex = themeOrder.indexOf(prevTheme);
       const nextIndex = (currentIndex + 1) % themeOrder.length;
       return themeOrder[nextIndex];

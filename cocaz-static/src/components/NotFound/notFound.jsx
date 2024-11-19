@@ -9,7 +9,7 @@ const NotFound = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg min-h-screen flex flex-col items-center justify-center"
+      className="container mx-auto px-4 py-8 text-gray-900 dark:text-gray-100 rounded-lg min-h-screen flex flex-col items-center justify-center"
     >
       <motion.div
         initial={{ y: -50 }}

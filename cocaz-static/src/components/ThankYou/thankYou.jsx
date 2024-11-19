@@ -1,44 +1,129 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CircleCheckBig } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle2, Mail, Phone, ExternalLink } from 'lucide-react';
+import { useTheme } from '../themeContext';
 
 const ThankYouModal = ({ name, message, onClose }) => {
   const navigate = useNavigate();
+  const { currentTheme } = useTheme();
 
   const handleClose = () => {
     onClose();
-    navigate('/');
+    window.location.href = 'https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAFENwGJUNU4xSUY5Q1g2WFJUU0VFMkVDQkIzSjJNMy4u';
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto">
-        <div className="flex flex-col items-center">
-          <CircleCheckBig className="h-16 w-16 text-[#318000] mb-4" />
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) handleClose();
+        }}
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          transition={{ type: "spring", duration: 0.5 }}
+          className={`${currentTheme.card} rounded-2xl shadow-2xl p-8 w-full max-w-md mx-auto`}
+        >
+          <div className="flex flex-col items-center">
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: "spring", duration: 0.8, delay: 0.2 }}
+            >
+              <div className={`${currentTheme.secondary} p-4 rounded-full mb-6`}>
+                <CheckCircle2 className={`h-16 w-16 ${currentTheme.buttonText}`} />
+              </div>
+            </motion.div>
 
-          <h2 className="text-3xl font-extrabold text-[#318000] mb-2">Thank You, {name}!</h2>
+            <motion.h2
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className={`text-3xl font-extrabold ${currentTheme.accent} mb-4 text-center`}
+            >
+              Thank You, {name}!
+            </motion.h2>
 
-          <p className="text-gray-600 text-center mb-6">
-            {message ? message : 'Your submission has been received successfully. We appreciate you reaching out to us and will get back to you shortly.'}
-          </p>
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className={`${currentTheme.text} text-center mb-8`}
+            >
+              {message || 'Your submission has been received successfully. We appreciate you reaching out to us and will get back to you shortly.'}
+            </motion.p>
 
-          <div className="w-full h-px bg-gray-200 mb-6"></div>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.5 }}
+              className={`w-full h-px ${currentTheme.accent} opacity-20 mb-8`}
+            />
 
-          <div className="text-center mb-6">
-            <p className="text-sm text-gray-500">For any urgent inquiries, feel free to contact us at:</p>
-            <p className="text-[#318000] font-medium">support@cocaz.com</p>
-            <p className="text-sm text-gray-500">or call us at: <span className="text-[#318000]">+263 78 223 5693</span></p>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-center mb-8 space-y-4"
+            >
+              <p className={`${currentTheme.text} opacity-80`}>
+                For any urgent inquiries, feel free to contact us:
+              </p>
+              
+              <div className="flex items-center justify-center space-x-2">
+                <Mail className={currentTheme.accent} size={20} />
+                <a 
+                  href="mailto:support@cocaz.com" 
+                  className={`${currentTheme.accent} font-medium hover:opacity-80`}
+                >
+                  support@cocaz.com
+                </a>
+              </div>
+              
+              <div className="flex items-center justify-center space-x-2">
+                <Phone className={currentTheme.accent} size={20} />
+                <a 
+                  href="tel:+263782235693" 
+                  className={`${currentTheme.accent} font-medium hover:opacity-80`}
+                >
+                  +263 78 223 5693
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="flex space-x-4"
+            >
+              <motion.button
+                onClick={handleClose}
+                className={`
+                  ${currentTheme.button} 
+                  ${currentTheme.buttonText}
+                  font-bold py-3 px-6 rounded-full
+                  flex items-center space-x-2
+                  transform transition-all
+                `}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ExternalLink size={20} />
+                <span>Continue to Form</span>
+              </motion.button>
+            </motion.div>
           </div>
-
-          <button
-            onClick={handleClose}
-            className="bg-[#FFD500] hover:bg-[#DDB200] text-[#318000] font-bold py-2 px-6 rounded-full focus:outline-none"
-          >
-            Back to Home
-          </button>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

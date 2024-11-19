@@ -88,7 +88,7 @@ const NavLink = ({ to, active, theme, children }) => (
     to={to} 
     className={`transition-colors duration-300 ${
       active 
-        ? theme.accent + ' font-bold border-2 border-2 rounded-lg border-yellow-400 p-1' 
+        ? theme.accent + ' font-bold border-2 border-2 rounded-lg border-emerald-400 p-1' 
         : theme.text + ' hover:' + theme.accent.split(' ')[1]
     } `}
   >
