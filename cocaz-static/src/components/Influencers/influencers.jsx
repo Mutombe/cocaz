@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../themeContext';
@@ -39,8 +41,9 @@ const InfluencerCard = ({ name, profession, testimonial, image, link }) => {
         {name}
       </h3>
       
-      <p className={`${currentTheme.text} italic mb-6 text-center leading-relaxed`}>
-        "{testimonial}"
+      <p className={`${currentTheme.text} small mb-6 text-center leading-relaxed`} >
+        <small>
+        "{testimonial}"</small>
       </p>
       
       <div className="flex justify-center space-x-4">
@@ -127,14 +130,14 @@ const InfluencerPage = () => {
           className="mb-16 text-center"
           variants={pageVariants}
         >
-          <motion.h1
-            className={`text-5xl font-bold ${currentTheme.accent} mb-4`}
+          <motion.h2
+            className={`text-4xl font-bold ${currentTheme.accent}  mb-4 text-yellow-400`}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Our Influencers
-          </motion.h1>
+          </motion.h2>
           <motion.p 
             className={`${currentTheme.text} text-xl max-w-2xl mx-auto`}
             initial={{ opacity: 0 }}

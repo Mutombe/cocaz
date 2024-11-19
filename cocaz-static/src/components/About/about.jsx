@@ -1,7 +1,9 @@
 import { Award, TrendingUp, Handshake } from 'lucide-react';
+import AnimatedBackground from '../Enhanced/enhanced';
 
 const About = () => {
   return (
+    <AnimatedBackground variant='vibrant'>
     <div className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold mb-8 text-[#FFD500]">About COCAZ</h1>
@@ -53,7 +55,8 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </AnimatedBackground>
   );
 };
 

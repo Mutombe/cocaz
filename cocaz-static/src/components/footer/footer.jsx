@@ -68,7 +68,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className={`flex items-center space-x-2 ${currentTheme.text}`}>
                 <MapPin size={18} />
-                <span>123 Main Street, Harare, Zimbabwe</span>
+                <span>Woodlands Waterfalls, Harare, Zimbabwe</span>
               </li>
               <li className={`flex items-center space-x-2 ${currentTheme.text}`}>
                 <Phone size={18} />
