@@ -31,7 +31,7 @@ const CardVariants = {
 
 
 
-const phrases = ["Welcome to COCAZ", "Let's Influence", "Let's create together"];
+const phrases = ["Welcome to COCAZ !", "Let's Influence", "Let's create together !"];
 
 const HeroTypewriter = () => {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);

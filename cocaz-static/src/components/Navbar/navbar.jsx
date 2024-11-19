@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 ${currentTheme.nav} text-white py-4 shadow-lg`}>
+    <nav className={`fixed w-full top-0 z-50 ${currentTheme.nav} text-white py-4 shadow-lg`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className={`text-2xl font-bold ${currentTheme.accent}`}>
