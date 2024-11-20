@@ -76,7 +76,7 @@ const Navbar = () => {
           exit={{ opacity: 0, y: -20 }}
           className="md:hidden mt-4"
         >
-          <div className={`flex flex-col space-y-4 px-4 ${currentTheme.card} rounded-b-lg pb-4`}>
+          <div className={`flex flex-col space-y-4 px-4 ${currentTheme.card} rounded-b-lg pb-4 pt-4`}>
             <MobileNavLink to="/" onClick={toggleMenu} active={location.pathname === "/"} theme={currentTheme}>Home</MobileNavLink>
             <MobileNavLink to="/about" onClick={toggleMenu} active={location.pathname === "/about"} theme={currentTheme}>About</MobileNavLink>
             <MobileNavLink to="/services" onClick={toggleMenu} active={location.pathname === "/services"} theme={currentTheme}>Services</MobileNavLink>
@@ -109,10 +109,12 @@ const NavLink = ({ to, active, theme, children }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
+    className='pt-2'
+    style={{marginTop: "5px"}}
   >
     <Link 
       to={to} 
-      className={`relative transition-all duration-300 ${
+      className={`relative transition-all duration-300  pt-2 pb-2 ${
         active 
           ? `${theme.accent} font-bold` 
           : `${theme.text} hover:${theme.accent.split(' ')[1]}`
