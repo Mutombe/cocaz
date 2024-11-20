@@ -171,6 +171,8 @@ const BackgroundImage = ({ src, opacity = 0.15 }) => (
 const Home = () => {
   return (
     <div className="min-h-screen">
+      <br />
+      <br />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Hero Section */}
         <Hero />
