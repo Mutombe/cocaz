@@ -1,104 +1,273 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import {
+  ChevronDown,
+  ChevronUp,
+  Award,
+  Building,
+  Users,
+  TrendingUp,
+} from "lucide-react";
+import { useTheme } from "@/components/themeContext";
 
 const Experience = () => {
+  const { currentTheme } = useTheme();
   const [expandedYear, setExpandedYear] = useState(null);
 
   const timelineData = [
-    { year: 2020, event: 'COCAZ founded', details: 'COCAZ was established with the vision of connecting Zimbabwean content creators with businesses seeking innovative marketing solutions.' },
-    { year: 2021, event: 'Expanded to 100+ content creators', details: 'Our network grew significantly, allowing us to offer a diverse range of influencers across various niches.' },
-    { year: 2022, event: 'Launched talent management services', details: 'We expanded our offerings to include comprehensive talent management for top-tier content creators.' },
-    { year: 2023, event: 'Partnership with CoolSplash', details: 'We initiated our first major partnership with CoolSplash, setting the stage for numerous successful marketing campaigns.' },
-    { year: 2024, event: 'Collaboration with Simuka Upenye Intergrated Youth Academy', details: 'A major milestone that showcases our expertise and the trust businesses place in our services.' },
-    { year: 2024, event: 'Partnership with Sunsoya', details: 'We partnered with Sunsoya to help the company establish its presence in the digital space.' },
-    { year: 2024, event: 'Merging Zambian and Zimbabwean Content Creators', details: 'We merged our network with Zambian and Zimbabwean content creators, providing an Afrocentric Experience to content consumers' },
+    {
+      year: 2020,
+      event: "COCAZ founded",
+      icon: Building,
+      details:
+        "COCAZ was established with the vision of connecting Zimbabwean content creators with businesses seeking innovative marketing solutions.",
+    },
+    {
+      year: 2021,
+      event: "Expanded to 100+ content creators",
+      icon: Users,
+      details:
+        "Our network grew significantly, allowing us to offer a diverse range of influencers across various niches.",
+    },
+    {
+      year: 2022,
+      event: "Launched talent management services",
+      icon: Award,
+      details:
+        "We expanded our offerings to include comprehensive talent management for top-tier content creators.",
+    },
+    {
+      year: 2023,
+      event: "Partnership with CoolSplash",
+      icon: Building,
+      details:
+        "We initiated our first major partnership with CoolSplash, setting the stage for numerous successful marketing campaigns.",
+    },
+    {
+      year: 2024,
+      event: "Collaboration with Simuka Upenye",
+      icon: Users,
+      details:
+        "A major milestone that showcases our expertise and the trust businesses place in our services.",
+    },
+    {
+      year: 2024,
+      event: "Partnership with Sunsoya",
+      icon: Building,
+      details:
+        "We partnered with Sunsoya to help the company establish its presence in the digital space.",
+    },
+    {
+      year: 2024,
+      event: "Merging Zambian and Zimbabwean Content",
+      icon: TrendingUp,
+      details:
+        "We merged our network with Zambian and Zimbabwean content creators, providing an Afrocentric Experience to content consumers",
+    },
   ];
 
   const approachData = [
-    { name: 'Tailored Matchmaking', value: 95 },
-    { name: 'Campaign Strategy', value: 90 },
-    { name: 'Contract Negotiation', value: 85 },
-    { name: 'Performance Tracking', value: 92 },
+    {
+      name: "Tailored Matchmaking",
+      value: 95,
+      description: "Custom-fit partnerships between brands and creators",
+    },
+    {
+      name: "Campaign Strategy",
+      value: 90,
+      description: "Data-driven campaign planning and execution",
+    },
+    {
+      name: "Contract Negotiation",
+      value: 85,
+      description: "Fair and transparent agreement facilitation",
+    },
+    {
+      name: "Performance Tracking",
+      value: 92,
+      description: "Real-time analytics and reporting",
+    },
   ];
 
-  return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8 text-gray-900 dark:text-gray-100 rounded-lg"
-    >
-      <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Our Experience</h1>
-      <p className="mb-4 text-gray-700 dark:text-gray-300">Since our inception in 2020, COCAZ has been at the forefront of connecting talented content creators with businesses seeking innovative marketing solutions. Our experience spans a wide range of industries and campaign types, allowing us to deliver results-driven strategies for our clients.</p>
-      
-      <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#318000] dark:text-[#5fd75f]">Company Timeline</h2>
-      <div className="relative">
-        {timelineData.map((item, index) => (
-          <motion.div
-            key={item.year}
-            className="mb-4"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <div 
-              className="flex items-center cursor-pointer bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md"
-              onClick={() => setExpandedYear(expandedYear === item.year ? null : item.year)}
-            >
-              <div className="w-24 text-right pr-4 font-bold">{item.year}</div>
-              <div className="w-4 h-4 rounded-full bg-[#318000] dark:bg-[#5fd75f]"></div>
-              <div className="flex-1 pl-4">{item.event}</div>
-              {expandedYear === item.year ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-            </div>
-            <AnimatePresence>
-              {expandedYear === item.year && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="pl-32 pr-4 py-2 text-gray-700 dark:text-gray-300"
-                >
-                  {item.details}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
-        <div className="absolute top-0 bottom-0 left-[7.5rem] w-0.5 bg-[#318000] dark:bg-[#5fd75f] opacity-20"></div>
-      </div>
-      
-      <h2 className="text-2xl font-semibold mt-12 mb-4 text-[#318000] dark:text-[#5fd75f]">Notable Partnerships</h2>
-      <div className="mb-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold mb-2">Sunsoya</h3>
-        <p className="mb-4 text-gray-700 dark:text-gray-300">We've successfully brokered and managed a series of impactful marketing campaigns between Sunsoya and our network of influencers. These collaborations have significantly boosted Sunsoya's brand visibility and engagement across social media platforms.</p>
-        <div className="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg flex items-center justify-center h-32">
-          <img src="../assets/sunsoya.jpg" alt="Sunsoya Logo" className="max-h-full max-w-full object-contain rounded-lg" />
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className={`${currentTheme.card} p-4 rounded-lg shadow-lg`}>
+          <p className={`${currentTheme.accent} font-bold`}>
+            {payload[0].payload.name}
+          </p>
+          <p className={`${currentTheme.text}`}>
+            {payload[0].value}% Success Rate
+          </p>
+          <p className={`${currentTheme.text} text-sm mt-1`}>
+            {payload[0].payload.description}
+          </p>
         </div>
-      </div>
-      
-      <h2 className="text-2xl font-semibold mt-12 mb-4 text-[#318000] dark:text-[#5fd75f]">Our Approach</h2>
-      <div className="h-80 w-full bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
-        <ResponsiveContainer>
-          <BarChart data={approachData} layout="vertical">
-            <XAxis type="number" hide />
-            <YAxis dataKey="name" type="category" width={150} tick={{ fill: '#318000' }} />
-            <Tooltip contentStyle={{ backgroundColor: '#fff', border: 'none' }} />
-            <Bar dataKey="value" fill="#318000" label={{ position: 'right', fill: '#318000' }} />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-      
-      <motion.p 
-        className="mt-8 text-gray-700 dark:text-gray-300"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+      );
+    }
+    return null;
+  };
+
+  return (
+    <div className="py-16 px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="max-w-7xl mx-auto"
       >
-        Our experience in managing these partnerships has not only driven results for businesses but has also opened up new opportunities for content creators in Zimbabwe. We're proud of the relationships we've built and the success stories we've helped create. If you're a business looking to harness the power of influencer marketing or a content creator seeking exciting brand partnerships, COCAZ is here to help.
-      </motion.p>
-    </motion.div>
+        <br />
+        <br />
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h1 className={`text-5xl font-bold ${currentTheme.accent} mb-6`}>
+            Our Experience
+          </h1>
+          <p className={`${currentTheme.text} text-xl max-w-3xl mx-auto`}>
+            Since 2020, COCAZ has been pioneering innovative connections between
+            content creators and businesses across Zimbabwe and beyond.
+          </p>
+        </motion.div>
+
+        <div className="relative mb-24">
+          {timelineData.map((item, index) => (
+            <motion.div
+              key={item.year}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="mb-4"
+            >
+              <div
+                className={`${currentTheme.card} cursor-pointer rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02]`}
+                onClick={() =>
+                  setExpandedYear(expandedYear === item.year ? null : item.year)
+                }
+              >
+                <div className="flex items-center p-6">
+                  <div
+                    className={`${currentTheme.accent} w-24 text-right pr-4 font-bold`}
+                  >
+                    {item.year}
+                  </div>
+                  <div className={`${currentTheme.secondary} p-2 rounded-full`}>
+                    <item.icon
+                      className={`w-6 h-6 ${currentTheme.buttonText}`}
+                    />
+                  </div>
+                  <div className={`flex-1 pl-4 ${currentTheme.text}`}>
+                    {item.event}
+                  </div>
+                  {expandedYear === item.year ? (
+                    <ChevronUp className={`w-5 h-5 ${currentTheme.accent}`} />
+                  ) : (
+                    <ChevronDown className={`w-5 h-5 ${currentTheme.accent}`} />
+                  )}
+                </div>
+                <AnimatePresence>
+                  {expandedYear === item.year && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className={`px-6 pb-6 pl-40 ${currentTheme.text}`}
+                    >
+                      {item.details}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          ))}
+          <div className="absolute top-0 bottom-0 left-[7.5rem] w-0.5 bg-current opacity-20" />
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`${currentTheme.card} rounded-xl p-8 mb-24`}
+        >
+          <h2 className={`text-3xl font-bold ${currentTheme.accent} mb-6`}>
+            Notable Partnership
+          </h2>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1">
+              <h3
+                className={`text-2xl font-semibold ${currentTheme.accent} mb-4`}
+              >
+                Sunsoya
+              </h3>
+              <p className={`${currentTheme.text} mb-6`}>
+                Our partnership with Sunsoya has yielded remarkable results,
+                driving significant brand awareness and engagement across
+                digital platforms. Through strategic influencer collaborations,
+                we've helped establish Sunsoya as a prominent brand in the
+                digital space.
+              </p>
+              <motion.button
+                className={`${currentTheme.button} ${currentTheme.buttonText} px-6 py-3 rounded-full font-bold`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View Case Study
+              </motion.button>
+            </div>
+            <div className="w-full md:w-1/3">
+              <div className={`${currentTheme.card} p-4 rounded-xl`}>
+                <img
+                  src="/api/placeholder/400/300"
+                  alt="Sunsoya Partnership"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`${currentTheme.card} rounded-xl p-8`}
+        >
+          <h2 className={`text-3xl font-bold ${currentTheme.accent} mb-6`}>
+            Our Approach
+          </h2>
+          <div className="h-80">
+            <ResponsiveContainer>
+              <BarChart data={approachData} layout="vertical">
+                <XAxis type="number" hide />
+                <YAxis
+                  dataKey="name"
+                  type="category"
+                  width={150}
+                  tick={{ fill: currentTheme.accent.replace("text-", "") }}
+                />
+                <Tooltip content={<CustomTooltip />} />
+                <Bar
+                  dataKey="value"
+                  fill={currentTheme.accent.replace("text-", "")}
+                  label={{
+                    position: "right",
+                    fill: currentTheme.accent.replace("text-", ""),
+                    formatter: (value) => `${value}%`,
+                  }}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

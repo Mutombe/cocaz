@@ -1,179 +1,298 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Star,
+  ArrowRight,
+  Award,
+  Users,
+  TrendingUp,
+  MessageCircle,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@/components/themeContext";
 
-const SatisfiedClients = () => {
+const StatCard = ({ icon: Icon, label, value }) => {
+  const { currentTheme } = useTheme();
+
+  return (
+    <motion.div
+      className={`${currentTheme.card} p-6 rounded-xl shadow-lg`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <Icon className={`${currentTheme.accent} w-8 h-8 mb-4`} />
+      <h3 className={`${currentTheme.accent} text-2xl font-bold mb-2`}>
+        {value}
+      </h3>
+      <p className={`${currentTheme.text} text-sm`}>{label}</p>
+    </motion.div>
+  );
+};
+
+const TestimonialCard = ({ quote, author, rating, onNext, onPrev }) => {
+  const { currentTheme } = useTheme();
+
+  return (
+    <motion.div
+      className={`${currentTheme.card} p-8 rounded-xl shadow-lg`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+    >
+      <div className="flex justify-between items-center mb-6">
+        <button
+          onClick={onPrev}
+          className={`${currentTheme.accent} hover:opacity-75`}
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <div className="flex">
+          {[...Array(rating)].map((_, i) => (
+            <Star key={i} size={20} className="text-yellow-400 fill-current" />
+          ))}
+        </div>
+        <button
+          onClick={onNext}
+          className={`${currentTheme.accent} hover:opacity-75`}
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+      <p className={`${currentTheme.text} text-lg italic mb-4`}>"{quote}"</p>
+      <p className={`${currentTheme.accent} font-semibold`}>- {author}</p>
+    </motion.div>
+  );
+};
+
+const ClientCard = ({ client, isExpanded, onToggle }) => {
+  const { currentTheme } = useTheme();
+
+  return (
+    <motion.div
+      className={`${currentTheme.card} rounded-xl shadow-lg overflow-hidden cursor-pointer`}
+      whileHover={{ scale: 1.02 }}
+      onClick={onToggle}
+    >
+      <div className="p-6">
+        <div className="flex items-center mb-4">
+          <div
+            className={`${currentTheme.secondary} w-12 h-12 rounded-full flex items-center justify-center text-2xl`}
+          >
+            {client.logo}
+          </div>
+          <h3 className={`${currentTheme.accent} text-xl font-semibold ml-4`}>
+            {client.name}
+          </h3>
+        </div>
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.ul
+              className={`${currentTheme.text} space-y-2 mb-4`}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              {client.achievements.map((achievement, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-center"
+                >
+                  <div
+                    className={`${currentTheme.secondary} w-2 h-2 rounded-full mr-3`}
+                  />
+                  {achievement}
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+        <div className={`flex items-center ${currentTheme.accent}`}>
+          <span className="mr-2">
+            {isExpanded ? "Hide details" : "View details"}
+          </span>
+          <ArrowRight
+            size={16}
+            className={`transform transition-transform ${
+              isExpanded ? "rotate-90" : ""
+            }`}
+          />
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const EnhancedSatisfiedClients = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [expandedClient, setExpandedClient] = useState(null);
+  const navigate = useNavigate();
+  const { currentTheme } = useTheme();
+
+  const stats = [
+    { icon: Users, label: "Satisfied Clients", value: "500+" },
+    { icon: Award, label: "Awards Won", value: "50+" },
+    { icon: TrendingUp, label: "Growth Rate", value: "200%" },
+    { icon: MessageCircle, label: "Positive Reviews", value: "1000+" },
+  ];
 
   const clientSuccesses = [
     {
-      name: 'Sunsoya',
-      logo: '🌞', // Replace with actual logo URL when available
+      name: "Sunsoya",
+      logo: "🌞",
       achievements: [
-        'Increase brand awareness by 150% among their target demographic',
-        'Boost engagement rates on social media by 200%',
-        'Drive a 75% increase in online sales during campaign periods'
+        "Increase brand awareness by 150% among their target demographic",
+        "Boost engagement rates on social media by 200%",
+        "Drive a 75% increase in online sales during campaign periods",
       ],
-      quote: "COCAZ has been instrumental in helping us connect with our audience in an authentic and impactful way. Their understanding of the local market and their network of talented creators have been invaluable to our marketing efforts.",
-      author: "Marketing Director, Sunsoya"
+      quote:
+        "COCAZ has been instrumental in helping us connect with our audience in an authentic and impactful way.",
+      author: "Marketing Director, Sunsoya",
     },
     {
-      name: 'Master H',
-      logo: '🎵', // Replace with actual logo URL when available
+      name: "Master H",
+      logo: "🎵",
       achievements: [
-        'Increased social media following by 300% in 6 months',
-        'Secured 5 major brand endorsement deals',
-        'Produced and promoted a chart-topping album',
-        'Organized a successful nationwide tour'
+        "Increased social media following by 300% in 6 months",
+        "Secured 5 major brand endorsement deals",
+        "Produced and promoted a chart-topping album",
       ],
-      quote: "COCAZ took my career to the next level. Their guidance and connections in the industry have been priceless. I couldn't have achieved this much success without their support.",
-      author: "Master H"
+      quote:
+        "COCAZ took my career to the next level. Their guidance and connections in the industry have been priceless.",
+      author: "Master H",
     },
     {
-      name: 'Jah Signal',
-      logo: '🎤', // Replace with actual logo URL when available
+      name: "Jah Signal",
+      logo: "🎤",
       achievements: [
-        'Doubled monthly listeners on streaming platforms',
-        'Successful launch of a clothing line inspired by his music',
-        'Coordinated international collaborations with top artists',
-        'Increased revenue from live performances by 150%'
+        "Doubled monthly listeners on streaming platforms",
+        "Successful launch of a clothing line",
+        "Coordinated international collaborations",
       ],
-      quote: "COCAZ's expertise in talent management has been crucial to my success. They've helped me diversify my brand and reach new audiences I never thought possible.",
-      author: "Jah Signal"
+      quote:
+        "COCAZ's expertise in talent management has been crucial to my success.",
+      author: "Jah Signal",
     },
-    {
-      name: 'ZimBeauty Co.',
-      logo: '💄', // Replace with actual logo URL when available
-      achievements: [
-        '30% increase in sales of their flagship skincare line',
-        'Successfully launched in two new African markets',
-        'Created viral content reaching over 1 million views',
-        'Established partnerships with 50+ micro-influencers'
-      ],
-      quote: "The COCAZ team's approach to influencer marketing is unparalleled. They understood our brand vision and connected us with creators who genuinely resonated with our products. The results speak for themselves.",
-      author: "CEO, ZimBeauty Co."
-    }
   ];
-
-  const navigate = useNavigate()
-
-  const handleClick = () => {
-    navigate("/contact")
-  }
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % clientSuccesses.length);
   };
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + clientSuccesses.length) % clientSuccesses.length);
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + clientSuccesses.length) % clientSuccesses.length
+    );
   };
 
+  useEffect(() => {
+    const interval = setInterval(nextTestimonial, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <motion.div 
+    <motion.div
+      className="py-16 px-4 sm:px-6 lg:px-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8 text-gray-900 dark:text-gray-100 rounded-lg"
     >
-      <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Our Satisfied Clients</h1>
-      <p className="mb-8 text-gray-700 dark:text-gray-300">At COCAZ, our success is measured by the success and satisfaction of our clients. We're proud to have worked with a diverse range of businesses and content creators, helping them achieve their goals and grow their brands.</p>
-      
-      <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#318000] dark:text-[#5fd75f]">Client Success Stories</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {clientSuccesses.map((client, index) => (
-          <motion.div
-            key={client.name}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden cursor-pointer"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            onClick={() => setExpandedClient(expandedClient === index ? null : index)}
-          >
-            <div className="p-6">
-              <div className="flex items-center mb-4">
-                <div className="text-4xl mr-4">{client.logo}</div>
-                <h3 className="text-xl font-semibold">{client.name}</h3>
-              </div>
-              <AnimatePresence>
-                {expandedClient === index && (
-                  <motion.ul
-                    className="list-disc list-inside mb-4 text-gray-700 dark:text-gray-300"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                  >
-                    {client.achievements.map((achievement, i) => (
-                      <li key={i}>{achievement}</li>
-                    ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-              <div className="flex items-center text-[#318000] dark:text-[#5fd75f]">
-                <span className="mr-2">{expandedClient === index ? 'Hide details' : 'View details'}</span>
-                <ArrowRight size={16} className={`transform transition-transform ${expandedClient === index ? 'rotate-90' : ''}`} />
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      <br />
+      <br />
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h1 className={`text-5xl font-bold ${currentTheme.accent} mb-6`}>
+            Our Satisfied Clients
+          </h1>
+          <p className={`${currentTheme.text} text-xl max-w-3xl mx-auto`}>
+            Join hundreds of successful businesses and creators who have
+            transformed their digital presence with COCAZ
+          </p>
+        </motion.div>
 
-      <h2 className="text-2xl font-semibold mt-12 mb-4 text-[#318000] dark:text-[#5fd75f]">Client Testimonials</h2>
-      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-4">
-            <button onClick={prevTestimonial} className="text-[#318000] dark:text-[#5fd75f] hover:opacity-75 transition-opacity">
-              <ChevronLeft size={24} />
-            </button>
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={20} className="text-yellow-400 fill-current" />
-              ))}
-            </div>
-            <button onClick={nextTestimonial} className="text-[#318000] dark:text-[#5fd75f] hover:opacity-75 transition-opacity">
-              <ChevronRight size={24} />
-            </button>
-          </div>
-          <AnimatePresence mode="wait">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {stats.map((stat, index) => (
             <motion.div
-              key={currentTestimonial}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.3 }}
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <p className="text-gray-700 dark:text-gray-300 italic mb-4">"{clientSuccesses[currentTestimonial].quote}"</p>
-              <p className="text-gray-600 dark:text-gray-400 font-semibold">- {clientSuccesses[currentTestimonial].author}</p>
+              <StatCard {...stat} />
             </motion.div>
+          ))}
+        </div>
+
+        <div className="mb-16">
+          <h2
+            className={`text-3xl font-bold ${currentTheme.accent} mb-8 text-center`}
+          >
+            Client Success Stories
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {clientSuccesses.map((client, index) => (
+              <ClientCard
+                key={client.name}
+                client={client}
+                isExpanded={expandedClient === index}
+                onToggle={() =>
+                  setExpandedClient(expandedClient === index ? null : index)
+                }
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-16">
+          <h2
+            className={`text-3xl font-bold ${currentTheme.accent} mb-8 text-center`}
+          >
+            What Our Clients Say
+          </h2>
+          <AnimatePresence mode="wait">
+            <TestimonialCard
+              key={currentTestimonial}
+              quote={clientSuccesses[currentTestimonial].quote}
+              author={clientSuccesses[currentTestimonial].author}
+              rating={5}
+              onNext={nextTestimonial}
+              onPrev={prevTestimonial}
+            />
           </AnimatePresence>
         </div>
+
+        <motion.div
+          className={`${currentTheme.card} p-12 rounded-xl text-center`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h2 className={`text-3xl font-bold ${currentTheme.accent} mb-6`}>
+            Ready to Transform Your Digital Presence?
+          </h2>
+          <p className={`${currentTheme.text} text-lg mb-8`}>
+            Join our community of successful clients and take your brand to the
+            next level
+          </p>
+          <motion.button
+            className={`${currentTheme.button} ${currentTheme.buttonText} px-8 py-4 rounded-full text-lg font-semibold`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => navigate("/contact")}
+          >
+            Get Started Today
+          </motion.button>
+        </motion.div>
       </div>
-
-      <h2 className="text-2xl font-semibold mt-12 mb-4 text-[#318000] dark:text-[#5fd75f]">Our Commitment to Client Success</h2>
-      <ul className="list-disc list-inside mb-6 text-gray-700 dark:text-gray-300">
-        <li>Tailored strategies to meet specific business goals</li>
-        <li>Access to our extensive network of talented content creators</li>
-        <li>Ongoing support and campaign optimization</li>
-        <li>Regular performance reports and analytics</li>
-        <li>Workshops and training to keep our clients at the forefront of content creation trends</li>
-      </ul>
-
-      <motion.div
-        className="mt-8 bg-[#318000] dark:bg-[#5fd75f] text-white dark:text-gray-900 rounded-lg p-6"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <h2 className="text-2xl font-semibold mb-4">Ready to Join Our Success Stories?</h2>
-        <p className="mb-4">Experience the COCAZ difference and take your brand or career to new heights. Contact us today to start your journey towards content creation success!</p>
-        <button onClick={handleClick} className="bg-white text-[#318000] dark:bg-gray-900 dark:text-[#5fd75f] font-bold py-2 px-4 rounded hover:bg-opacity-90 dark:hover:bg-opacity-90 transition duration-300">
-          Get Started Now
-        </button>
-      </motion.div>
     </motion.div>
   );
 };
 
-export default SatisfiedClients;
+export default EnhancedSatisfiedClients;

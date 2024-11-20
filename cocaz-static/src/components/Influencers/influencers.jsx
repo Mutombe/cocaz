@@ -129,7 +129,7 @@ const InfluencerPage = () => {
           variants={pageVariants}
         >
           <motion.h2
-            className={`text-4xl font-bold ${currentTheme.accent}  mb-4 text-yellow-400`}
+            className={`text-4xl font-bold ${currentTheme.accent}  mb-4 `}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

@@ -1,98 +1,250 @@
-import  { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mic, Music, Award, TrendingUp, Briefcase, DollarSign } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/components/themeContext";
+import {
+  Mic,
+  Music,
+  Award,
+  TrendingUp,
+  Briefcase,
+  DollarSign,
+  Star,
+  Calendar,
+  Users,
+  ArrowRight,
+} from "lucide-react";
 
 const TalentManagement = () => {
+  const { currentTheme } = useTheme();
   const [selectedApproach, setSelectedApproach] = useState(null);
+  const [activeTab, setActiveTab] = useState("featured");
 
   const featuredArtists = [
-    { name: "Master H", genre: "Dancehall", description: "Master H has been making waves in the Zimbabwean dancehall scene with his unique blend of hard-hitting lyrics and infectious rhythms. Under COCAZ management, he has released several chart-topping singles and performed at major festivals across the country." },
-    { name: "Jah Signal", genre: 'Dancehall', description: "Jah Signal has become a household name in Zimbabwe's dancehall community. With COCAZ's support, he has expanded his reach, collaborating with international artists and headlining shows throughout Southern Africa." },
+    {
+      name: "Master H",
+      genre: "Dancehall",
+      achievements: "3x Award Winner",
+      description:
+        "Master H has been making waves in the Zimbabwean dancehall scene with his unique blend of hard-hitting lyrics and infectious rhythms.",
+      stats: { followers: "250K", shows: "150+", releases: "25" },
+    },
+    {
+      name: "Jah Signal",
+      genre: "Dancehall",
+      achievements: "Chart-Topping Artist",
+      description:
+        "Jah Signal has become a household name in Zimbabwe's dancehall community, collaborating with international artists.",
+      stats: { followers: "300K", shows: "200+", releases: "30" },
+    },
   ];
 
   const managementApproach = [
-    { title: "Career Strategy", icon: TrendingUp, description: "We work closely with each artist to develop a personalized career plan." },
-    { title: "Brand Development", icon: Award, description: "Our team helps artists craft and maintain a strong, authentic brand image." },
-    { title: "Booking and Tour Management", icon: Music, description: "We handle performance bookings and manage tour logistics." },
-    { title: "Media Relations", icon: Mic, description: "We secure press coverage and manage public relations to boost our artists' profiles." },
-    { title: "Digital Presence", icon: Briefcase, description: "We help artists navigate the digital landscape, from social media management to content strategy." },
-    { title: "Legal and Financial Advice", icon: DollarSign, description: "Our network of professionals provides guidance on contracts, royalties, and financial planning." },
+    {
+      title: "Career Strategy",
+      icon: TrendingUp,
+      description:
+        "Comprehensive career planning and development strategies tailored to each artist's unique goals and potential.",
+    },
+    {
+      title: "Brand Development",
+      icon: Award,
+      description:
+        "Strategic brand building and positioning to establish a strong, memorable presence in the industry.",
+    },
+    {
+      title: "Tour Management",
+      icon: Music,
+      description:
+        "End-to-end tour planning, from venue booking to logistics coordination and performance management.",
+    },
+    {
+      title: "Media Relations",
+      icon: Mic,
+      description:
+        "Strategic media placement, interview coaching, and public relations management for maximum visibility.",
+    },
+    {
+      title: "Digital Strategy",
+      icon: Briefcase,
+      description:
+        "Comprehensive digital presence management including social media, content strategy, and online engagement.",
+    },
+    {
+      title: "Financial Planning",
+      icon: DollarSign,
+      description:
+        "Professional guidance on revenue management, investment planning, and sustainable career growth.",
+    },
   ];
 
-  return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-8 text-gray-900 dark:text-gray-100 rounded-lg"
+  const ArtistCard = ({ artist }) => (
+    <motion.div
+      className={`${currentTheme.card} rounded-xl overflow-hidden shadow-xl`}
+      whileHover={{ y: -5, scale: 1.02 }}
+      transition={{ duration: 0.3 }}
     >
-      <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Talent Management</h1>
-      <p className="mb-4 text-gray-700 dark:text-gray-300">At COCAZ, we're proud to represent and nurture some of Zimbabwe's most exciting content creators and artists. Our talent management services are designed to help artists reach their full potential and achieve their career goals.</p>
-      
-      <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#318000] dark:text-[#5fd75f]">Featured Artists</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {featuredArtists.map((artist, index) => (
-          <motion.div
-            key={artist.name}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h3 className={`text-2xl font-bold ${currentTheme.accent}`}>
+              {artist.name}
+            </h3>
+            <p className={`${currentTheme.text} opacity-75`}>{artist.genre}</p>
+          </div>
+          <span
+            className={`${currentTheme.secondary} ${currentTheme.buttonText} px-3 py-1 rounded-full text-sm`}
           >
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-[#318000] dark:text-[#5fd75f]">{artist.name}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Genre: {artist.genre}</p>
-              <p className="text-gray-700 dark:text-gray-300">{artist.description}</p>
+            {artist.achievements}
+          </span>
+        </div>
+
+        <p className={`${currentTheme.text} mb-6`}>{artist.description}</p>
+
+        <div className="grid grid-cols-3 gap-4">
+          {Object.entries(artist.stats).map(([key, value]) => (
+            <div key={key} className="text-center">
+              <p className={`${currentTheme.accent} text-xl font-bold`}>
+                {value}
+              </p>
+              <p className={`${currentTheme.text} text-sm capitalize`}>{key}</p>
             </div>
-          </motion.div>
-        ))}
+          ))}
+        </div>
       </div>
-      
-      <h2 className="text-2xl font-semibold mt-12 mb-4 text-[#318000] dark:text-[#5fd75f]">Our Management Approach</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {managementApproach.map((approach, index) => (
-          <motion.div
-            key={approach.title}
-            className={`bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${selectedApproach === index ? 'ring-2 ring-[#318000] dark:ring-[#5fd75f]' : ''}`}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            onClick={() => setSelectedApproach(selectedApproach === index ? null : index)}
-          >
-            <div className="p-6">
-              <div className="flex items-center mb-4">
-                <approach.icon className="w-8 h-8 text-[#318000] dark:text-[#5fd75f] mr-2" />
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{approach.title}</h3>
-              </div>
-              {selectedApproach === index && (
-                <motion.p
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="text-gray-700 dark:text-gray-300"
-                >
-                  {approach.description}
-                </motion.p>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-      
-      <motion.div
-        className="mt-12 bg-[#318000]/10 dark:bg-[#5fd75f]/10 rounded-lg p-6"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-[#318000] dark:text-[#5fd75f]">Ready to Take Your Career to the Next Level?</h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-4">COCAZ is committed to fostering the growth of Zimbabwe's creative talents. Whether you're an established artist looking for new management or an
-          up-and-coming creator ready to take the next step, we're here to help you achieve your dreams.</p>
-        <button className="bg-[#318000] dark:bg-[#5fd75f] text-white dark:text-gray-900 font-bold py-2 px-4 rounded hover:bg-[#318000]/80 dark:hover:bg-[#5fd75f]/80 transition duration-300">
-          Contact Us Today
-        </button>
-      </motion.div>
     </motion.div>
+  );
+
+  const ApproachCard = ({ approach, index }) => (
+    <motion.div
+      className={`${currentTheme.card} rounded-xl overflow-hidden cursor-pointer`}
+      whileHover={{ scale: 1.02 }}
+      onClick={() =>
+        setSelectedApproach(selectedApproach === index ? null : index)
+      }
+    >
+      <div className="p-6">
+        <div className="flex items-center gap-3 mb-3">
+          <div className={`${currentTheme.secondary} p-3 rounded-full`}>
+            <approach.icon className={`w-6 h-6 ${currentTheme.buttonText}`} />
+          </div>
+          <h3 className={`${currentTheme.accent} text-lg font-bold`}>
+            {approach.title}
+          </h3>
+        </div>
+
+        <AnimatePresence>
+          {selectedApproach === index && (
+            <motion.p
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className={`${currentTheme.text} mt-2`}
+            >
+              {approach.description}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+
+  return (
+    <div className="py-16 px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-7xl mx-auto"
+      >
+        <br />
+        <br />
+        <div className="text-center mb-16">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`text-5xl font-bold ${currentTheme.accent} mb-4`}
+          >
+            Talent Management
+          </motion.h1>
+          <p className={`${currentTheme.text} text-xl max-w-3xl mx-auto`}>
+            Empowering Zimbabwe's creative voices through strategic management
+            and innovative opportunities
+          </p>
+        </div>
+
+        <div className="flex justify-center gap-4 mb-12">
+          <button
+            onClick={() => setActiveTab("featured")}
+            className={`${
+              activeTab === "featured" ? currentTheme.button : currentTheme.card
+            } 
+              px-6 py-3 rounded-full font-semibold transition-all duration-300`}
+          >
+            Featured Artists
+          </button>
+          <button
+            onClick={() => setActiveTab("approach")}
+            className={`${
+              activeTab === "approach" ? currentTheme.button : currentTheme.card
+            } 
+              px-6 py-3 rounded-full font-semibold transition-all duration-300`}
+          >
+            Our Approach
+          </button>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {activeTab === "featured" && (
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
+            >
+              {featuredArtists.map((artist, index) => (
+                <ArtistCard key={index} artist={artist} />
+              ))}
+            </motion.div>
+          )}
+
+          {activeTab === "approach" && (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+            >
+              {managementApproach.map((approach, index) => (
+                <ApproachCard key={index} approach={approach} index={index} />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <motion.div
+          className={`${currentTheme.card} rounded-xl p-8 text-center`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h2 className={`text-3xl font-bold ${currentTheme.accent} mb-4`}>
+            Ready to Take Your Career to the Next Level?
+          </h2>
+          <p className={`${currentTheme.text} mb-6 max-w-2xl mx-auto`}>
+            Join COCAZ's roster of exceptional talent and let us help you
+            achieve your artistic vision through strategic management and
+            innovative opportunities.
+          </p>
+          <motion.button
+            className={`${currentTheme.button} ${currentTheme.buttonText} px-8 py-3 rounded-full font-bold text-lg
+              flex items-center gap-2 mx-auto`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Contact Us Today
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

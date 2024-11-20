@@ -1,115 +1,319 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Tab } from '@headlessui/react';
-import { ChevronDownIcon, Mic, Calendar, Briefcase, UsersRound, Music, Utensils, Camera, Users, Clock } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Tab } from "@headlessui/react";
+import { useTheme } from "@/components/themeContext";
+import {
+  ChevronDown,
+  Mic,
+  Calendar,
+  Briefcase,
+  UsersRound,
+  Music,
+  Utensils,
+  Camera,
+  Users,
+  Clock,
+  Star,
+  Sparkles,
+} from "lucide-react";
 
 const EventManagement = () => {
+  const { currentTheme } = useTheme();
   const [selectedTab, setSelectedTab] = useState(0);
   const [expandedService, setExpandedService] = useState(null);
 
-  const tabs = ['Overview', 'MC Services', 'Event Types', 'Planning Services'];
+  const tabs = ["Overview", "MC Services", "Event Types", "Planning Services"];
 
   const services = [
-    { name: 'Venue selection and decoration', description: 'We help you find and decorate the perfect venue for your event.', icon: Calendar },
-    { name: 'Entertainment booking', description: 'We book top-notch entertainment to keep your guests engaged.', icon: Music },
-    { name: 'Catering coordination', description: 'We coordinate with the best caterers to provide delicious food for your event.', icon: Utensils },
-    { name: 'Audio-visual setup', description: 'We ensure your event has the best sound and visual equipment.', icon: Camera },
-    { name: 'Guest list management', description: 'We help you manage your guest list efficiently.', icon: Users },
-    { name: 'On-site event coordination', description: 'We provide on-site coordination to ensure your event runs smoothly.', icon: Clock },
+    {
+      name: "Venue Selection & Styling",
+      description:
+        "Transform any space into an enchanting venue that perfectly matches your vision.",
+      icon: Calendar,
+      features: ["Venue scouting", "Theme development", "Decor arrangement"],
+    },
+    {
+      name: "Entertainment Booking",
+      description:
+        "Access our network of top performers to create unforgettable moments.",
+      icon: Music,
+      features: ["Live bands", "DJs", "Traditional performers"],
+    },
+    {
+      name: "Culinary Excellence",
+      description:
+        "Partner with premier caterers to delight your guests with exceptional cuisine.",
+      icon: Utensils,
+      features: ["Custom menus", "Dietary accommodations", "Bar service"],
+    },
+    {
+      name: "Technical Production",
+      description:
+        "State-of-the-art audio-visual solutions for flawless event execution.",
+      icon: Camera,
+      features: ["Sound systems", "Lighting design", "Visual effects"],
+    },
+    {
+      name: "Guest Experience",
+      description: "Comprehensive guest management for a seamless event flow.",
+      icon: Users,
+      features: ["RSVP management", "Seating arrangements", "VIP services"],
+    },
+    {
+      name: "Event Coordination",
+      description:
+        "Expert on-site management ensuring every detail is perfect.",
+      icon: Clock,
+      features: [
+        "Timeline planning",
+        "Vendor coordination",
+        "Emergency handling",
+      ],
+    },
   ];
 
+  const ServiceCard = ({ service, index, isExpanded, onToggle }) => {
+    return (
+      <motion.div
+        layout
+        className={`${currentTheme.card} rounded-xl overflow-hidden shadow-lg`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.1 }}
+      >
+        <motion.button
+          className={`w-full text-left p-4 flex items-center justify-between ${currentTheme.text}`}
+          onClick={onToggle}
+        >
+          <div className="flex items-center space-x-3">
+            <div className={`p-2 rounded-lg ${currentTheme.secondary}`}>
+              <service.icon className={`w-6 h-6 ${currentTheme.buttonText}`} />
+            </div>
+            <span className="font-semibold">{service.name}</span>
+          </div>
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ChevronDown className={`w-5 h-5 ${currentTheme.accent}`} />
+          </motion.div>
+        </motion.button>
+
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="px-4 pb-4"
+            >
+              <p className={`${currentTheme.text} mb-4`}>
+                {service.description}
+              </p>
+              <div className="space-y-2">
+                {service.features.map((feature, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    className={`flex items-center space-x-2 ${currentTheme.text}`}
+                  >
+                    <Sparkles className={`w-4 h-4 ${currentTheme.accent}`} />
+                    <span>{feature}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    );
+  };
+
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 py-20 text-gray-900 dark:text-gray-100 rounded-lg"
+      className="container mx-auto px-4 py-20"
     >
-      <h1 className="text-4xl font-bold mb-6 text-[#318000] dark:text-[#5fd75f]">Event Management Services</h1>
-      
+      <br />
+      <br />
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className="text-center mb-16"
+      >
+        <h1 className={`text-5xl font-bold mb-4 ${currentTheme.accent}`}>
+          Event Management
+        </h1>
+        <p className={`text-xl ${currentTheme.text} max-w-2xl mx-auto`}>
+          Creating unforgettable experiences with precision and creativity
+        </p>
+      </motion.div>
+
       <Tab.Group selectedIndex={selectedTab} onChange={setSelectedTab}>
-        <Tab.List className="flex space-x-1 rounded-xl bg-[#318000]/20 dark:bg-[#5fd75f]/20 p-1">
+        <Tab.List className="flex space-x-2 rounded-xl p-1 mb-8 bg-opacity-20 backdrop-blur-sm">
           {tabs.map((tab) => (
             <Tab
               key={tab}
               className={({ selected }) =>
-                `w-full rounded-lg py-2.5 text-sm font-bold leading-5
-                 ring-white ring-opacity-60 ring-offset-2 ring-offset-[#318000] dark:ring-offset-[#5fd75f] focus:outline-none focus:ring-2
-                 ${selected ? 'bg-white dark:bg-gray-800 text-[#318000] dark:text-[#5fd75f] shadow' : 'text-gray-700 dark:text-gray-300 hover:bg-white/[0.12] dark:hover:bg-gray-800/[0.12] hover:text-[#318000] dark:hover:text-[#5fd75f]'} `
+                `w-full rounded-lg py-3 text-sm font-medium leading-5 transition-all duration-200 ${
+                  selected
+                    ? `${currentTheme.secondary} ${currentTheme.buttonText} shadow-lg`
+                    : `${currentTheme.text} hover:opacity-80`
+                }`
               }
             >
               {tab}
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className="mt-2">
-          <Tab.Panel className="rounded-xl bg-white dark:bg-gray-800 p-3">
-            <p className="text-gray-700 dark:text-gray-300">COCAZ offers top-tier event management services, leveraging our network of talented content creators to make your special occasions truly unforgettable.</p>
-          </Tab.Panel>
-          <Tab.Panel className="rounded-xl bg-white dark:bg-gray-800 p-3">
-            <h2 className="text-2xl font-semibold mb-4 text-[#318000] dark:text-[#5fd75f]">Master of Ceremonies (MC) Services</h2>
-            <p className="text-gray-700 dark:text-gray-300">Our roster includes some of Zimbabwe's most skilled and charismatic MCs. These content creators have honed their craft through years of engaging with audiences both online and in person. They bring energy, wit, and professionalism to every event they host.</p>
-          </Tab.Panel>
-          <Tab.Panel className="rounded-xl bg-white dark:bg-gray-800 p-3">
-            <h2 className="text-2xl font-semibold mb-4 text-[#318000] dark:text-[#5fd75f]">Events We Specialize In</h2>
-            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-              <li className="flex items-center"><UsersRound className="w-5 h-5 mr-2 text-[#318000] dark:text-[#5fd75f]" /> Weddings: Our MCs ensure your special day flows smoothly, keeping guests entertained and the atmosphere joyful.</li>
-              <li className="flex items-center"><Briefcase className="w-5 h-5 mr-2 text-[#318000] dark:text-[#5fd75f]" /> Corporate Events: From product launches to annual galas, we help maintain a professional yet engaging atmosphere.</li>
-              <li className="flex items-center"><Calendar className="w-5 h-5 mr-2 text-[#318000] dark:text-[#5fd75f]" /> Get-togethers and Parties: Whether it's a birthday, anniversary, or just a friendly gathering, our MCs know how to keep the energy high and the fun flowing.</li>
-              <li className="flex items-center"><Mic className="w-5 h-5 mr-2 text-[#318000] dark:text-[#5fd75f]" /> Conferences and Seminars: We help maintain audience engagement throughout long days of presentations and networking.</li>
-            </ul>
-          </Tab.Panel>
-          <Tab.Panel className="rounded-xl bg-white dark:bg-gray-800 p-3">
-            <h2 className="text-2xl font-semibold mb-4 text-[#318000] dark:text-[#5fd75f]">Full-Service Event Planning</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">Beyond providing MCs, COCAZ offers comprehensive event planning services. We can help with:</p>
-            <motion.ul className="space-y-2">
-              {services.map((service, index) => (
-                <motion.li
-                  key={service.name}
-                  className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
+
+        <Tab.Panels className="mt-4">
+          <AnimatePresence mode="wait">
+            {tabs.map((tab, idx) => (
+              <Tab.Panel
+                key={idx}
+                className={`rounded-xl ${currentTheme.card} p-6 shadow-xl`}
+              >
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <button
-                    className="w-full text-left px-4 py-2 flex justify-between items-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600"
-                    onClick={() => setExpandedService(expandedService === index ? null : index)}
-                  >
-                    <span className="font-medium flex items-center">
-                      <service.icon className="w-5 h-5 mr-2 text-[#318000] dark:text-[#5fd75f]" />
-                      {service.name}
-                    </span>
-                    <ChevronDownIcon
-                      className={`w-5 h-5 transform transition-transform text-[#318000] dark:text-[#5fd75f] ${
-                        expandedService === index ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                  {expandedService === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="px-4 py-2 bg-white dark:bg-gray-800"
-                    >
-                      <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
-                    </motion.div>
+                  {idx === 0 && (
+                    <div className="space-y-6">
+                      <h2
+                        className={`text-3xl font-bold ${currentTheme.accent} mb-4`}
+                      >
+                        Welcome to COCAZ Events
+                      </h2>
+                      <p
+                        className={`${currentTheme.text} text-lg leading-relaxed`}
+                      >
+                        Experience the perfect blend of creativity and precision
+                        in event management. Our team of seasoned professionals
+                        transforms your vision into reality, ensuring every
+                        detail is meticulously crafted for an unforgettable
+                        experience.
+                      </p>
+                    </div>
                   )}
-                </motion.li>
-              ))}
-            </motion.ul>
-          </Tab.Panel>
+
+                  {idx === 1 && (
+                    <div className="space-y-6">
+                      <h2
+                        className={`text-3xl font-bold ${currentTheme.accent} mb-4`}
+                      >
+                        Professional MC Services
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {[
+                          "Corporate Events",
+                          "Weddings",
+                          "Social Gatherings",
+                          "Award Ceremonies",
+                        ].map((event, i) => (
+                          <motion.div
+                            key={i}
+                            className={`${currentTheme.card} p-4 rounded-lg shadow-md`}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                          >
+                            <div className="flex items-center space-x-3">
+                              <Star className={currentTheme.accent} />
+                              <span className={currentTheme.text}>{event}</span>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 2 && (
+                    <div className="space-y-6">
+                      <h2
+                        className={`text-3xl font-bold ${currentTheme.accent} mb-4`}
+                      >
+                        Specialized Events
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                          { icon: UsersRound, name: "Weddings" },
+                          { icon: Briefcase, name: "Corporate Events" },
+                          { icon: Music, name: "Concerts" },
+                          { icon: Star, name: "Galas" },
+                          { icon: Users, name: "Conferences" },
+                          { icon: Sparkles, name: "Special Occasions" },
+                        ].map((event, i) => (
+                          <motion.div
+                            key={i}
+                            className={`${currentTheme.card} p-6 rounded-lg shadow-md`}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                          >
+                            <event.icon
+                              className={`w-8 h-8 ${currentTheme.accent} mb-3`}
+                            />
+                            <h3
+                              className={`${currentTheme.text} font-semibold`}
+                            >
+                              {event.name}
+                            </h3>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 3 && (
+                    <div className="space-y-6">
+                      <h2
+                        className={`text-3xl font-bold ${currentTheme.accent} mb-4`}
+                      >
+                        Our Services
+                      </h2>
+                      <div className="grid gap-4">
+                        {services.map((service, index) => (
+                          <ServiceCard
+                            key={index}
+                            service={service}
+                            index={index}
+                            isExpanded={expandedService === index}
+                            onToggle={() =>
+                              setExpandedService(
+                                expandedService === index ? null : index
+                              )
+                            }
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              </Tab.Panel>
+            ))}
+          </AnimatePresence>
         </Tab.Panels>
       </Tab.Group>
-      
-      <motion.p 
-        className="mt-8 text-gray-700 dark:text-gray-300"
+
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
+        className={`mt-12 text-center ${currentTheme.text}`}
       >
-        Let COCAZ take the stress out of your event planning. With our network of talented content creators and our experience in managing events of all sizes, we'll ensure your gathering is a resounding success. Contact us today to start planning your next unforgettable event!
-      </motion.p>
+        <p className="text-lg">
+          Ready to create something extraordinary? Contact us today to begin
+          planning your perfect event.
+        </p>
+      </motion.div>
     </motion.div>
   );
 };

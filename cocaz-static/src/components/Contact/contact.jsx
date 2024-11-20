@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { PhoneCall, Mail, MapPin, Send, Loader2 } from 'lucide-react';
-import { useTheme } from '../themeContext';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { PhoneCall, Mail, MapPin, Send, Loader2 } from "lucide-react";
+import { useTheme } from "../themeContext";
 
 const ContactForm = () => {
   const { currentTheme } = useTheme();
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
 
   const handleChange = (e) => {
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -24,21 +24,26 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setShowThankYou(true);
   };
 
   const inputClasses = `w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-colors duration-200
-    ${currentTheme.accent.replace('text', 'border')} bg-white/10 backdrop-blur-sm
+    ${currentTheme.accent.replace(
+      "text",
+      "border"
+    )} bg-white/10 backdrop-blur-sm
     ${currentTheme.text} placeholder:text-gray-400 focus:border-yellow-400`;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="min-h-screen py-12 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8"
     >
+      <br />
+      <br />
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -53,7 +58,8 @@ const ContactForm = () => {
             Get in Touch
           </motion.h1>
           <p className={`${currentTheme.text} text-lg max-w-2xl mx-auto`}>
-            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            Have questions? We'd love to hear from you. Send us a message and
+            we'll respond as soon as possible.
           </p>
         </motion.div>
 
@@ -79,7 +85,9 @@ const ContactForm = () => {
                   >
                     ✨
                   </motion.div>
-                  <h2 className={`${currentTheme.accent} text-2xl font-bold mb-4`}>
+                  <h2
+                    className={`${currentTheme.accent} text-2xl font-bold mb-4`}
+                  >
                     Thank You!
                   </h2>
                   <p className={`${currentTheme.text} mb-8`}>
@@ -91,7 +99,7 @@ const ContactForm = () => {
                     className={`${currentTheme.button} ${currentTheme.buttonText} px-6 py-3 rounded-lg`}
                     onClick={() => {
                       setShowThankYou(false);
-                      setFormState({ name: '', email: '', message: '' });
+                      setFormState({ name: "", email: "", message: "" });
                     }}
                   >
                     Send Another Message
@@ -100,7 +108,9 @@ const ContactForm = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className={`block ${currentTheme.accent} text-sm font-medium mb-2`}>
+                    <label
+                      className={`block ${currentTheme.accent} text-sm font-medium mb-2`}
+                    >
                       Name
                     </label>
                     <input
@@ -114,7 +124,9 @@ const ContactForm = () => {
                     />
                   </div>
                   <div>
-                    <label className={`block ${currentTheme.accent} text-sm font-medium mb-2`}>
+                    <label
+                      className={`block ${currentTheme.accent} text-sm font-medium mb-2`}
+                    >
                       Email
                     </label>
                     <input
@@ -128,7 +140,9 @@ const ContactForm = () => {
                     />
                   </div>
                   <div>
-                    <label className={`block ${currentTheme.accent} text-sm font-medium mb-2`}>
+                    <label
+                      className={`block ${currentTheme.accent} text-sm font-medium mb-2`}
+                    >
                       Message
                     </label>
                     <textarea
@@ -180,7 +194,9 @@ const ContactForm = () => {
                     <PhoneCall size={24} className={currentTheme.buttonText} />
                   </div>
                   <div>
-                    <p className={`${currentTheme.accent} font-medium`}>Phone</p>
+                    <p className={`${currentTheme.accent} font-medium`}>
+                      Phone
+                    </p>
                     <p className={currentTheme.text}>+263 78 223 5693</p>
                   </div>
                 </motion.div>
@@ -193,7 +209,9 @@ const ContactForm = () => {
                     <Mail size={24} className={currentTheme.buttonText} />
                   </div>
                   <div>
-                    <p className={`${currentTheme.accent} font-medium`}>Email</p>
+                    <p className={`${currentTheme.accent} font-medium`}>
+                      Email
+                    </p>
                     <p className={currentTheme.text}>cocazofficial@gmail.com</p>
                   </div>
                 </motion.div>
@@ -206,8 +224,12 @@ const ContactForm = () => {
                     <MapPin size={24} className={currentTheme.buttonText} />
                   </div>
                   <div>
-                    <p className={`${currentTheme.accent} font-medium`}>Address</p>
-                    <p className={currentTheme.text}>998 Woodlands Waterfalls, Harare, Zimbabwe</p>
+                    <p className={`${currentTheme.accent} font-medium`}>
+                      Address
+                    </p>
+                    <p className={currentTheme.text}>
+                      998 Woodlands Waterfalls, Harare, Zimbabwe
+                    </p>
                   </div>
                 </motion.div>
               </div>

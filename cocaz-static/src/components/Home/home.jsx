@@ -20,6 +20,7 @@ import InfluencerPage from "../Influencers/influencers";
 
 const MotionLink = motion(Link);
 
+
 const CardVariants1 = {
   initial: { opacity: 0, y: 20 },
   animate: {
@@ -37,43 +38,33 @@ const CardVariants1 = {
 };
 
 const ServiceHistorySection = () => {
+  const { currentTheme } = useTheme();
+
   const serviceCards = [
     {
       icon: Star,
       title: "4+ Years of Experience",
-      description:
-        "COCAZ has been empowering content creators in Zimbabwe since 2020.",
+      description: "COCAZ has been empowering content creators in Zimbabwe since 2020.",
       bgImage: "../assets/logo3.jpeg",
-      gradientColors: "from-yellow-900/30 via-yellow-800/40 to-green-900/50",
-      iconColor: "text-yellow-400",
-      overlayColor: "bg-yellow-500/20",
     },
     {
       icon: ThumbsUp,
       title: "Hundreds of Satisfied Clients",
-      description:
-        "Our members have experienced tremendous growth and success.",
+      description: "Our members have experienced tremendous growth and success.",
       bgImage: "../assets/logo4.jpeg",
-      gradientColors: "from-blue-900/30 via-blue-800/40 to-green-900/50",
-      iconColor: "text-blue-400",
-      overlayColor: "bg-blue-500/20",
     },
     {
       icon: SquareCheckBig,
       title: "Successful Projects",
-      description:
-        "We've collaborated on numerous award-winning projects with our members.",
+      description: "We've collaborated on numerous award-winning projects with our members.",
       bgImage: "../assets/logo.jpeg",
-      gradientColors: "from-purple-900/30 via-purple-800/40 to-green-900/50",
-      iconColor: "text-purple-400",
-      overlayColor: "bg-purple-500/20",
     },
   ];
 
   return (
-    <div className="relative bg-gradient-to-br from-green-800/50 to-green-900/50 rounded-xl backdrop-blur-sm overflow-hidden">
+    <div className={`relative ${currentTheme.card} rounded-xl backdrop-blur-sm overflow-hidden p-20`}>
       <div className="relative z-10">
-        <h2 className="text-3xl font-bold mb-4 text-yellow-400">
+        <h2 className={`text-3xl font-bold mb-4 ${currentTheme.accent}`}>
           Our Service History
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -89,52 +80,41 @@ const ServiceHistorySection = () => {
             >
               {/* Background Image with Enhanced Blending */}
               <div
-                className="absolute inset-0 bg-cover bg-center transform scale-105 group-hover:scale-110 transition-transform duration-300 ease-in-out blur-[2px] group-hover:blur-[1px]"
+                className="rounded-lg absolute inset-0 bg-cover bg-center transform scale-105 group-hover:scale-110 transition-transform duration-300 ease-in-out blur-[2px] group-hover:blur-[1px]"
                 style={{
                   backgroundImage: `url(${item.bgImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
+                  borderRadius: "20px"
                 }}
               />
 
-              {/* Gradient Overlay */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${item.gradientColors} opacity-80`}
-              />
+              {/* Theme-based Overlay */}
+              <div className={`absolute inset-0 ${currentTheme.card} opacity-80 rounded-lg`} />
 
-              {/* Dark Overlay for Readability */}
-              <div className="absolute inset-0 bg-black/40" />
-
-              {/* Card Content */}
-              <div className="relative z-10 p-6 text-center">
-                {/* Blurred Accent Background */}
-                <div
-                  className={`absolute -top-4 -left-4 -right-4 -bottom-4 ${item.overlayColor} blur-xl opacity-30 rounded-xl`}
-                />
-
-                {/* Icon with Enhanced Visibility */}
+              {/* Content Container */}
+              <div className="relative z-10 p-6 text-center rounded-lg">
+                {/* Icon with Theme Accent */}
                 <div className="relative z-20 mb-4">
                   <item.icon
-                    className={`${item.iconColor} h-12 w-12 mx-auto drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]`}
+                    className={`${currentTheme.accent} h-12 w-12 mx-auto drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]`}
                   />
                 </div>
 
-                {/* Title with Enhanced Typography */}
-                <h3 className="relative z-20 text-xl font-bold mb-2 text-white drop-shadow-md">
+                {/* Title */}
+                <h3 className={`relative z-20 text-xl font-bold mb-2 ${currentTheme.text} drop-shadow-md`}>
                   {item.title}
                 </h3>
 
-                {/* Description with Improved Readability */}
-                <p className="relative z-20 text-white/90 text-sm mb-4 leading-relaxed drop-shadow-md">
+                {/* Description */}
+                <p className={`relative z-20 ${currentTheme.text} text-sm mb-4 leading-relaxed drop-shadow-md opacity-90`}>
                   {item.description}
                 </p>
 
-                {/* Read More Button with Enhanced Interaction */}
+                {/* Themed Button */}
                 <MotionLink
-                  to={`/history/${item.title
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
-                  className="relative z-20 inline-block bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-2 rounded-md shadow-lg hover:from-green-700 hover:to-green-800 transition-all duration-300 ease-in-out"
+                  to={`/history/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                  className={`relative z-20 inline-block ${currentTheme.button} ${currentTheme.buttonText} px-6 py-2 rounded-md shadow-lg transition-all duration-300 ease-in-out`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
