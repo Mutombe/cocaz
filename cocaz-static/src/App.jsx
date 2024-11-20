@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes,useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "./components/footer/footer";
 import Services from "./components/Services/services";
@@ -20,12 +20,21 @@ import { ThemeProvider } from "./components/themeContext";
 import { useTheme } from "./components/themeContext";
 import NotFound from "./components/NotFound/notFound";
 import Loading from "./components/Loading/loading";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 const Home = lazy(() => import("./components/Home/home"));
 const About = lazy(() => import("./components/About/about"));
 const Gallery = lazy(() => import("./components/Gallery/gallery"));
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const PageTransition = ({ children }) => (
   <motion.div
@@ -45,6 +54,7 @@ const App = () => {
       <ThemeProvider>
         <Router basename={import.meta.env.BASE_URL}>
           <div className="relative min-h-screen flex flex-col raleway overflow-hidden">
+            <ScrollToTop />
             <Navbar />
             <ThemedComponent>
               <AnimatePresence mode="wait">

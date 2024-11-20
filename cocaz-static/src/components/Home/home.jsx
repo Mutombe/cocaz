@@ -15,6 +15,7 @@ import {
   BarChart,
   SquareCheckBig,
 } from "lucide-react";
+import { useTheme } from "../themeContext";
 import InfluencerPage from "../Influencers/influencers";
 
 const MotionLink = motion(Link);
@@ -169,6 +170,7 @@ const BackgroundImage = ({ src, opacity = 0.15 }) => (
 );
 
 const Home = () => {
+  const { theme, currentTheme, toggleTheme } = useTheme();
   return (
     <div className="min-h-screen">
       <br />
@@ -184,7 +186,7 @@ const Home = () => {
         <div className="mt-16 relative bg-gradient-to-br from-green-800/50 to-green-900/50 p-8 rounded-xl backdrop-blur-sm overflow-hidden">
           <BackgroundImage src="../assets/zam1.jpeg" />
           <div className="relative z-10">
-            <h2 className="text-center text-3xl font-bold mb-4 text-yellow-400">
+            <h2 className={`text-center text-3xl font-bold mb-4  ${currentTheme.accent}`}>
               Connect with Us
             </h2>
             <motion.div
