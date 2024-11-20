@@ -62,12 +62,12 @@ const ServiceHistorySection = () => {
   ];
 
   return (
-    <div className={`relative ${currentTheme.card} rounded-xl backdrop-blur-sm overflow-hidden p-20`}>
+    <div className={`relative ${currentTheme.card} rounded-xl backdrop-blur-sm overflow-hidden p-10 w-full`}>
       <div className="relative z-10">
         <h2 className={`text-3xl font-bold mb-4 ${currentTheme.accent}`}>
           Our Service History
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           {serviceCards.map((item, index) => (
             <motion.div
               key={index}
