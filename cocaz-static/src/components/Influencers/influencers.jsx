@@ -102,6 +102,13 @@ const InfluencerPage = () => {
       link: "https://www.facebook.com/Madambosszim",
       image: "/assets/madamboss.jpg"
     },
+    {
+      name: "Kimnanah",
+      profession: "Actor",
+      testimonial: "Thanks to COCAZ, my jokes are reaching a wider audience!",
+      link: "https://www.tiktok.com/@kimnanah53",
+      image: "/Kiman.jpeg"
+    },
   ];
 
   const pageVariants = {

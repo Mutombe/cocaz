@@ -220,7 +220,7 @@ const Hero = () => {
             <HeroTypewriter />
 
             <p className={`text-xl ${currentTheme.text} mb-8 leading-relaxed`}>
-              COCAZ is the Content Creation Association of Zimbabwe, dedicated
+              COCAZ is the Content Creators Association of Zimbabwe, dedicated
               to empowering and supporting content creators across various
               industries with innovative solutions and professional development.
             </p>
