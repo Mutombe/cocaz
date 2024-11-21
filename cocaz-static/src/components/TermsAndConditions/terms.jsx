@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../themeContext';
 import { FileText, Mail } from 'lucide-react';
+import jsPDF from 'jspdf';
 
 const TermsAndConditions = () => {
   const { currentTheme } = useTheme();
@@ -48,6 +49,61 @@ const TermsAndConditions = () => {
       content: "For any questions regarding these Terms and Conditions, please contact us at cocazofficial@gmail.com"
     }
   ];
+
+  const generatePDF = () => {
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
+    
+    // Set document properties
+    doc.setProperties({
+      title: 'COCAZ Terms and Conditions',
+      author: 'COCAZ'
+    });
+
+    // Add logo or header (if you have a logo, you can add it here)
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text('COCAZ Terms and Conditions', 105, 20, { align: 'center' });
+
+    // Reset font for body text
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+
+    // Variable to track vertical position
+    let y = 40;
+
+    // Add each term to the PDF
+    termsData.forEach((term, index) => {
+      // Add term title
+      doc.setFont('helvetica', 'bold');
+      doc.text(term.title, 20, y);
+      y += 10;
+
+      // Add term content
+      doc.setFont('helvetica', 'normal');
+      
+      // Use splitTextToSize to wrap long lines
+      const splitContent = doc.splitTextToSize(term.content, 170);
+      doc.text(splitContent, 20, y);
+      
+      // Increase y position based on content length
+      y += (splitContent.length * 5) + 10;
+
+      // Add page break if content is getting too long
+      if (y > 280) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+
+    // Add footer
+    doc.setFontSize(8);
+    doc.setTextColor(100);
+    doc.text('© ' + new Date().getFullYear() + ' COCAZ. All Rights Reserved.', 105, 287, { align: 'center' });
+
+    // Save the PDF
+    doc.save('COCAZ_Terms_and_Conditions.pdf');
+  };
 
   const pageVariants = {
     initial: { opacity: 0, y: 20 },
@@ -140,6 +196,7 @@ const TermsAndConditions = () => {
               <span>Contact Us</span>
             </motion.a>
             <motion.button
+              onClick={generatePDF}
               className={`${currentTheme.secondary} ${currentTheme.buttonText} px-6 py-3 rounded-full flex items-center space-x-2 shadow-lg`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
