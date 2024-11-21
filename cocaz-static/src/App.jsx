@@ -13,6 +13,7 @@ import SatisfiedClients from "./components/Services/SatisfiedClients/saticifiedC
 import ImpressiveGrowth from "./components/Services/Growth/growth";
 import TrustedByCreators from "./components/Services/TrustedByCreators/trustedByCreators";
 import SuccessfulProjects from "./components/Services/SuccessfulProjects/successfulProjects";
+import TermsAndConditions from "./components/TermsAndConditions/terms";
 import { ThemedComponent } from "./components/themeContext";
 import ErrorBoundary from "./components/Error/error";
 import Navbar from "./components/Navbar/navbar";
@@ -83,6 +84,10 @@ const App = () => {
                       <Route
                         path="/services/talent-management"
                         element={<TalentManagement />}
+                      />
+                      <Route
+                        path="/terms"
+                        element={<TermsAndConditions />}
                       />
                       <Route
                         path="/history/4+-years-of-experience"
