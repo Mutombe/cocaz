@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Award, TrendingUp, Handshake, Users, Star, Trophy } from 'lucide-react';
 import { useTheme } from '../themeContext';
 import AnimatedBackground from '../Enhanced/enhanced';
+import LeadersPage from '../Leadership/leadership';
 
 const StatCard = ({ icon: Icon, title, description, delay }) => {
   const { currentTheme } = useTheme();
@@ -150,7 +151,8 @@ const About = () => {
               ))}
             </motion.div>
           </div>
-        </div>
+      </div>
+      <LeadersPage/>
       </motion.div>
   );
 };

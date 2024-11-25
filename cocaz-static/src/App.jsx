@@ -13,7 +13,9 @@ import SatisfiedClients from "./components/Services/SatisfiedClients/saticifiedC
 import ImpressiveGrowth from "./components/Services/Growth/growth";
 import TrustedByCreators from "./components/Services/TrustedByCreators/trustedByCreators";
 import SuccessfulProjects from "./components/Services/SuccessfulProjects/successfulProjects";
+import EventsPage from "./components/Events/events";
 import TermsAndConditions from "./components/TermsAndConditions/terms";
+import LeadersPage from "./components/Leadership/leadership";
 import { ThemedComponent } from "./components/themeContext";
 import ErrorBoundary from "./components/Error/error";
 import Navbar from "./components/Navbar/navbar";
@@ -88,6 +90,14 @@ const App = () => {
                       <Route
                         path="/terms"
                         element={<TermsAndConditions />}
+                      />
+                      <Route
+                        path="/leaders"
+                        element={<LeadersPage />}
+                      />
+                      <Route
+                        path="/events"
+                        element={<EventsPage />}
                       />
                       <Route
                         path="/history/4+-years-of-experience"

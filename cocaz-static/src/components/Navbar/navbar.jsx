@@ -32,6 +32,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-6 items-center">
             <NavLink to="/" active={location.pathname === "/"} theme={currentTheme}>Home</NavLink>
             <NavLink to="/about" active={location.pathname === "/about"} theme={currentTheme}>About</NavLink>
+            <NavLink to="/events" active={location.pathname === "/events"} theme={currentTheme}>Events</NavLink>
             <NavLink to="/services" active={location.pathname === "/services"} theme={currentTheme}>Services</NavLink>
             <NavLink to="/contact" active={location.pathname === "/contact"} theme={currentTheme}>Contact</NavLink>
             <NavLink to="/history/Gallery" active={location.pathname === "/history/Gallery"} theme={currentTheme}>Gallery</NavLink>
@@ -79,6 +80,7 @@ const Navbar = () => {
           <div className={`flex flex-col space-y-4 px-4 ${currentTheme.card} rounded-b-lg pb-4 pt-4`}>
             <MobileNavLink to="/" onClick={toggleMenu} active={location.pathname === "/"} theme={currentTheme}>Home</MobileNavLink>
             <MobileNavLink to="/about" onClick={toggleMenu} active={location.pathname === "/about"} theme={currentTheme}>About</MobileNavLink>
+            <MobileNavLink to="/events" onClick={toggleMenu} active={location.pathname === "/events"} theme={currentTheme}>Events</MobileNavLink>
             <MobileNavLink to="/services" onClick={toggleMenu} active={location.pathname === "/services"} theme={currentTheme}>Services</MobileNavLink>
             <MobileNavLink to="/contact" onClick={toggleMenu} active={location.pathname === "/contact"} theme={currentTheme}>Contact</MobileNavLink>
             <MobileNavLink to="/history/Gallery" onClick={toggleMenu} active={location.pathname === "/history/Gallery"} theme={currentTheme}>Gallery</MobileNavLink>
