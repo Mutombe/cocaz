@@ -96,13 +96,6 @@ const InfluencerPage = () => {
       image: "/assets/rashman.jpg"
     },
     {
-      name: "Madam Boss",
-      profession: "Comedian/Actress",
-      testimonial: "COCAZ has been instrumental in boosting my online presence!",
-      link: "https://www.facebook.com/Madambosszim",
-      image: "/assets/madamboss.jpg"
-    },
-    {
       name: "Kimnanah",
       profession: "Actor",
       testimonial: "Thanks to COCAZ, my jokes are reaching a wider audience!",
