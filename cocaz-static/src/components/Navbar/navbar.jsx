@@ -5,7 +5,8 @@ import { useTheme } from '../themeContext';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
-  const { theme, currentTheme, toggleTheme } = useTheme();
+  const { theme, currentTheme, toggleTheme } = useTheme();6
+  3
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
