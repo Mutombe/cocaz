@@ -178,7 +178,7 @@ const Home = () => {
               {[
                 {
                   icon: Instagram,
-                  link: "https://www.instagram.com/cocaz_official/",
+                  link: "https://www.facebook.com/profile.php?id=100080364351915",
                   color: "from-purple-500 to-pink-500",
                 },
                 {

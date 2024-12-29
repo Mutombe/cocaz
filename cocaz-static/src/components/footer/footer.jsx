@@ -32,7 +32,7 @@ const Footer = () => {
               Empowering creators and managing talent across Zimbabwe. Building bridges between artists and opportunities.
             </p>
             <div className="flex space-x-4">
-              <SocialLink href="https://facebook.com" icon={<Facebook size={20} />} />
+              <SocialLink href="https://www.facebook.com/profile.php?id=100080364351915" icon={<Facebook size={20} />} />
               <SocialLink href="https://instagram.com" icon={<Instagram size={20} />} />
               <SocialLink href="https://twitter.com" icon={<Twitter size={20} />} />
               <SocialLink href="https://youtube.com" icon={<Youtube size={20} />} />

@@ -51,6 +51,18 @@ const Gallery = () => {
   const mediaItems = [
     {
       type: "image",
+      src: "/shamva.jpg",
+      alt: "Shamva",
+      caption: "Board meeting in Shamva",
+    },
+    {
+      type: "image",
+      src: "/shamva2.jpg",
+      alt: "Shamva",
+      caption: "Board meeting in Shamva",
+    },
+    {
+      type: "image",
       src: "../assets/eventprep.jpg",
       alt: "COCAZ Event 1",
       caption: "Annual Content Creator Awards",
