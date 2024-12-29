@@ -100,33 +100,78 @@ const LeadersPage = () => {
   
   const leaders = [
     {
-      name: "Takunda Tapfuma",
-      position: "Founder & Chairman",
-      bio: "Visionary leader with 7+ years of experience in digital media and content marketing. Pioneering new ways to empower creators across Africa.",
-      email: "takundatapfuma@gmail.com",
-      linkedin: "https://linkedin.com/in/takunda",
-      twitter: "https://twitter.com/takunda",
-      image: "/taku.jpeg"
+        name: "Takunda Tapfuma",
+        position: "Co-Founder",
+        bio: "Visionary leader with 7+ years of experience in digital media and content marketing. Pioneering new ways to empower creators across Africa.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/takunda",
+        twitter: "https://twitter.com/takunda",
+        image: "/taku.jpeg"
     },
     {
-      name: "Wellington Bakaimani",
-      position: "Co-Founder & Chairman",
-      bio: "Strategic operations expert ensuring smooth delivery of COCAZ services. Passionate about building scalable systems for creator success.",
-      email: "sarah.johnson@cocaz.com",
-      linkedin: "https://linkedin.com/in/sarahjohnson",
-      twitter: "https://twitter.com/sarahjohnson",
-      image: "/welly.jpeg"
+        name: "Wellington Bakaimani",
+        position: "Co-Founder",
+        bio: "Strategic operations expert ensuring smooth delivery of COCAZ services. Passionate about building scalable systems for creator success.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/sarahjohnson",
+        twitter: "https://twitter.com/sarahjohnson",
+        image: "/welly.jpeg"
     },
     {
-      name: "Bridget Paradza",
-      position: "Secretary",
-      bio: "Dedicated to understanding and addressing the unique needs of African creators.",
-      email: "bridget@cocaz.com",
-      linkedin: "https://linkedin.com/in/bridget",
-      twitter: "https://twitter.com/bridget",
-      image: "/bri.jpg"
+        name: "Victor Tinashe Mpofu",
+        position: "Chairman",
+        bio: "Dedicated to understanding and addressing the unique needs of African creators.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/bridget",
+        twitter: "https://twitter.com/bridget",
+        image: "/vikela.jpeg"
     },
-  ];
+    {
+        name: "Bridget Paradza",
+        position: "Vice Chairperson",
+        bio: "Passionate advocate for the empowerment of African creators, striving to create a supportive ecosystem for their success.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/bridget",
+        twitter: "https://twitter.com/bridget",
+        image: "/bri.jpg"
+    },
+    {
+        name: "Advocate Emmanuel Chivase",
+        position: "Legal",
+        bio: "Experienced legal expert specializing in addressing the unique legal needs of African creators, ensuring their rights and interests are safeguarded.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/bridget",
+        twitter: "https://twitter.com/bridget",
+        image: "/eman.jpeg"
+    },
+    {
+        name: "Ian Vambe",
+        position: "SG (Secretary General)",
+        bio: "Strategic thinker dedicated to ensuring the diverse needs of African creators are met through effective organization and leadership.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/bridget",
+        twitter: "https://twitter.com/bridget",
+        image: "/ian.jpeg"
+    },
+    {
+        name: "Ellen Chirenje",
+        position: "Vice Secretary",
+        bio: "Committed to fostering a collaborative environment for African creators, ensuring their voices are heard and their talents shine.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/bridget",
+        twitter: "https://twitter.com/bridget",
+        image: "/ellen.jpeg"
+    },
+    {
+        name: "Hillary Chikambi",
+        position: "Treasure",
+        bio: "Meticulous financial expert dedicated to managing resources effectively for the benefit of African creators, ensuring financial sustainability.",
+        email: "cocazofficial@gmail.com",
+        linkedin: "https://linkedin.com/in/bridget",
+        twitter: "https://twitter.com/bridget",
+        image: "/treasure.jpeg"
+    },
+];
 
   const pageVariants = {
     initial: { opacity: 0, y: 20 },
