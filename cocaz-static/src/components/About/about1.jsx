@@ -66,17 +66,22 @@ const AboutPage = () => {
 
   // Enhanced team data with social profiles and backgrounds
   const team = [
-    {
-      name: 'Takunda Tapfuma',
-      role: 'Co-Founder',
-      image: '/taku.jpeg',
-      bio: 'Former YouTube strategist with over 10 years in digital media',
-      socials: {
-        twitter: 'tendaimoyo',
-        instagram: 'tendaimoyo',
-      },
-      specialty: 'Strategic Planning'
+  {
+    name: 'Takunda Tapfuma',
+    role: 'Co-Founder & Talent Manager',
+    image: '/taku.jpeg',
+    bio: 'Visionary digital strategist and talent manager with over 10 years transforming creators into industry leaders. Former YouTube strategist who has scaled channels to millions of subscribers and managed multi-million dollar creator partnerships across diverse verticals.',
+    socials: {
+      twitter: 'tendaimoyo',
+      instagram: 'tendaimoyo',
     },
+    specialty: 'Strategic Planning & Talent Development',
+    achievements: [
+      'Scaled 50+ creator channels to 6-figure revenues',
+      'Managed $5M+ in brand partnerships',
+      'Developed proprietary growth frameworks used industry-wide'
+    ]
+  },
     {
       name: 'Wellington Bakaimani',
       role: 'Head of Partnerships',
