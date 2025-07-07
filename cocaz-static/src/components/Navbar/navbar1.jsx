@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className="w-auto h-12 flex items-center">
                 {/* Replace the next line with your actual logo */}
                 <img 
-                  src="/assets/logo4.jpeg" 
+                  src="/logo2.png" 
                   alt="COCAZ Logo" 
                   className="h-full w-auto object-contain rounded-sm"
                 />
