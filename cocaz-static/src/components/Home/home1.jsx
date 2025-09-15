@@ -23,6 +23,12 @@ import {
   Twitter,
   Youtube,
   Award,
+  Calendar,
+  Clock,
+  MapPin,
+  ExternalLink,
+  BookOpen,
+  User,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -296,6 +302,126 @@ const CreatorCard = ({ creator, index }) => {
   );
 };
 
+// Event card component for homepage
+const EventCard = ({ event, index }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+    >
+      <div className="relative h-64 overflow-hidden">
+        <img
+          src={event.image}
+          alt={event.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute top-4 right-4">
+          <span className="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            {event.status}
+          </span>
+        </div>
+      </div>
+
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+          {event.title}
+        </h3>
+
+        <div className="space-y-2 mb-4 text-gray-600">
+          <div className="flex items-center space-x-2">
+            <Calendar size={16} className="text-purple-600" />
+            <span className="text-sm">{event.date}</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Clock size={16} className="text-purple-600" />
+            <span className="text-sm">{event.time}</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <MapPin size={16} className="text-purple-600" />
+            <span className="text-sm">{event.location}</span>
+          </div>
+        </div>
+
+        <p className="text-gray-600 text-sm mb-6 line-clamp-3">
+          {event.description}
+        </p>
+
+        <div className="flex items-center justify-between">
+          <Link
+            to="/events"
+            className="text-purple-600 font-semibold hover:text-purple-800 transition-colors duration-300 flex items-center space-x-1"
+          >
+            <span>Learn More</span>
+            <ArrowRight size={16} />
+          </Link>
+          {event.status === "Upcoming" && (
+            <button className="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-purple-700 transition-colors duration-300">
+              Register
+            </button>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Article card component for homepage
+const ArticleCard = ({ article, index }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+    >
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={article.image}
+          alt={article.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute top-4 left-4">
+          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+            {article.category}
+          </span>
+        </div>
+      </div>
+
+      <div className="p-6">
+        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+          {article.title}
+        </h3>
+
+        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+          {article.excerpt}
+        </p>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <User size={16} className="text-gray-400" />
+            <span className="text-sm text-gray-500">{article.author}</span>
+          </div>
+          <span className="text-sm text-gray-500">{article.date}</span>
+        </div>
+
+        <div className="mt-4">
+          <Link
+            to={`/articles/${article.slug}`}
+            className="text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-300 flex items-center space-x-1"
+          >
+            <span>Read More</span>
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 // Testimonial component
 const Testimonial = ({ testimonial, index }) => {
   return (
@@ -373,6 +499,7 @@ const HomePage = () => {
       imageUrl: "/tk.png"
     },
   ];
+
   const featuredCreators = [
     {
       name: "Kimnanah",
@@ -402,6 +529,41 @@ const HomePage = () => {
       platforms: ["youtube", "twitter"],
       followers: "275K",
     },
+  ];
+
+  // Recent events data
+  const recentEvents = [
+    {
+      title: "COCAZ Seminar with Nigerian Actors",
+      date: "March 15, 2025",
+      time: "2:00 PM - 6:00 PM",
+      location: "Cape Town, South Africa",
+      description: "Join us for an exclusive seminar featuring renowned Nigerian actors sharing insights on content creation and the African entertainment industry.",
+      image: "/2.jpeg",
+      status: "Upcoming"
+    },
+    {
+      title: "New Zambian Movie Launch",
+      date: "February 28, 2025",
+      time: "7:00 PM - 10:00 PM",
+      location: "Lusaka, Zambia",
+      description: "Be part of the grand launch of the latest Zambian blockbuster, featuring COCAZ creators and industry professionals.",
+      image: "/1.jpeg",
+      status: "Upcoming"
+    },
+  ];
+
+  // Recent articles data
+  const recentArticles = [
+    {
+      title: "Building Authentic Brand Partnerships in Africa",
+      excerpt: "Learn how to create meaningful collaborations between creators and brands that resonate with African audiences.",
+      author: "Chipo Dhamba",
+      date: "January 10, 2025",
+      category: "Partnerships",
+      image: "/3.jpeg",
+      slug: "authentic-brand-partnerships-africa"
+    }
   ];
 
   // Sample testimonials
@@ -447,7 +609,6 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-6"
             >
-              {/* Improved visibility for the Zimbabwe's Premier Creator Network tag */}
               <span className="px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-sm font-medium border border-white/30 shadow-lg">
                 Zimbabwe's Premier Creator Network
               </span>
@@ -483,9 +644,9 @@ const HomePage = () => {
                     transition={{ duration: 0.3, delay: 1.0 + index * 0.1 }}
                   >
                     <PlatformLogo 
-              name={platform.name} 
-              imageUrl={platform.imageUrl} 
-            />
+                      name={platform.name} 
+                      imageUrl={platform.imageUrl} 
+                    />
                   </motion.div>
                 ))}
               </div>
@@ -505,7 +666,6 @@ const HomePage = () => {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
 
-              {/* Improved Watch Demo button visibility */}
               <Link
                 to="/services"
                 className="w-full sm:w-auto px-6 py-4 bg-white/20 border-2 border-white backdrop-blur-md text-white rounded-full font-semibold hover:bg-white/30 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
@@ -520,12 +680,11 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
               className="absolute bottom-10 left-0 right-0 text-center pointer-events-none sm:pointer-events-auto"
-            ></motion.div>
-
-            <br></br>
-            <button className="text-white hover:text-white transition-colors duration-300 animate-bounce">
-              <ChevronDown className="w-6 h-6" />
-            </button>
+            >
+              <button className="text-white hover:text-white transition-colors duration-300 animate-bounce">
+                <ChevronDown className="w-6 h-6" />
+              </button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -564,6 +723,84 @@ const HomePage = () => {
               label="Monthly Reach"
               value="5000000"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Events Section */}
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Recent{" "}
+              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Events
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              Stay connected with the latest COCAZ events and industry gatherings across Africa
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {recentEvents.map((event, index) => (
+              <EventCard key={index} event={event} index={index} />
+            ))}
+          </div>
+
+          <div className="text-center mt-8 sm:mt-12">
+            <Link
+              to="/events"
+              className="px-6 py-3 bg-purple-50 text-purple-600 rounded-full font-semibold hover:bg-purple-100 transition-colors duration-300 inline-flex items-center"
+            >
+              View All Events
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Articles Section */}
+      <section className="py-12 sm:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Latest{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Articles
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              Insights, tips, and stories from the world of content creation and digital marketing
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {recentArticles.map((article, index) => (
+              <ArticleCard key={index} article={article} index={index} />
+            ))}
+          </div>
+
+          <div className="text-center mt-8 sm:mt-12">
+            <Link
+              to="/articles"
+              className="px-6 py-3 bg-blue-50 text-blue-600 rounded-full font-semibold hover:bg-blue-100 transition-colors duration-300 inline-flex items-center"
+            >
+              Read All Articles
+              <BookOpen className="ml-2 w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

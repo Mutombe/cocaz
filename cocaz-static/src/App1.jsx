@@ -19,6 +19,7 @@ import ContentCreationPage from "./components/Services/content";
 import MarketingPage from "./components/Services/marketing";
 import NetworkingServicesPage from "./components/Services/networking";
 import ContactPage from "./components/Contact/contact1";
+import EventsPage from "./components/Events/events";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -74,6 +75,19 @@ function App() {
                   transition={{ duration: 0.5 }}
                 >
                   <CreatorCategoriesSection />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/events"
+              element={
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <EventsPage />
                 </motion.div>
               }
             />
