@@ -2,74 +2,361 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    html {
-      font-family: 'Inter', sans-serif;
-    }
-    
-    body {
-      @apply font-roboto;
-    }
+/* ---------------------------------------------------------------- tokens
+   Every colour, radius and rhythm value on the site comes from this block.
+   Rebrand here; no component holds a hardcoded value. */
+:root {
+  /* ramp: dark, mid, light, accent */
+  --ink: 17 20 24;
+  --ink-soft: 53 58 64;
+  --ink-mute: 95 104 113;
+  --paper: 212 218 225;
+  --stone: 228 232 237;
+  --gold: 255 210 31;
+  --gold-deep: 240 180 0;
+  --leaf: 31 138 59;
+  --flame: 196 22 28;
+
+  /* shape */
+  --r-tile: 2.5rem;
+  --r-inner: 1.9rem;
+  --r-band: 3rem;
+  --r-sharp: 6px; /* the deliberate hard corner, set against the soft ones */
+  --bite: 62px;
+  --notch: 18px;
+
+  /* rhythm */
+  --band-gap: 0.75rem;
+  --section-y: clamp(3.5rem, 6.5vw, 6rem);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* texture, kept at the threshold of visibility */
+  --pat-dots: radial-gradient(rgb(var(--ink) / 0.075) 1px, transparent 1.3px);
+  --pat-grid: linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  --pat-hatch: repeating-linear-gradient(135deg, rgb(var(--ink) / 0.055) 0 1px, transparent 1px 9px);
+
+  /* set per ground, read by shared components */
+  --mute: rgb(var(--ink-mute));
+  --hair: rgb(255 255 255 / 0.72);
+  --tile: #fff;
+}
+
+/* the whole system rescales together on small screens */
+@media (max-width: 639px) {
   :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
-    }
-  .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
+    --r-tile: 1.75rem;
+    --r-inner: 1.3rem;
+    --r-band: 2rem;
+    --bite: 54px;
+    --notch: 14px;
+    --band-gap: 0.4rem;
+    --section-y: 3rem;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    background-image: var(--pat-dots);
+    background-size: 22px 22px;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  /* Page titles shout; section titles speak */
+  h1 {
+    @apply font-bold uppercase tracking-[-0.035em];
+  }
+
+  h2 {
+    @apply font-normal tracking-[-0.03em];
+  }
+
+  h3,
+  h4 {
+    @apply font-semibold tracking-[-0.025em];
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-ink text-gold;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ink ring-offset-2 ring-offset-paper;
+  }
+}
+
+@layer components {
+  /* One measure for every page. On desktop it tracks the viewport height so the
+     home hero always fills exactly one screen, like the reference frame. */
+  .container-x {
+    @apply mx-auto;
+    width: min(100% - 1.25rem, 1360px);
+    container-type: inline-size;
+  }
+
+  @media (min-width: 1024px) {
+    .container-x {
+      width: min(100% - 3rem, clamp(820px, 128.7svh, 1360px));
     }
   }
 
-@layer base {
-  * {
-    @apply border-border;
-    }
+  /* Side inset shared by nav, hero and sections (28 of the reference's 633 units) */
+  .inset-x-page {
+    padding-inline: clamp(0.25rem, 4.42cqw, 3.75rem);
+  }
+
+  /* ------------------------------------------------------------ grounds
+     Sections alternate their ground down the page: paper, white, dark, gold. */
+  .ground-white,
+  .ground-dark,
+  .ground-gold {
+    margin-inline: var(--band-gap);
+    /* soft on one diagonal, hard on the other */
+    border-radius: var(--r-band) var(--r-sharp) var(--r-band) var(--r-sharp);
+  }
+
+  .ground-white {
+    @apply bg-white;
+    --tile: rgb(var(--stone));
+    --hair: rgb(var(--ink) / 0.12);
+  }
+
+  .ground-dark {
+    @apply bg-ink text-white;
+    background-image: var(--pat-grid);
+    background-size: 34px 34px;
+    --mute: rgb(255 255 255 / 0.62);
+    --hair: rgb(255 255 255 / 0.14);
+    --tile: rgb(255 255 255 / 0.07);
+  }
+
+  .ground-gold {
+    @apply bg-gold;
+    background-image: var(--pat-hatch);
+    --mute: rgb(var(--ink-soft));
+    --hair: rgb(var(--ink) / 0.18);
+  }
+
+  .text-mute {
+    color: var(--mute);
+  }
+
+  .tile {
+    background: var(--tile);
+    border-radius: var(--r-tile);
+  }
+
+  /* The reference's hairline panel */
+  .panel {
+    border: 1px solid var(--hair);
+    border-radius: var(--r-tile);
+  }
+
+  /* ---------------------------------------------------- signature: the bite
+     A card with its top-right corner bitten out and a round badge sitting in
+     the bite, joined by concave fillets. The corner is cut with a mask, so the
+     ground and its texture show through untouched. */
+  .bite-card {
+    border-radius: var(--r-tile);
+    overflow: hidden;
+    --b: var(--bite);
+    --n: var(--notch);
+    --r: calc(var(--bite) * 0.5);
+    -webkit-mask:
+      linear-gradient(#000 0 0) left bottom / 100% calc(100% - var(--b) - var(--n)) no-repeat,
+      linear-gradient(#000 0 0) left top / calc(100% - var(--b) - var(--n)) 100% no-repeat,
+      linear-gradient(#000 0 0) right var(--b) top var(--n) / var(--n) var(--b) no-repeat,
+      radial-gradient(circle at 0 100%, #000 calc(var(--n) - 0.5px), transparent var(--n)) right var(--b) top 0 / var(--n) var(--n) no-repeat,
+      linear-gradient(#000 0 0) right var(--n) top var(--b) / calc(var(--b) - var(--n)) var(--n) no-repeat,
+      radial-gradient(circle at 0 100%, #000 calc(var(--n) - 0.5px), transparent var(--n)) right 0 top var(--b) / var(--n) var(--n) no-repeat,
+      radial-gradient(circle at 100% 0, transparent calc(var(--r) - 0.5px), #000 var(--r)) right calc(var(--b) - var(--r)) top calc(var(--b) - var(--r)) / var(--r) var(--r) no-repeat;
+    mask:
+      linear-gradient(#000 0 0) left bottom / 100% calc(100% - var(--b) - var(--n)) no-repeat,
+      linear-gradient(#000 0 0) left top / calc(100% - var(--b) - var(--n)) 100% no-repeat,
+      linear-gradient(#000 0 0) right var(--b) top var(--n) / var(--n) var(--b) no-repeat,
+      radial-gradient(circle at 0 100%, #000 calc(var(--n) - 0.5px), transparent var(--n)) right var(--b) top 0 / var(--n) var(--n) no-repeat,
+      linear-gradient(#000 0 0) right var(--n) top var(--b) / calc(var(--b) - var(--n)) var(--n) no-repeat,
+      radial-gradient(circle at 0 100%, #000 calc(var(--n) - 0.5px), transparent var(--n)) right 0 top var(--b) / var(--n) var(--n) no-repeat,
+      radial-gradient(circle at 100% 0, transparent calc(var(--r) - 0.5px), #000 var(--r)) right calc(var(--b) - var(--r)) top calc(var(--b) - var(--r)) / var(--r) var(--r) no-repeat;
+  }
+
+  .bite-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(var(--bite) - 10px);
+    height: calc(var(--bite) - 10px);
+    @apply grid place-items-center rounded-full bg-ink text-white;
+    transition: background-color 0.35s var(--ease), color 0.35s var(--ease), transform 0.35s var(--ease);
+  }
+
+  .group:hover .bite-badge {
+    @apply bg-gold text-ink;
+    transform: rotate(45deg);
+  }
+
+  .ground-dark .bite-badge {
+    @apply bg-gold text-ink;
+  }
+
+  .ground-dark .group:hover .bite-badge {
+    @apply bg-white;
+  }
+
+  .lift {
+    transition: transform 0.4s var(--ease);
+  }
+
+  .lift:hover {
+    transform: translateY(-6px);
+  }
+
+  /* --------------------------------------------------------------- controls */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-4 text-[11px] font-bold uppercase tracking-[0.08em];
+    transition: background-color 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+  }
+
+  .btn-ink {
+    @apply btn bg-ink text-white hover:bg-ink-soft;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-ink hover:bg-white;
+  }
+
+  .btn-ghost {
+    @apply btn border border-current hover:bg-ink hover:text-white;
+  }
+
+  .ground-dark .btn-ink {
+    @apply bg-gold text-ink hover:bg-white;
+  }
+
+  .ground-dark .btn-ghost {
+    @apply hover:bg-white hover:text-ink;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-[var(--r-sharp)] bg-white px-3 py-2 text-[10px] font-bold uppercase tracking-[0.08em] text-ink;
+  }
+
+  .link-underline {
+    @apply inline-flex items-center gap-2.5 border-b border-current pb-1.5 text-[11px] font-bold uppercase tracking-[0.08em];
+    transition: gap 0.35s var(--ease);
+  }
+
+  .link-underline:hover {
+    gap: 1rem;
+  }
+
+  /* 16px on phones so iOS does not zoom the viewport on focus */
+  .field {
+    @apply w-full rounded-2xl border border-transparent bg-stone px-4 py-3.5 text-base font-medium text-ink placeholder:text-ink-mute/70 focus:border-ink focus:bg-white focus:outline-none focus:ring-0 sm:text-sm;
+    transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+
+  /* The accent face: a signature, never anything functional */
+  .script {
+    font-family: "Grand Hotel", cursive;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: -0.03em;
+  }
+}
+
+@layer utilities {
+  /* Clears the logo tab that hangs from the top of every page */
+  .pt-nav {
+    padding-top: calc(max(64px, 9.79cqw) + 1.25rem);
+  }
+
+  .py-section {
+    padding-block: var(--section-y);
+  }
+
+  .rounded-tile {
+    border-radius: var(--r-tile);
+  }
+
+  .rounded-inner {
+    border-radius: var(--r-inner);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+/* Scroll reveals. The hidden state only exists once JavaScript has marked the
+   document, so a script failure can never leave a blank page. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 85ms);
+}
+
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media print {
   body {
-    @apply bg-background text-foreground;
-    }
+    background: #fff;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }

@@ -1,141 +1,63 @@
-import { BrowserRouter as Router, Link, Route, Routes,useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import Footer from "./components/footer/footer";
-import Services from "./components/Services/services";
-import Contact from "./components/Contact/contact";
-import SignUp from "./components/SignUp/signup";
-import Experience from "./components/Services/Experience/experience";
-import MediaProduction from "./components/Services/MediaProduction/mediaProduction";
-import EventManagement from "./components/Services/EventManagement/eventManagement";
-import IndustryAwards from "./components/Services/IndustryAwards/industryAwards";
-import TalentManagement from "./components/Services/TalentManagement/talentManagement";
-import SatisfiedClients from "./components/Services/SatisfiedClients/saticifiedClients";
-import ImpressiveGrowth from "./components/Services/Growth/growth";
-import TrustedByCreators from "./components/Services/TrustedByCreators/trustedByCreators";
-import SuccessfulProjects from "./components/Services/SuccessfulProjects/successfulProjects";
-import EventsPage from "./components/Events/events";
-import TermsAndConditions from "./components/TermsAndConditions/terms";
-import LeadersPage from "./components/Leadership/leadership";
-import { ThemedComponent } from "./components/themeContext";
-import ErrorBoundary from "./components/Error/error";
-import Navbar from "./components/Navbar/navbar";
-import { ThemeProvider } from "./components/themeContext";
-import { useTheme } from "./components/themeContext";
-import NotFound from "./components/NotFound/notFound";
-import Loading from "./components/Loading/loading";
-import { Suspense, lazy, useEffect } from "react";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
+import Events from "./pages/Events";
+import Gallery from "./pages/Gallery";
+import Contact from "./pages/Contact";
+import Join from "./pages/Join";
+import Terms from "./pages/Terms";
+import NotFound from "./pages/NotFound";
 
-const Home = lazy(() => import("./components/Home/home"));
-const About = lazy(() => import("./components/About/about"));
-const Gallery = lazy(() => import("./components/Gallery/gallery"));
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
+const ScrollManager = () => {
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      // Wait a frame so the target page has rendered before scrolling to its section
+      requestAnimationFrame(() => document.querySelector(hash)?.scrollIntoView());
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   return null;
 };
 
-const PageTransition = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.3 }}
-  >
-    {children}
-  </motion.div>
-);
-// App Component
+const App = () => (
+  <Router basename={import.meta.env.BASE_URL}>
+    <ScrollManager />
+    <div className="relative flex min-h-screen flex-col">
+      <Nav />
+      <div className="flex-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/terms" element={<Terms />} />
 
-const App = () => {
-  return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        <Router basename={import.meta.env.BASE_URL}>
-          <div className="relative min-h-screen flex flex-col raleway overflow-hidden">
-            <ScrollToTop />
-            <Navbar />
-            <ThemedComponent>
-              <AnimatePresence mode="wait">
-                <Suspense
-                  fallback={
-                    <div className="flex items-center justify-center min-h-screen">
-                      <Loading />
-                    </div>
-                  }
-                >
-                  <PageTransition>
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/services" element={<Services />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route path="/signup" element={<SignUp />} />
-                      <Route
-                        path="/services/media-production"
-                        element={<MediaProduction />}
-                      />
-                      <Route
-                        path="/services/event-management"
-                        element={<EventManagement />}
-                      />
-                      <Route
-                        path="/services/talent-management"
-                        element={<TalentManagement />}
-                      />
-                      <Route
-                        path="/terms"
-                        element={<TermsAndConditions />}
-                      />
-                      <Route
-                        path="/leaders"
-                        element={<LeadersPage />}
-                      />
-                      <Route
-                        path="/events"
-                        element={<EventsPage />}
-                      />
-                      <Route
-                        path="/history/4+-years-of-experience"
-                        element={<Experience />}
-                      />
-                      <Route
-                        path="history/hundreds-of-satisfied-clients"
-                        element={<SatisfiedClients />}
-                      />
-                      <Route
-                        path="/achievements/impressive-growth"
-                        element={<ImpressiveGrowth />}
-                      />
-                      <Route
-                        path="achievements/industry-awards"
-                        element={<IndustryAwards />}
-                      />
-                      <Route
-                        path="achievements/trusted-by-creators"
-                        element={<TrustedByCreators />}
-                      />
-                      <Route
-                        path="/history/successful-projects"
-                        element={<SuccessfulProjects />}
-                      />
-                      <Route path="/history/Gallery" element={<Gallery />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </PageTransition>
-                </Suspense>
-              </AnimatePresence>
-            </ThemedComponent>
-            <Footer />
-          </div>
-        </Router>
-      </ThemeProvider>
-    </ErrorBoundary>
-  );
-};
+          {/* Addresses from the previous site, kept alive for old links */}
+          <Route path="/signup" element={<Navigate to="/join" replace />} />
+          <Route path="/leaders" element={<Navigate to="/about#leadership" replace />} />
+          <Route path="/history/Gallery" element={<Navigate to="/gallery" replace />} />
+          <Route path="/history/*" element={<Navigate to="/about" replace />} />
+          <Route path="/achievements/*" element={<Navigate to="/services" replace />} />
+
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+  </Router>
+);
 
 export default App;

@@ -1,6 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App1'
+import '@fontsource-variable/inter'
+import '@fontsource/grand-hotel/latin-400.css'
+import App from './App'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
