@@ -113,13 +113,12 @@ const Gallery = () => {
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" />
                 {item.type === "video" && (
-                  <span className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gold text-ink">
+                  <span className="glass absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full">
                     <Play size={18} fill="currentColor" className="translate-x-px" aria-hidden="true" />
                   </span>
                 )}
-                <p className="absolute inset-x-0 bottom-0 translate-y-2 p-4 text-[13px] font-semibold leading-snug text-white opacity-0 transition duration-300 ease-brand group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                <p className="glass rounded-inner absolute inset-x-2 bottom-2 translate-y-2 px-3.5 py-3 text-[13px] font-semibold leading-snug text-white opacity-0 transition duration-300 ease-brand group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                   {item.caption}
                 </p>
               </motion.button>

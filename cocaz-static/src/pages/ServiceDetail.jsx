@@ -123,7 +123,7 @@ const ServiceDetail = () => {
             {s.strip.map((p, i) => (
               <Reveal key={p.label} i={i} className="rounded-tile relative aspect-square overflow-hidden sm:aspect-[4/3]">
                 <img src={img(p.image)} alt={p.alt} loading="lazy" style={{ objectPosition: p.position }} className="h-full w-full object-cover" />
-                <span className="chip absolute bottom-3 left-3 hidden sm:inline-flex">{p.label}</span>
+                <span className="chip glass-light absolute bottom-3 left-3 hidden sm:inline-flex">{p.label}</span>
               </Reveal>
             ))}
           </div>
@@ -138,9 +138,9 @@ const ServiceDetail = () => {
               <Reveal key={a.name} i={i}>
                 <Bite card="relative aspect-[4/5] bg-ink text-white sm:aspect-[5/4]" icon={<Icon name="Mic2" size={18} strokeWidth={2.25} />}>
                   <img src={img(a.image)} alt={a.name} loading="lazy" style={{ objectPosition: a.position }} className="h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
-                  <span className="chip absolute left-4 top-4">{a.badge}</span>
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
+                  <span className="chip glass-light absolute left-4 top-4">{a.badge}</span>
+                  <div className="glass rounded-inner absolute inset-x-2.5 bottom-2.5 p-5 sm:inset-x-3 sm:bottom-3 sm:p-7">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">{a.genre}</p>
                     <h3 className="mt-2 text-3xl font-bold uppercase leading-none sm:text-4xl">{a.name}</h3>
                     <p className="mt-3 max-w-md text-sm leading-relaxed text-white/75">{a.text}</p>

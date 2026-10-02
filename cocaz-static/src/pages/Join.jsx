@@ -92,8 +92,8 @@ const Join = () => {
             <Reveal key={c.title} i={i} className={i === 0 ? "col-span-2 md:col-span-1" : ""}>
               <article className={`rounded-tile group relative overflow-hidden bg-ink text-white md:aspect-[4/5] ${i === 0 ? "aspect-[16/10]" : "aspect-[4/5]"}`}>
                 <img src={img(c.image)} alt={c.alt} loading="lazy" style={{ objectPosition: c.position }} className="h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
+                <div className="glass rounded-inner absolute inset-x-2 bottom-2 p-3.5 sm:inset-x-2.5 sm:bottom-2.5 sm:p-5">
                   <h3 className="text-lg font-bold uppercase leading-none sm:text-2xl">{c.title}</h3>
                   <p className="mt-2 hidden text-sm leading-relaxed text-white/75 sm:block">{c.text}</p>
                 </div>

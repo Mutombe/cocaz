@@ -102,7 +102,7 @@ const Contact = () => {
                 </div>
               </div>
               <iframe title="Map of Waterfalls, Harare" src={contact.mapEmbed} referrerPolicy="no-referrer-when-downgrade" className="relative block h-full w-full border-0" />
-              <a href={contact.mapLink} target="_blank" rel="noopener noreferrer" className="chip absolute left-3 top-3">
+              <a href={contact.mapLink} target="_blank" rel="noopener noreferrer" className="chip glass-light absolute left-3 top-3">
                 Open in Google Maps
               </a>
             </div>

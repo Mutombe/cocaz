@@ -188,7 +188,7 @@ const HeroDesktop = ({ onPlay }) => {
           <motion.div {...rise(0.36)} className="absolute" style={box(28, 435, 119, 119)}>
             <button type="button" onClick={onPlay} className="group relative block h-full w-full overflow-hidden bg-ink text-left text-white" style={{ borderRadius: R }}>
               <img src={img("stock-concert.jpg")} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45 transition duration-700 ease-brand group-hover:scale-105 group-hover:opacity-60" />
-              <span className="absolute flex items-center font-semibold" style={{ left: u(14), top: u(13), gap: u(7), fontSize: `max(10px, ${u(7)})` }}>
+              <span className="glass absolute flex items-center rounded-full font-semibold" style={{ left: u(10), top: u(10), gap: u(6), padding: `${u(4)} ${u(10)} ${u(4)} ${u(4)}`, fontSize: `max(10px, ${u(7)})` }}>
                 <span className="grid place-items-center rounded-full bg-gold text-ink" style={{ width: u(22), height: u(22) }}>
                   <Play style={{ width: u(8), height: u(8) }} fill="currentColor" className="translate-x-px" aria-hidden="true" />
                 </span>
@@ -344,7 +344,7 @@ const HeroMobile = ({ onPlay }) => {
           <div className="grid min-h-[200px] flex-1 grid-cols-[1.08fr_1fr] gap-2.5">
             <div className="rounded-tile relative overflow-hidden">
               <img src={img("hero.jpg")} alt="A smiling Zimbabwean creator holding a COCAZ membership card" className="absolute inset-0 h-full w-full object-cover object-[58%_22%]" />
-              <span className="absolute bottom-2.5 left-2.5 flex items-center gap-2 rounded-full bg-white/90 py-1 pl-1 pr-3 text-[10px] font-bold uppercase tracking-[0.06em] backdrop-blur">
+              <span className="absolute bottom-2.5 left-2.5 flex items-center gap-2 glass-light rounded-full py-1 pl-1 pr-3 text-[10px] font-bold uppercase tracking-[0.06em]">
                 <FlagRoundel className="w-5" />
                 Since 2020
               </span>
@@ -426,7 +426,7 @@ const ProgrammeCard = ({ item }) => (
           style={{ objectPosition: item.position }}
           className="h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
         />
-        <span className="chip absolute bottom-2.5 left-2.5">
+        <span className="chip glass-light absolute bottom-2.5 left-2.5">
           <Icon name={item.icon} size={13} strokeWidth={2.25} />
           {item.tag}
         </span>
@@ -557,8 +557,7 @@ const Creators = () => (
         <Reveal key={c.name} i={i}>
           <Bite as="a" href={c.link} target="_blank" rel="noopener noreferrer" className="lift" card="relative aspect-[3/4] bg-ink-soft">
             <img src={img(c.image)} alt={`${c.name}, ${c.role}`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-700 ease-brand group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-6">
+            <div className="glass rounded-inner absolute inset-x-2 bottom-2 p-3 sm:inset-x-2.5 sm:bottom-2.5 sm:p-5">
               <Quote size={16} className="hidden text-gold sm:block" fill="currentColor" aria-hidden="true" />
               <p className="mt-2 hidden text-[13px] leading-snug text-white/80 sm:block">{c.quote}</p>
               <h3 className="text-base font-bold uppercase leading-tight sm:mt-3 sm:text-xl">{c.name}</h3>
@@ -585,9 +584,9 @@ const EventHighlights = () => {
         <Reveal>
           <Bite as={Link} to="/events" className="lift h-full" card="relative min-h-[380px] bg-[#17a39a] text-white sm:min-h-[440px]">
             <img src={img(first.image)} alt={first.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain object-right transition-transform duration-700 ease-brand group-hover:scale-[1.03]" />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/45 to-transparent" />
-            <span className="chip absolute left-4 top-4">{first.category}</span>
-            <div className="absolute bottom-0 left-0 max-w-sm p-6 sm:p-9">
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/45 via-ink/10 to-transparent" />
+            <span className="chip glass-light absolute left-4 top-4">{first.category}</span>
+            <div className="glass rounded-inner absolute bottom-2.5 left-2.5 right-2.5 max-w-sm p-5 sm:bottom-3 sm:left-3 sm:right-auto sm:p-7">
               <h3 className="text-2xl font-bold uppercase leading-none sm:text-3xl">{first.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-white/75 sm:mt-4">{first.text}</p>
               <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-semibold text-gold sm:mt-5">

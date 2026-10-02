@@ -5,6 +5,11 @@ import { ArrowRight, CalendarDays, MapPin, Star } from "lucide-react";
 import { events, img } from "../data/site";
 import { CtaBanner, PageHero, Section, SectionHead, Sheet } from "../components/ui";
 
+/* Two masks make the bleed: the cover dissolves at its bottom edge, and the
+   blurred copy behind the card fades in over the body. */
+const COVER_FADE = "linear-gradient(to bottom, #000 76%, transparent 100%)";
+const AMBIENT_MASK = "linear-gradient(to bottom, transparent 34%, #000 70%)";
+
 const categories = ["All", ...new Set(events.map((e) => e.category))];
 
 const Events = () => {
@@ -61,9 +66,18 @@ const Events = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
-                className="tile group flex flex-col p-2 sm:p-2.5"
+                className="rounded-tile group relative flex flex-col overflow-hidden bg-white"
               >
-                <div className="rounded-inner relative aspect-[16/11] overflow-hidden bg-stone sm:aspect-[4/3.3]">
+                {/* Ambient bleed: a blurred, saturated copy of the card's own picture tints the body */}
+                <img
+                  src={img(e.image)}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="pointer-events-none absolute inset-0 h-full w-full scale-125 object-cover opacity-30 blur-2xl saturate-150"
+                  style={{ maskImage: AMBIENT_MASK, WebkitMaskImage: AMBIENT_MASK }}
+                />
+                <div className="relative aspect-[16/11] overflow-hidden sm:aspect-[4/3.3]" style={{ maskImage: COVER_FADE, WebkitMaskImage: COVER_FADE }}>
                   {/* Posters are shown whole over a blurred copy of themselves; photos fill the frame */}
                   {e.poster && <img src={img(e.image)} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-125 object-cover blur-2xl" />}
                   <img
@@ -73,18 +87,18 @@ const Events = () => {
                     style={{ objectPosition: e.position }}
                     className={`relative h-full w-full transition-transform duration-700 ease-brand group-hover:scale-105 ${e.poster ? "object-contain p-3" : "object-cover"}`}
                   />
-                  <span className="chip absolute left-2.5 top-2.5">{e.category}</span>
+                  <span className="chip glass-light absolute left-3.5 top-3.5">{e.category}</span>
                   {e.featured && (
-                    <span className="chip absolute right-2.5 top-2.5 !bg-gold">
+                    <span className="chip absolute right-3.5 top-3.5 !bg-gold">
                       <Star size={11} fill="currentColor" aria-hidden="true" />
                       Featured
                     </span>
                   )}
                 </div>
-                <div className="flex flex-1 flex-col px-3 pb-3 pt-4 sm:px-4 sm:pb-4 sm:pt-5">
+                <div className="relative -mt-5 flex flex-1 flex-col px-5 pb-5 sm:px-6 sm:pb-6">
                   <h3 className="text-lg leading-snug sm:text-xl">{e.title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-ink-mute">{e.text}</p>
-                  <ul className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 border-t border-ink/10 pt-4 text-xs font-medium text-ink-soft max-sm:mt-4">
+                  <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{e.text}</p>
+                  <ul className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 border-t border-ink/15 pt-4 text-xs font-medium text-ink-soft max-sm:mt-4">
                     {e.date && (
                       <li className="flex items-center gap-1.5">
                         <CalendarDays size={13} aria-hidden="true" />

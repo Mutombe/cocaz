@@ -127,10 +127,7 @@ const Footer = () => (
           <div className="flex items-center gap-4">
             <FlagRule className="w-12 shrink-0" />
             <p>
-              © {new Date().getFullYear()} COCAZ. Developed by{" "}
-              <a href="https://zettabyte.co.zw" target="_blank" rel="noopener noreferrer" className="font-semibold text-white/85 underline-offset-4 hover:underline">
-                Zettabyte
-              </a>
+              © {new Date().getFullYear()} COCAZ. Engineered by <span className="font-semibold text-white/85">Bit Studio</span>
             </p>
           </div>
           <Link to="/terms" className="w-fit transition-colors duration-300 hover:text-gold">

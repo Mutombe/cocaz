@@ -38,12 +38,12 @@ const Services = () => (
                 style={{ objectPosition: s.position }}
                 className="h-full w-full object-cover opacity-90 transition-transform duration-700 ease-brand group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink from-10% via-ink/75 via-35% to-transparent to-65%" />
-              <span className="chip absolute left-4 top-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
+              <span className="chip glass-light absolute left-4 top-4">
                 <Icon name={s.icon} size={13} strokeWidth={2.25} />
                 {s.tag}
               </span>
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+              <div className="glass rounded-inner absolute inset-x-2.5 bottom-2.5 p-4 sm:inset-x-3 sm:bottom-3 sm:p-6">
                 <h3 className="text-2xl font-bold uppercase leading-none sm:text-3xl">{s.title}</h3>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/70">{s.text}</p>
               </div>
@@ -94,9 +94,9 @@ const Services = () => (
             {p.image ? (
               <article className="rounded-tile relative h-full min-h-[300px] overflow-hidden bg-ink text-white lg:min-h-[380px]">
                 <img src={img(p.image)} alt={`${p.name} campaign artwork`} loading="lazy" style={{ objectPosition: p.position }} className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink from-25% via-ink/80 via-45% to-transparent to-75%" />
-                <span className="chip absolute left-4 top-4">Notable partner</span>
-                <div className="absolute inset-x-0 bottom-0 p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
+                <span className="chip glass-light absolute left-4 top-4">Notable partner</span>
+                <div className="glass rounded-inner absolute inset-x-2.5 bottom-2.5 p-5">
                   <h3 className="text-2xl font-bold uppercase leading-none">{p.name}</h3>
                   <p className="mt-2 text-[13px] leading-relaxed text-white/75">{p.text}</p>
                 </div>
