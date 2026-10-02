@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@phosphor-icons/react";
 import { crossLinks } from "../data/links";
 
 /* Body copy is written as plain strings. This turns it into rich text:
@@ -15,7 +15,7 @@ export const InlineLink = ({ to, href, children }) =>
   href ? (
     <a href={href} className="ilink" {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
       {children}
-      {href.startsWith("http") && <ArrowUpRight size="0.85em" strokeWidth={2.25} className="ml-[0.1em] inline-block align-[-0.08em]" aria-hidden="true" />}
+      {href.startsWith("http") && <ArrowUpRight size="0.85em" className="ml-[0.1em] inline-block align-[-0.08em]" aria-hidden="true" weight="bold" />}
     </a>
   ) : (
     <Link to={to} className="ilink">

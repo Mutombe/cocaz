@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Eye, Mail, Rocket } from "lucide-react";
+import { ArrowRight, EnvelopeSimple, Eye, RocketLaunch } from "@phosphor-icons/react";
 import { abroad, contact, img, leaders, mission, story, timeline, values, vision } from "../data/site";
 import { CtaBanner, Icon, Label, PageHero, Reveal, Script, Section, SectionHead, Sheet } from "../components/ui";
 import { Rich } from "../lib/rich";
@@ -21,7 +21,7 @@ const About = () => (
     >
       <Link to="/join" className="btn-ink group">
         Join COCAZ
-        <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+        <ArrowRight size={14} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" weight="bold" />
       </Link>
       <Link to="/contact" className="btn-ghost">
         Contact us
@@ -32,7 +32,7 @@ const About = () => (
       <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
         <Reveal className="relative">
           <div className="rounded-tile overflow-hidden">
-            <img src={img("camp3.jpg")} alt="Three COCAZ members in branded caps and T-shirts" loading="lazy" className="aspect-[4/3] w-full object-cover object-[50%_30%] sm:aspect-[4/5]" />
+            <img src={img("camp2.jpg")} alt="COCAZ members in branded T-shirts gathered outdoors" loading="lazy" className="aspect-[4/3] w-full object-cover object-[50%_40%] sm:aspect-[4/5]" />
           </div>
           <div className="absolute -bottom-4 right-4 w-40 rounded-3xl bg-gold p-4 sm:right-8 sm:w-44" style={{ backgroundImage: "var(--pat-hatch)" }}>
             <p className="num text-3xl font-bold">2020</p>
@@ -55,14 +55,14 @@ const About = () => (
       <div className="mt-12 grid gap-2.5 sm:mt-16 sm:gap-3 md:grid-cols-2 lg:gap-4">
         {[
           { icon: Eye, label: "Our vision", text: vision, tone: "bg-ink text-white", sub: "text-gold", pat: "var(--pat-grid)", size: "34px 34px" },
-          { icon: Rocket, label: "Our mission", text: mission, tone: "bg-gold text-ink", sub: "text-ink", pat: "var(--pat-hatch)", size: "auto" },
+          { icon: RocketLaunch, label: "Our mission", text: mission, tone: "bg-gold text-ink", sub: "text-ink", pat: "var(--pat-hatch)", size: "auto" },
         ].map((b, i) => (
           <Reveal key={b.label} i={i}>
             <div className={`rounded-tile relative flex h-full min-h-[12.5rem] flex-col overflow-hidden p-7 sm:min-h-[16.25rem] sm:p-10 ${b.tone}`} style={{ backgroundImage: b.pat, backgroundSize: b.size }}>
               <Orb tone={i ? "leaf" : "flame"} drift className="-right-8 -top-10 w-32 sm:w-40" />
               <Orb ring className="right-24 top-6 w-10 sm:right-32" />
               <p className={`relative flex items-center gap-2.5 font-ref text-[0.625rem] font-bold uppercase tracking-[0.12em] ${b.sub}`}>
-                <b.icon size={15} strokeWidth={2.25} aria-hidden="true" />
+                <b.icon size={15} weight="bold" aria-hidden="true" />
                 {b.label}
               </p>
               <p className="relative mt-auto pt-8 font-display text-xl font-medium leading-tight tracking-[-0.025em] sm:pt-10 sm:text-[1.9rem]">{b.text}</p>
@@ -80,7 +80,7 @@ const About = () => (
           <Reveal key={v.title} i={i % 3}>
             <div className={`tile flex h-full items-start gap-4 p-4 sm:block sm:p-7 ${tints[i]}`}>
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white">
-                <Icon name={v.icon} size={18} strokeWidth={2.25} />
+                <Icon name={v.icon} size={18} weight="duotone" />
               </span>
               <div>
                 <h3 className="text-base sm:mt-8 sm:text-xl">{v.title}</h3>
@@ -178,7 +178,7 @@ const About = () => (
           <Rich>Write to the secretariat.</Rich>
         </p>
         <a href={`mailto:${contact.email}`} className="btn-ink">
-          <Mail size={14} aria-hidden="true" />
+          <EnvelopeSimple size={14} aria-hidden="true" />
           Email the team
         </a>
       </Reveal>

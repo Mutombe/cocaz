@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { ArrowUp, Facebook, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUp, EnvelopeSimple, FacebookLogo, MapPin, Phone, XLogo } from "@phosphor-icons/react";
 import { contact, FOUNDED, partners, tagline } from "../data/site";
 import { Orb } from "./deco";
-import { FlagRule, Logo, Script, XIcon } from "./ui";
+import { FlagRule, Logo, Script } from "./ui";
 
 const stats = [
   { value: "300+", label: "Creators" },
@@ -32,7 +32,7 @@ const columns = [
   },
 ];
 
-const socialIcons = { Facebook, X: XIcon };
+const socialIcons = { Facebook: FacebookLogo, X: XLogo };
 
 const Footer = () => (
   <footer className="ground-dark relative mb-[var(--band-gap)] mt-[var(--band-gap)] overflow-hidden">
@@ -88,7 +88,7 @@ const Footer = () => (
                 </a>
               </li>
               <li className="flex gap-3">
-                <Mail size={16} className="mt-0.5 shrink-0 text-gold" aria-hidden="true" />
+                <EnvelopeSimple size={16} className="mt-0.5 shrink-0 text-gold" aria-hidden="true" />
                 <a href={`mailto:${contact.email}`} className="transition-colors duration-300 [overflow-wrap:anywhere] hover:text-gold">
                   {contact.email}
                 </a>
@@ -122,7 +122,7 @@ const Footer = () => (
               aria-label="Back to top"
               className="ml-auto grid h-11 w-11 place-items-center rounded-full bg-gold text-ink transition-colors duration-300 hover:bg-white lg:ml-0"
             >
-              <ArrowUp size={16} strokeWidth={2.5} aria-hidden="true" />
+              <ArrowUp size={16} aria-hidden="true" weight="bold" />
             </button>
           </div>
         </div>

@@ -4,49 +4,50 @@ import {
   ArrowRight,
   ArrowUpRight,
   Asterisk,
-  Award,
-  BadgeDollarSign,
-  BarChart3,
   CalendarHeart,
-  Clapperboard,
+  ChartBar,
+  CurrencyCircleDollar,
+  DeviceMobile,
+  FilmSlate,
   GraduationCap,
   Handshake,
+  Medal,
   Megaphone,
-  Mic2,
-  Music,
-  Smartphone,
+  MicrophoneStage,
+  MusicNotes,
+  ShareNetwork,
   Star,
   Target,
-  TrendingUp,
+  TrendUp,
   Trophy,
   Users,
   Wallet,
-  Waypoints,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 import { img } from "../data/site";
 import { watch } from "../lib/reveal";
 import { Rich } from "../lib/rich";
 import { Orb } from "./deco";
 
+// Keys are the names used in the site data; values are Phosphor icons
 const icons = {
-  Award,
-  BadgeDollarSign,
-  BarChart3,
+  Award: Medal,
+  BadgeDollarSign: CurrencyCircleDollar,
+  BarChart3: ChartBar,
   CalendarHeart,
-  Clapperboard,
+  Clapperboard: FilmSlate,
   GraduationCap,
   Handshake,
   Megaphone,
-  Mic2,
-  Music,
-  Smartphone,
+  Mic2: MicrophoneStage,
+  Music: MusicNotes,
+  Smartphone: DeviceMobile,
   Star,
   Target,
-  TrendingUp,
+  TrendingUp: TrendUp,
   Trophy,
   Users,
   Wallet,
-  Waypoints,
+  Waypoints: ShareNetwork,
 };
 
 export const Icon = ({ name, ...props }) => {
@@ -72,13 +73,6 @@ export const Label = ({ children, className = "" }) => (
 
 /* The accent face. Used a handful of times across the whole site, never for anything functional. */
 export const Script = ({ children, className = "" }) => <span className={`script ${className}`}>{children}</span>;
-
-/* The X mark, drawn here because the icon set only carries the old bird */
-export const XIcon = ({ size = 16, className = "", ...props }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className} {...props}>
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
 
 /* The four flag colours as a thin brand rule */
 export const FlagRule = ({ className = "" }) => (
@@ -146,7 +140,7 @@ export const Bite = ({ as: Tag = "div", className = "", card = "", icon, childre
   <Tag className={`group relative block ${className}`} {...rest}>
     <div className={`bite-card h-full ${card}`}>{children}</div>
     <span className="bite-badge" aria-hidden="true">
-      {icon ?? <ArrowUpRight size={18} strokeWidth={2.25} />}
+      {icon ?? <ArrowUpRight size={18} weight="bold" />}
     </span>
   </Tag>
 );
@@ -253,7 +247,7 @@ export const SectionHead = ({ label, title, text, action, className = "" }) => (
 export const TextLink = ({ to, children }) => (
   <Link to={to} className="link-underline w-fit shrink-0">
     {children}
-    <ArrowRight size={14} strokeWidth={2.5} aria-hidden="true" />
+    <ArrowRight size={14} aria-hidden="true" weight="bold" />
   </Link>
 );
 
@@ -264,7 +258,7 @@ export const Ticker = ({ items, ground = "gold" }) => (
       {[...items, ...items].map((item, i) => (
         <span key={i} className="flex items-center font-display text-sm font-bold uppercase tracking-[-0.01em] sm:text-lg">
           <span className="px-5 sm:px-7">{item}</span>
-          <Asterisk size={18} strokeWidth={2.25} />
+          <Asterisk size={18} weight="bold" />
         </span>
       ))}
     </div>
@@ -294,7 +288,7 @@ export const CtaBanner = ({
         <p className="text-mute mt-5 max-w-md text-[0.9375rem] leading-relaxed">{text}</p>
         <Link to={to} className="btn-ink group mt-7 w-full sm:w-auto">
           {button}
-          <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+          <ArrowRight size={14} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" weight="bold" />
         </Link>
       </div>
       <div className="relative h-40 w-60 shrink-0 self-end sm:h-56 sm:w-80 md:self-auto">
@@ -302,7 +296,7 @@ export const CtaBanner = ({
         <Orb tone="flame" className="-bottom-3 right-2 z-10 w-9 sm:w-12" />
         <img src={img(image)} alt={alt} loading="lazy" className="absolute right-0 top-0 aspect-square h-full rounded-full object-cover" />
         <SpinBadge text={badge} className="absolute bottom-0 left-0 aspect-square h-[64%]">
-          <ArrowUpRight size={22} strokeWidth={2.25} aria-hidden="true" />
+          <ArrowUpRight size={22} aria-hidden="true" weight="bold" />
         </SpinBadge>
       </div>
     </Reveal>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, ScanLine } from "lucide-react";
+import { CheckCircle, QrCode } from "@phosphor-icons/react";
 import { contact, creatorTypes, disciplines, img } from "../data/site";
 import { Label, Reveal, Script, Section, SectionHead, Sheet } from "../components/ui";
 
@@ -65,7 +65,7 @@ const Join = () => {
                   </label>
                 </div>
                 <button type="submit" disabled={!agreed} className="btn-ink mt-6 w-full disabled:cursor-not-allowed disabled:opacity-40">
-                  <CheckCircle2 size={14} strokeWidth={2.5} aria-hidden="true" />
+                  <CheckCircle size={14} aria-hidden="true" weight="bold" />
                   Sign up
                 </button>
                 <p className="mt-3 text-center text-[0.6875rem] text-ink-mute">Opens your email app with the form ready.</p>
@@ -76,7 +76,7 @@ const Join = () => {
                 <img src={img("membership-qr.jpg")} alt="QR code linking to the COCAZ membership form" loading="lazy" width="700" height="700" className="h-auto w-full rounded-2xl sm:order-2 sm:mt-5 sm:max-w-[11.25rem]" />
                 <div className="sm:contents">
                   <p className="flex items-center gap-2 text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-gold sm:order-1 sm:justify-center">
-                    <ScanLine size={14} aria-hidden="true" />
+                    <QrCode size={14} aria-hidden="true" />
                     Quick join
                   </p>
                   <p className="mt-2 text-[0.8125rem] leading-relaxed text-white/70 sm:order-3 sm:mt-5 sm:text-xs">Scan the code to open the membership form.</p>

@@ -1,0 +1,3 @@
+const p = await import("file:///C:/Users/PC/Documents/cocaz/cocaz-static/node_modules/@phosphor-icons/react/dist/index.es.js").catch(async () => await import("@phosphor-icons/react"));
+const want = 'ArrowUp ArrowRight ArrowLeft ArrowUpRight FacebookLogo XLogo EnvelopeSimple MapPin Phone PhoneCall WhatsappLogo PaperPlaneTilt Eye RocketLaunch Star CaretLeft CaretRight Play X Asterisk CalendarDots CalendarBlank Scan Quotes CheckCircle QrCode Check Plus Printer Medal CurrencyCircleDollar ChartBar CalendarHeart FilmSlate GraduationCap Handshake Megaphone MicrophoneStage MusicNotes DeviceMobile Target TrendUp Trophy Users Wallet ShareNetwork Aperture'.split(' ');
+console.log('exports', Object.keys(p).length, 'missing:', want.filter((n) => !p[n]).join(', ') || 'none');

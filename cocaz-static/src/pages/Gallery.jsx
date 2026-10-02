@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { CaretLeft, CaretRight, Play, X } from "@phosphor-icons/react";
 import { gallery, img } from "../data/site";
 import { CtaBanner, PageHero, Section, Sheet } from "../components/ui";
 
@@ -41,7 +41,7 @@ const Lightbox = ({ items, index, setIndex }) => {
           {index + 1} / {items.length}
         </p>
         <button type="button" onClick={() => setIndex(null)} aria-label="Close" className="grid h-11 w-11 place-items-center rounded-full bg-white text-ink">
-          <X size={18} strokeWidth={2.5} aria-hidden="true" />
+          <X size={18} aria-hidden="true" weight="bold" />
         </button>
       </div>
       <div className="relative flex min-h-0 flex-1 items-center justify-center py-4" onClick={(e) => e.stopPropagation()}>
@@ -55,10 +55,10 @@ const Lightbox = ({ items, index, setIndex }) => {
           </motion.div>
         </AnimatePresence>
         <button type="button" onClick={() => step(-1)} aria-label="Previous" className="absolute left-0 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition-colors duration-300 hover:bg-gold hover:text-ink">
-          <ChevronLeft size={20} aria-hidden="true" />
+          <CaretLeft size={20} aria-hidden="true" />
         </button>
         <button type="button" onClick={() => step(1)} aria-label="Next" className="absolute right-0 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition-colors duration-300 hover:bg-gold hover:text-ink">
-          <ChevronRight size={20} aria-hidden="true" />
+          <CaretRight size={20} aria-hidden="true" />
         </button>
       </div>
       <p className="pb-2 text-center text-sm font-semibold text-white">{item.caption}</p>
@@ -115,7 +115,7 @@ const Gallery = () => {
                 />
                 {item.type === "video" && (
                   <span className="glass absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full">
-                    <Play size={18} fill="currentColor" className="translate-x-px" aria-hidden="true" />
+                    <Play size={18} className="translate-x-px" aria-hidden="true" weight="fill" />
                   </span>
                 )}
                 <p className="glass rounded-inner absolute inset-x-2 bottom-2 translate-y-2 px-3.5 py-3 text-[0.8125rem] font-semibold leading-snug text-white opacity-0 transition duration-300 ease-brand group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Facebook, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, EnvelopeSimple, FacebookLogo, MapPin, Phone, XLogo } from "@phosphor-icons/react";
 import { contact, nav } from "../data/site";
 import { u } from "../lib/units";
-import { FlagRule, Logo, Script, XIcon } from "./ui";
+import { FlagRule, Logo, Script } from "./ui";
 
 // Home is reached through the logo tab, as in the reference
 const links = nav.filter((item) => item.to !== "/");
 const ease = [0.22, 0.61, 0.36, 1];
-const socialIcons = { Facebook, X: XIcon };
+const socialIcons = { Facebook: FacebookLogo, X: XLogo };
 
 /* Two lines that cross into an X when the menu is open */
 const Burger = ({ open, onClick, className = "" }) => (
@@ -68,7 +68,7 @@ const Menu = ({ onClose }) => (
               <>
                 <span className={`num w-6 text-[0.6875rem] font-semibold ${isActive ? "text-ink/60" : "text-gold"}`}>0{i + 1}</span>
                 <span className="flex-1 font-display text-[clamp(1.5rem,4.5svh,2.5rem)] font-bold uppercase leading-none tracking-[-0.035em]">{item.label}</span>
-                <ArrowUpRight size={22} strokeWidth={1.75} className={isActive ? "" : "text-white/40"} aria-hidden="true" />
+                <ArrowUpRight size={22} className={isActive ? "" : "text-white/40"} aria-hidden="true" />
               </>
             )}
           </NavLink>
@@ -82,7 +82,7 @@ const Menu = ({ onClose }) => (
       </p>
       <Link to="/join" onClick={onClose} className="btn-gold mt-3.5 w-full">
         Join COCAZ
-        <ArrowUpRight size={14} strokeWidth={2.5} aria-hidden="true" />
+        <ArrowUpRight size={14} aria-hidden="true" weight="bold" />
       </Link>
       <ul className="mt-4 grid gap-2 text-sm text-white/70">
         <li>
@@ -93,7 +93,7 @@ const Menu = ({ onClose }) => (
         </li>
         <li>
           <a href={`mailto:${contact.email}`} className="flex items-center gap-3">
-            <Mail size={15} className="text-gold" aria-hidden="true" />
+            <EnvelopeSimple size={15} className="text-gold" aria-hidden="true" />
             {contact.email}
           </a>
         </li>

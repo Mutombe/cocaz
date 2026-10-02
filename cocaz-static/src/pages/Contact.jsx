@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Mail, MapPin, MessageCircle, PhoneCall, Send } from "lucide-react";
+import { EnvelopeSimple, MapPin, PaperPlaneTilt, PhoneCall, WhatsappLogo } from "@phosphor-icons/react";
 import { contact } from "../data/site";
 import { PageHero, Reveal, Section, Sheet } from "../components/ui";
 
 const details = [
   { icon: PhoneCall, label: "Phone", value: contact.phone, href: contact.phoneHref, tint: "bg-sage" },
-  { icon: MessageCircle, label: "WhatsApp", value: "Chat with us", href: contact.whatsapp, gold: true },
-  { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}`, wide: true, tint: "bg-lilac" },
+  { icon: WhatsappLogo, label: "WhatsApp", value: "Chat with us", href: contact.whatsapp, gold: true },
+  { icon: EnvelopeSimple, label: "Email", value: contact.email, href: `mailto:${contact.email}`, wide: true, tint: "bg-lilac" },
   { icon: MapPin, label: "Address", value: contact.addressLines, wide: true, tint: "bg-peach" },
 ];
 
@@ -57,7 +57,7 @@ const Contact = () => {
                 </label>
               </div>
               <button type="submit" className="btn-ink mt-6 w-full sm:w-auto">
-                <Send size={14} strokeWidth={2.5} aria-hidden="true" />
+                <PaperPlaneTilt size={14} aria-hidden="true" weight="bold" />
                 Send message
               </button>
               <p className="mt-3 text-xs text-ink-mute">Opens your email app with the message ready.</p>
@@ -76,7 +76,7 @@ const Contact = () => {
                     style={d.gold ? { backgroundImage: "var(--pat-hatch)" } : undefined}
                   >
                     <span className={`grid h-10 w-10 place-items-center rounded-full ${d.gold ? "bg-ink text-white" : "bg-white"}`}>
-                      <d.icon size={17} strokeWidth={2.25} aria-hidden="true" />
+                      <d.icon size={17} weight="duotone" aria-hidden="true" />
                     </span>
                     <p className="mt-auto pt-4 text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-ink-mute">{d.label}</p>
                     {[].concat(d.value).map((line, n) => (

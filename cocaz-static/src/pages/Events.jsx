@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star } from "@phosphor-icons/react";
 import { events, img } from "../data/site";
 import { CtaBanner, FactRows, PageHero, Section, SectionHead, Sheet } from "../components/ui";
 import { Rich } from "../lib/rich";
@@ -33,7 +33,7 @@ const Events = () => {
       >
         <Link to="/contact" className="btn-ink group">
           Host an event with us
-          <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+          <ArrowRight size={14} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" weight="bold" />
         </Link>
         <Link to="/gallery" className="btn-ghost">
           See the gallery
@@ -94,7 +94,7 @@ const Events = () => {
                   <span className="chip glass-light absolute left-3.5 top-3.5">{e.category}</span>
                   {(upcoming(e) || e.featured) && (
                     <span className="chip absolute right-3.5 top-3.5 !bg-gold">
-                      <Star size={11} fill="currentColor" aria-hidden="true" />
+                      <Star size={11} aria-hidden="true" weight="fill" />
                       {upcoming(e) ? "Upcoming" : "Featured"}
                     </span>
                   )}

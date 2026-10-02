@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@phosphor-icons/react";
 import { FlagRule, Script, Sheet } from "../components/ui";
 
 const NotFound = () => (
@@ -14,7 +14,7 @@ const NotFound = () => (
         <p className="mx-auto mt-4 max-w-md text-[0.9375rem] text-ink-mute">The page you are looking for does not exist or has moved.</p>
         <Link to="/" className="btn-ink group mt-8">
           Back to home
-          <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+          <ArrowRight size={14} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" weight="bold" />
         </Link>
       </div>
     </section>

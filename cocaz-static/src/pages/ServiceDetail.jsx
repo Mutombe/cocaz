@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Plus } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Plus } from "@phosphor-icons/react";
 import { img, serviceDetails } from "../data/site";
 import { Bite, CtaBanner, Icon, Label, PageHero, Reveal, Section, SectionHead, Sheet } from "../components/ui";
 import { Rich } from "../lib/rich";
@@ -22,7 +22,7 @@ const Accordion = ({ items }) => {
                 {item.title}
               </span>
               <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full transition duration-300 ease-brand ${active ? "rotate-45 bg-gold text-ink" : "bg-white"}`}>
-                <Plus size={16} strokeWidth={2.5} aria-hidden="true" />
+                <Plus size={16} aria-hidden="true" weight="bold" />
               </span>
             </button>
             <AnimatePresence initial={false}>
@@ -63,10 +63,10 @@ const ServiceDetail = () => {
       <PageHero kicker={s.kicker} title={s.title} script={s.script} lead={s.lead} image={s.image} alt={s.alt} position={s.position}>
         <Link to="/contact" className="btn-ink group">
           {s.cta.button}
-          <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+          <ArrowRight size={14} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" weight="bold" />
         </Link>
         <Link to="/services" className="btn-ghost">
-          <ArrowLeft size={14} strokeWidth={2.5} aria-hidden="true" />
+          <ArrowLeft size={14} aria-hidden="true" weight="bold" />
           All services
         </Link>
       </PageHero>
@@ -87,7 +87,7 @@ const ServiceDetail = () => {
                 {s.feature.points.map((p) => (
                   <li key={p} className="flex items-center gap-3 text-sm font-medium">
                     <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-ink">
-                      <Check size={13} strokeWidth={3} aria-hidden="true" />
+                      <Check size={13} aria-hidden="true" weight="bold" />
                     </span>
                     {p}
                   </li>
@@ -143,7 +143,7 @@ const ServiceDetail = () => {
           <div className="mt-5 grid gap-2.5 sm:gap-3 md:grid-cols-2 lg:gap-4">
             {s.artists.map((a, i) => (
               <Reveal key={a.name} i={i}>
-                <Bite card="relative aspect-[4/5] bg-ink text-white sm:aspect-[5/4]" icon={<Icon name="Mic2" size={18} strokeWidth={2.25} />}>
+                <Bite card="relative aspect-[4/5] bg-ink text-white sm:aspect-[5/4]" icon={<Icon name="Mic2" size={18} weight="duotone" />}>
                   <img src={img(a.image)} alt={a.name} loading="lazy" style={{ objectPosition: a.position }} className="h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
                   <span className="chip glass-light absolute left-4 top-4">{a.badge}</span>
@@ -202,7 +202,7 @@ const ServiceDetail = () => {
               <Reveal key={t.title} i={i % 3}>
                 <div className={`tile flex h-full items-start gap-4 p-4 sm:block sm:p-7 ${tints[i]}`}>
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white">
-                    <Icon name={t.icon} size={18} strokeWidth={2.25} />
+                    <Icon name={t.icon} size={18} weight="duotone" />
                   </span>
                   <div>
                     <h3 className="text-base sm:mt-8 sm:text-xl">{t.title}</h3>

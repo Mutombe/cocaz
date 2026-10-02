@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@phosphor-icons/react";
 import { creatorServices, img, partnerStories, process, programmes } from "../data/site";
 import { Bite, CtaBanner, Icon, Label, PageHero, Reveal, Script, Section, SectionHead, Sheet } from "../components/ui";
 import { Rich } from "../lib/rich";
@@ -22,7 +22,7 @@ const Services = () => (
     >
       <Link to="/contact" className="btn-ink group">
         Work with us
-        <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+        <ArrowRight size={14} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" weight="bold" />
       </Link>
       <a href="#partners" className="btn-ghost">
         For brands
@@ -44,7 +44,7 @@ const Services = () => (
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
               <span className="chip glass-light absolute left-4 top-4">
-                <Icon name={s.icon} size={13} strokeWidth={2.25} />
+                <Icon name={s.icon} size={13} weight="bold" />
                 {s.tag}
               </span>
               <div className="glass rounded-inner absolute inset-x-2.5 bottom-2.5 p-4 sm:inset-x-3 sm:bottom-3 sm:p-6">
@@ -68,7 +68,7 @@ const Services = () => (
                 0{i + 1}
               </span>
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white">
-                <Icon name={s.icon} size={18} strokeWidth={2.25} />
+                <Icon name={s.icon} size={18} weight="duotone" />
               </span>
               <div>
                 <h3 className="text-base sm:mt-10 sm:text-lg">{s.title}</h3>
@@ -90,7 +90,7 @@ const Services = () => (
         action={
           <Link to="/contact" className="btn-ink group w-full sm:w-auto">
             Become a partner
-            <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
+            <ArrowRight size={14} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" weight="bold" />
           </Link>
         }
       />

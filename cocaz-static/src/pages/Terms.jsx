@@ -1,4 +1,4 @@
-import { Mail, Printer } from "lucide-react";
+import { EnvelopeSimple, Printer } from "@phosphor-icons/react";
 import { contact, terms } from "../data/site";
 import { PageHero, Reveal, Section, Sheet } from "../components/ui";
 import { Rich } from "../lib/rich";
@@ -7,11 +7,11 @@ const Terms = () => (
   <Sheet>
     <PageHero kicker="Legal" title="Terms and" script="Conditions" lead="Please read our terms carefully before joining COCAZ.">
       <a href={`mailto:${contact.email}`} className="btn-ink print:hidden">
-        <Mail size={14} strokeWidth={2.5} aria-hidden="true" />
+        <EnvelopeSimple size={14} aria-hidden="true" weight="bold" />
         Contact us
       </a>
       <button type="button" onClick={() => window.print()} className="btn-ghost print:hidden">
-        <Printer size={14} strokeWidth={2.5} aria-hidden="true" />
+        <Printer size={14} aria-hidden="true" weight="bold" />
         Print or save as PDF
       </button>
     </PageHero>

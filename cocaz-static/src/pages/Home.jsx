@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Asterisk, CalendarDays, Focus, MapPin, Play, Quote, X } from "lucide-react";
+import { ArrowRight, Asterisk, CalendarDots, MapPin, Play, Quotes, Scan, X } from "@phosphor-icons/react";
 import { audiences, creators, disciplines, event, events, img, partners, programmeFilters, programmes, VIDEO } from "../data/site";
 import { Bite, CtaBanner, FactStrip, FlagRoundel, Icon, Label, Reveal, Script, Section, SectionHead, Sheet, SpinBadge, TextLink, Ticker } from "../components/ui";
 import { Rich } from "../lib/rich";
@@ -73,7 +73,7 @@ const VideoModal = ({ onClose }) => {
       >
         <video src={VIDEO} controls autoPlay playsInline className="max-h-[80vh] w-full" />
         <button type="button" onClick={onClose} aria-label="Close video" className="absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-full bg-white text-ink">
-          <X size={18} strokeWidth={2.5} aria-hidden="true" />
+          <X size={18} aria-hidden="true" weight="bold" />
         </button>
       </motion.div>
     </motion.div>
@@ -129,9 +129,9 @@ const HeroDesktop = ({ onPlay }) => {
 
           <motion.div {...rise(0.05)} className="absolute overflow-hidden" style={{ ...box(28, 76, 105, 214), borderRadius: R }}>
             <img
-              src={img("aisha-stairs.jpg")}
-              alt="A COCAZ delegate in a Zimbabwe flag blazer on the steps at a film premiere"
-              className="h-full w-full object-cover object-[50%_42%]"
+              src={img("camp3.jpg")}
+              alt="Three COCAZ members in the association's caps and T-shirts, arms around each other"
+              className="h-full w-full object-cover object-[50%_30%]"
             />
           </motion.div>
 
@@ -185,7 +185,7 @@ const HeroDesktop = ({ onPlay }) => {
           <motion.div {...rise(0.3)} className="absolute" style={box(153, 315, 106, 106)}>
             <Link to="/join" aria-label="Explore how COCAZ works and join us" className="group block h-full w-full">
               <SpinBadge text={badgeText} className="h-full w-full transition-transform duration-500 ease-brand group-hover:scale-[1.04]">
-                <Focus style={{ width: u(27), height: u(27) }} strokeWidth={1.75} aria-hidden="true" />
+                <Scan style={{ width: u(27), height: u(27) }} aria-hidden="true" />
               </SpinBadge>
             </Link>
           </motion.div>
@@ -195,7 +195,7 @@ const HeroDesktop = ({ onPlay }) => {
               <img src={img("road-crowd.jpg")} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-700 ease-brand group-hover:scale-105 group-hover:opacity-60" />
               <span className="glass absolute flex items-center rounded-full font-semibold" style={{ left: u(10), top: u(10), gap: u(6), padding: `${u(4)} ${u(10)} ${u(4)} ${u(4)}`, fontSize: `max(10px, ${u(7)})` }}>
                 <span className="grid place-items-center rounded-full bg-gold text-ink" style={{ width: u(22), height: u(22) }}>
-                  <Play style={{ width: u(8), height: u(8) }} fill="currentColor" className="translate-x-px" aria-hidden="true" />
+                  <Play style={{ width: u(8), height: u(8) }} className="translate-x-px" aria-hidden="true" weight="fill" />
                 </span>
                 Watch our story
               </span>
@@ -237,7 +237,7 @@ const HeroDesktop = ({ onPlay }) => {
               className="absolute left-0 top-0 grid place-items-center rounded-full bg-ink text-white transition-transform duration-300 ease-brand hover:scale-110"
               style={{ width: u(33), height: u(33) }}
             >
-              <Play style={{ width: u(11), height: u(11) }} fill="currentColor" className="translate-x-px" aria-hidden="true" />
+              <Play style={{ width: u(11), height: u(11) }} className="translate-x-px" aria-hidden="true" weight="fill" />
             </button>
             <Link
               to="/services"
@@ -245,7 +245,7 @@ const HeroDesktop = ({ onPlay }) => {
               className="absolute right-0 top-0 grid place-items-center rounded-full bg-gold text-ink transition-transform duration-300 ease-brand hover:scale-110"
               style={{ width: u(33), height: u(33) }}
             >
-              <Asterisk style={{ width: u(17), height: u(17) }} strokeWidth={1.75} aria-hidden="true" />
+              <Asterisk style={{ width: u(17), height: u(17) }} aria-hidden="true" />
             </Link>
           </motion.div>
 
@@ -277,7 +277,7 @@ const HeroDesktop = ({ onPlay }) => {
 
           <motion.div {...rise(0.44)} className="absolute" style={{ left: u(302), top: u(447), width: u(303), height: u(27) }} data-hero-last>
             <span className="absolute left-0 top-0 grid place-items-center rounded-full bg-gold" style={{ width: u(26), height: u(26) }}>
-              <Asterisk style={{ width: u(13), height: u(13) }} strokeWidth={2} aria-hidden="true" />
+              <Asterisk style={{ width: u(13), height: u(13) }} aria-hidden="true" weight="bold" />
             </span>
             <AnimatePresence mode="wait">
               <motion.div
@@ -347,10 +347,10 @@ const HeroMobile = ({ onPlay }) => {
               </Link>
               <span className="flex shrink-0">
                 <button type="button" onClick={onPlay} aria-label="Watch our story" className="grid h-12 w-12 place-items-center rounded-full bg-ink text-white">
-                  <Play size={15} fill="currentColor" className="translate-x-px" aria-hidden="true" />
+                  <Play size={15} className="translate-x-px" aria-hidden="true" weight="fill" />
                 </button>
                 <Link to="/services" aria-label="Explore our services" className="-ml-2 grid h-12 w-12 place-items-center rounded-full bg-gold">
-                  <Asterisk size={22} strokeWidth={1.75} aria-hidden="true" />
+                  <Asterisk size={22} aria-hidden="true" />
                 </Link>
               </span>
             </div>
@@ -360,7 +360,7 @@ const HeroMobile = ({ onPlay }) => {
           {/* portrait beside two stacked tiles, with the disc riding the seam between them */}
           <div className="grid min-h-[12.5rem] flex-1 grid-cols-[1.08fr_1fr] gap-2.5">
             <div className="rounded-tile relative overflow-hidden">
-              <img src={img("aisha-stairs.jpg")} alt="A COCAZ delegate in a Zimbabwe flag blazer on the steps at a film premiere" className="absolute inset-0 h-full w-full object-cover object-[50%_42%]" />
+              <img src={img("camp3.jpg")} alt="Three COCAZ members in the association's caps and T-shirts, arms around each other" className="absolute inset-0 h-full w-full object-cover object-[50%_30%]" />
               <span className="absolute bottom-2.5 left-2.5 flex items-center gap-2 glass-light rounded-full py-1 pl-1 pr-3 text-[0.625rem] font-bold uppercase tracking-[0.06em]">
                 <FlagRoundel className="w-5" />
                 Since 2020
@@ -384,7 +384,7 @@ const HeroMobile = ({ onPlay }) => {
               </Link>
               <Link to="/join" aria-label="Explore how COCAZ works and join us" className="absolute right-2 top-1/2 w-[46%] -translate-y-1/2">
                 <SpinBadge text={badgeText} className="aspect-square w-full ring-4 ring-paper">
-                  <Focus size={20} strokeWidth={1.75} aria-hidden="true" />
+                  <Scan size={20} aria-hidden="true" />
                 </SpinBadge>
               </Link>
             </div>
@@ -444,7 +444,7 @@ const ProgrammeCard = ({ item }) => (
           className="h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
         />
         <span className="chip glass-light absolute bottom-2.5 left-2.5">
-          <Icon name={item.icon} size={13} strokeWidth={2.25} />
+          <Icon name={item.icon} size={13} weight="bold" />
           {item.tag}
         </span>
       </div>
@@ -503,13 +503,13 @@ const Programmes = () => {
         >
           <Orb tone="flame" drift className="-right-6 -top-8 w-28" />
           <Orb tone="leaf" className="right-20 top-10 w-8" />
-          <Asterisk size={34} strokeWidth={1.5} className="relative text-gold transition-transform duration-700 ease-brand group-hover:rotate-90" aria-hidden="true" />
+          <Asterisk size={34} className="relative text-gold transition-transform duration-700 ease-brand group-hover:rotate-90" aria-hidden="true" />
           <p className="mt-10 text-2xl leading-tight tracking-[-0.02em] sm:text-3xl">
             Eight more ways we back <Script className="text-[1.3em] text-gold">creators</Script>
           </p>
           <span className="link-underline mt-6 w-fit">
             See them all
-            <ArrowRight size={14} strokeWidth={2.5} aria-hidden="true" />
+            <ArrowRight size={14} aria-hidden="true" weight="bold" />
           </span>
         </Link>
       </motion.div>
@@ -544,7 +544,7 @@ const Audiences = () => (
                 <p className="mt-3 min-h-[3lh] text-sm leading-relaxed text-ink-soft sm:mt-4">{a.text}</p>
                 <span className="link-underline mt-5 sm:mt-7">
                   {a.cta}
-                  <ArrowRight size={14} strokeWidth={2.5} aria-hidden="true" />
+                  <ArrowRight size={14} aria-hidden="true" weight="bold" />
                 </span>
               </div>
             </Bite>
@@ -574,7 +574,7 @@ const Creators = () => (
           <Bite as="a" href={c.link} target="_blank" rel="noopener noreferrer" className="lift" card="relative aspect-[3/4] bg-ink-soft">
             <img src={img(c.image)} alt={`${c.name}, ${c.role}`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-700 ease-brand group-hover:scale-105" />
             <div className="glass rounded-inner absolute inset-x-2 bottom-2 p-3 sm:inset-x-2.5 sm:bottom-2.5 sm:p-5">
-              <Quote size={16} className="hidden text-gold sm:block" fill="currentColor" aria-hidden="true" />
+              <Quotes size={16} className="hidden text-gold sm:block" aria-hidden="true" weight="fill" />
               <p className="mt-2 hidden h-[3lh] text-[0.75rem] leading-snug text-white/85 sm:block">
                 <em>{c.quote}</em>
               </p>
@@ -612,7 +612,7 @@ const EventHighlights = () => {
               </p>
               <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-semibold text-gold sm:mt-5">
                 <span className="flex items-center gap-1.5">
-                  <CalendarDays size={14} aria-hidden="true" />
+                  <CalendarDots size={14} aria-hidden="true" />
                   {first.date}
                 </span>
                 <span className="flex items-center gap-1.5">
@@ -635,7 +635,7 @@ const EventHighlights = () => {
                   <h3 className="mt-2.5 text-base leading-snug sm:mt-4 sm:text-xl">{e.title}</h3>
                   <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.6875rem] font-medium text-ink-mute sm:mt-auto sm:pt-5 sm:text-xs">
                     <span className="flex items-center gap-1.5">
-                      <CalendarDays size={13} aria-hidden="true" />
+                      <CalendarDots size={13} aria-hidden="true" />
                       {e.date ?? e.location}
                     </span>
                     {e.date && (
