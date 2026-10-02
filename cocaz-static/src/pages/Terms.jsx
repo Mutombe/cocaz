@@ -1,6 +1,7 @@
 import { Mail, Printer } from "lucide-react";
 import { contact, terms } from "../data/site";
 import { PageHero, Reveal, Section, Sheet } from "../components/ui";
+import { Rich } from "../lib/rich";
 
 const Terms = () => (
   <Sheet>
@@ -22,7 +23,9 @@ const Terms = () => (
             <span className="num text-2xl font-bold text-ink/20 sm:text-3xl">{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h2 className="text-lg font-semibold sm:text-xl">{t.title}</h2>
-              <p data-prose="" className="mt-2 text-sm leading-relaxed text-ink-soft">{t.text}</p>
+              <p data-prose="" className="mt-2 text-sm leading-relaxed text-ink-soft">
+                <Rich max={1}>{t.text}</Rich>
+              </p>
             </div>
           </Reveal>
         ))}

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CalendarDays, MapPin, Star } from "lucide-react";
 import { events, img } from "../data/site";
 import { CtaBanner, PageHero, Section, SectionHead, Sheet } from "../components/ui";
+import { Rich } from "../lib/rich";
 
 /* Two masks make the bleed: the cover dissolves at its bottom edge, and the
    blurred copy behind the card fades in over the body. */
@@ -97,7 +98,9 @@ const Events = () => {
                 </div>
                 <div className="relative -mt-5 flex flex-1 flex-col px-5 pb-5 sm:px-6 sm:pb-6">
                   <h3 className="text-lg leading-snug sm:text-xl">{e.title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{e.text}</p>
+                  <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
+                    <Rich max={1}>{e.text}</Rich>
+                  </p>
                   <ul className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 border-t border-ink/15 pt-4 text-xs font-medium text-ink-soft max-sm:mt-4">
                     {e.date && (
                       <li className="flex items-center gap-1.5">

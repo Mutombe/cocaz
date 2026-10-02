@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Asterisk, CalendarDays, Focus, MapPin, Play, Quote, X } from "lucide-react";
 import { audiences, creators, disciplines, events, img, partners, programmeFilters, programmes, VIDEO } from "../data/site";
 import { Bite, CtaBanner, FlagRoundel, Icon, Label, Reveal, Script, Section, SectionHead, Sheet, SpinBadge, TextLink, Ticker } from "../components/ui";
+import { Rich } from "../lib/rich";
+import { Orb, Shape } from "../components/deco";
 import { u } from "../lib/units";
 
 const ease = [0.22, 0.61, 0.36, 1];
@@ -198,6 +200,9 @@ const HeroDesktop = ({ onPlay }) => {
           </motion.div>
 
           {/* ---- panel, right ---- */}
+          <Orb tone="ember" drift style={{ left: u(556), top: u(44), width: u(40) }} />
+          <Orb tone="violet" style={{ left: u(540), top: u(88), width: u(13) }} />
+          <Orb ring style={{ left: u(470), top: u(300), width: u(26) }} />
           <span className="absolute border border-[var(--hair)]" style={{ ...box(274, 61, 331, 244), borderRadius: R }} aria-hidden="true" />
 
           <motion.h1 {...rise(0.1)} className="absolute whitespace-nowrap" style={{ left: u(302), top: u(84), fontSize: u(34.5), lineHeight: 1.02 }}>
@@ -206,7 +211,7 @@ const HeroDesktop = ({ onPlay }) => {
           </motion.h1>
 
           <motion.p {...rise(0.18)} className="text-mute absolute" style={{ left: u(302), top: u(180), width: u(262), fontSize: `max(12px, ${u(8)})`, lineHeight: 1.5 }}>
-            {lead}
+            <Rich>{lead}</Rich>
           </motion.p>
 
           <motion.div {...rise(0.26)} className="absolute" style={box(302, 242, 115, 34)}>
@@ -319,12 +324,17 @@ const HeroMobile = ({ onPlay }) => {
     <section className="lg:hidden">
       <div className="container-x">
         <div className="pt-nav inset-x-page flex min-h-[100svh] flex-col gap-2.5 pb-3 [@media(max-height:560px)]:min-h-0" data-hero>
-          <div className="panel px-5 py-6 sm:px-9 sm:py-9">
+          <div className="panel relative overflow-hidden px-5 py-6 sm:px-9 sm:py-9">
+            <Orb tone="ember" drift className="-right-7 -top-9 w-24" />
+            <Orb tone="violet" className="right-16 top-4 w-6" />
+            <div className="relative">
             <h1 className="text-[clamp(2.2rem,10.6cqw,4.6rem)] leading-none">
               Let&rsquo;s create
               <Script className="-mt-[0.02em] block text-[1.34em]">together</Script>
             </h1>
-            <p className="text-mute mt-4 max-w-md text-sm leading-relaxed">{lead}</p>
+            <p className="text-mute mt-4 max-w-md text-sm leading-relaxed">
+              <Rich>{lead}</Rich>
+            </p>
             <div className="mt-5 flex items-center gap-3">
               <Link to="/join" className="btn-ink flex-1 !px-5">
                 Join community
@@ -337,6 +347,7 @@ const HeroMobile = ({ onPlay }) => {
                   <Asterisk size={22} strokeWidth={1.75} aria-hidden="true" />
                 </Link>
               </span>
+            </div>
             </div>
           </div>
 
@@ -486,10 +497,12 @@ const Programmes = () => {
         </AnimatePresence>
         <Link
           to="/services"
-          className="rounded-tile group flex w-[60%] shrink-0 snap-start flex-col justify-between bg-ink p-6 text-white sm:w-auto sm:p-8"
+          className="rounded-tile group relative flex w-[60%] shrink-0 snap-start flex-col justify-between overflow-hidden bg-ink p-6 text-white sm:w-auto sm:p-8"
           style={{ backgroundImage: "var(--pat-grid)", backgroundSize: "34px 34px" }}
         >
-          <Asterisk size={34} strokeWidth={1.5} className="text-gold transition-transform duration-700 ease-brand group-hover:rotate-90" aria-hidden="true" />
+          <Orb tone="ember" drift className="-right-6 -top-8 w-28" />
+          <Orb tone="violet" className="right-20 top-10 w-8" />
+          <Asterisk size={34} strokeWidth={1.5} className="relative text-gold transition-transform duration-700 ease-brand group-hover:rotate-90" aria-hidden="true" />
           <p className="mt-10 text-2xl leading-tight tracking-[-0.02em] sm:text-3xl">
             Eight more ways we back <Script className="text-[1.3em] text-gold">creators</Script>
           </p>
@@ -503,11 +516,12 @@ const Programmes = () => {
   );
 };
 
+// One tint and one gradient shape per audience, after the pastel reference
 const audienceTones = [
-  { card: "bg-stone", chip: "", text: "text-ink-mute", num: "text-ink/[0.07]" },
-  { card: "bg-ink text-white", chip: "!bg-white/10 !text-white", text: "text-white/65", num: "text-white/10" },
-  { card: "bg-gold", chip: "", text: "text-ink-soft", num: "text-ink/10" },
-  { card: "bg-stone", chip: "", text: "text-ink-mute", num: "text-ink/[0.07]" },
+  { card: "bg-peach", dot: "bg-ember", shape: "petals" },
+  { card: "bg-butter", dot: "bg-gold-deep", shape: "discs" },
+  { card: "bg-lilac", dot: "bg-violet", shape: "eye" },
+  { card: "bg-sage", dot: "bg-moss", shape: "steps" },
 ];
 
 const Audiences = () => (
@@ -518,14 +532,15 @@ const Audiences = () => (
         const t = audienceTones[i];
         return (
           <Reveal key={a.title} i={i % 2}>
-            <Bite as={Link} to={a.to} className="lift h-full" card={`relative flex min-h-[220px] flex-col p-6 sm:min-h-[300px] sm:p-9 ${t.card}`}>
-              <span className={`chip w-fit ${t.chip}`}>{a.status}</span>
-              <span className={`num pointer-events-none absolute -bottom-6 right-4 text-[8rem] font-bold leading-none sm:-bottom-8 sm:right-5 sm:text-[11rem] ${t.num}`} aria-hidden="true">
-                0{i + 1}
+            <Bite as={Link} to={a.to} className="lift h-full" card={`relative flex min-h-[260px] flex-col p-6 sm:min-h-[320px] sm:p-9 ${t.card}`}>
+              <Shape name={t.shape} className="pointer-events-none absolute -right-5 top-14 h-[44%] opacity-80 transition-transform duration-700 ease-brand group-hover:scale-105 sm:-right-10 sm:top-1/2 sm:h-[84%] sm:-translate-y-1/2 sm:opacity-100" />
+              <span className="chip relative w-fit">
+                <span className={`h-2.5 w-2.5 rounded-full ${t.dot}`} />
+                {a.status}
               </span>
-              <div className="relative mt-auto max-w-sm pt-8 sm:pt-14">
+              <div className="relative mt-auto max-w-[13.75rem] pt-8 sm:max-w-[16rem] sm:pt-14">
                 <h3 className="text-2xl font-bold uppercase leading-none sm:text-3xl">{a.title}</h3>
-                <p className={`mt-3 text-sm leading-relaxed sm:mt-4 ${t.text}`}>{a.text}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft sm:mt-4">{a.text}</p>
                 <span className="link-underline mt-5 sm:mt-7">
                   {a.cta}
                   <ArrowRight size={14} strokeWidth={2.5} aria-hidden="true" />
@@ -559,7 +574,9 @@ const Creators = () => (
             <img src={img(c.image)} alt={`${c.name}, ${c.role}`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-700 ease-brand group-hover:scale-105" />
             <div className="glass rounded-inner absolute inset-x-2 bottom-2 p-3 sm:inset-x-2.5 sm:bottom-2.5 sm:p-5">
               <Quote size={16} className="hidden text-gold sm:block" fill="currentColor" aria-hidden="true" />
-              <p className="mt-2 hidden text-[13px] leading-snug text-white/80 sm:block">{c.quote}</p>
+              <p className="mt-2 hidden text-[13px] leading-snug text-white/85 sm:block">
+                <em>{c.quote}</em>
+              </p>
               <h3 className="text-base font-bold uppercase leading-tight sm:mt-3 sm:text-xl">{c.name}</h3>
               <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gold">{c.role}</p>
             </div>
@@ -588,7 +605,9 @@ const EventHighlights = () => {
             <span className="chip glass-light absolute left-4 top-4">{first.category}</span>
             <div className="glass rounded-inner absolute bottom-2.5 left-2.5 right-2.5 max-w-sm p-5 sm:bottom-3 sm:left-3 sm:right-auto sm:p-7">
               <h3 className="text-2xl font-bold uppercase leading-none sm:text-3xl">{first.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/75 sm:mt-4">{first.text}</p>
+              <p className="mt-3 text-sm leading-relaxed text-white/75 sm:mt-4">
+                <Rich links={false}>{first.text}</Rich>
+              </p>
               <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-semibold text-gold sm:mt-5">
                 <span className="flex items-center gap-1.5">
                   <CalendarDays size={14} aria-hidden="true" />

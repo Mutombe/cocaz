@@ -4,6 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Plus } from "lucide-react";
 import { img, serviceDetails } from "../data/site";
 import { Bite, CtaBanner, Icon, Label, PageHero, Reveal, Section, SectionHead, Sheet } from "../components/ui";
+import { Rich } from "../lib/rich";
+
+const tints = ["bg-sage", "bg-lilac", "bg-peach", "bg-butter", "bg-lilac", "bg-sage"];
 
 const Accordion = ({ items }) => {
   const [open, setOpen] = useState(0);
@@ -77,7 +80,9 @@ const ServiceDetail = () => {
                 {s.feature.label}, {s.feature.note.toLowerCase()}
               </p>
               <h2 className="mt-4 text-5xl font-bold uppercase leading-none tracking-[-0.035em] sm:mt-5 sm:text-7xl">{s.feature.title}</h2>
-              <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70 sm:mt-5">{s.feature.text}</p>
+              <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70 sm:mt-5">
+                <Rich>{s.feature.text}</Rich>
+              </p>
               <ul className="mt-6 grid gap-3">
                 {s.feature.points.map((p) => (
                   <li key={p} className="flex items-center gap-3 text-sm font-medium">
@@ -100,12 +105,14 @@ const ServiceDetail = () => {
             <Reveal>
               <Label>Overview</Label>
               <h2 className="mt-3 text-[clamp(1.7rem,3.5cqw,2.9rem)] leading-[1.08] sm:mt-4">{s.intro.title}</h2>
-              <p data-prose="" className="text-mute mt-4 text-[15px] leading-relaxed sm:mt-5 sm:text-base">{s.intro.text}</p>
+              <p data-prose="" className="text-mute mt-4 text-[15px] leading-relaxed sm:mt-5 sm:text-base">
+                <Rich>{s.intro.text}</Rich>
+              </p>
             </Reveal>
             {/* list tiles stay two up */}
             <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
               {s.lists.map((list, i) => (
-                <Reveal key={list.title} i={i} className={`rounded-tile p-4 sm:p-7 ${i ? "bg-white" : "bg-gold"}`} style={i ? undefined : { backgroundImage: "var(--pat-hatch)" }}>
+                <Reveal key={list.title} i={i} className={`rounded-tile p-4 sm:p-7 ${i ? "bg-lilac" : "bg-peach"}`}>
                   <h3 className="text-base sm:text-lg">{list.title}</h3>
                   <ul className="mt-4 grid gap-2 sm:mt-5 sm:gap-2.5">
                     {list.items.map((item) => (
@@ -166,7 +173,9 @@ const ServiceDetail = () => {
                   </div>
                   <div className="py-1 pr-2 sm:p-4">
                     <h3 className="text-base sm:text-lg">{c.title}</h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2">{c.text}</p>
+                    <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2">
+                      <Rich max={1}>{c.text}</Rich>
+                    </p>
                     <ul className="mt-4 hidden flex-wrap gap-1.5 sm:flex">
                       {c.points.map((p) => (
                         <li key={p} className="rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-ink-soft">
@@ -191,13 +200,15 @@ const ServiceDetail = () => {
           <div className="mt-8 grid gap-2.5 sm:mt-10 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4">
             {s.tiles.map((t, i) => (
               <Reveal key={t.title} i={i % 3}>
-                <div className="tile flex h-full items-start gap-4 p-4 sm:block sm:p-7">
+                <div className={`tile flex h-full items-start gap-4 p-4 sm:block sm:p-7 ${tints[i]}`}>
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white">
                     <Icon name={t.icon} size={18} strokeWidth={2.25} />
                   </span>
                   <div>
                     <h3 className="text-base sm:mt-8 sm:text-xl">{t.title}</h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2 sm:text-sm">{t.text}</p>
+                    <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2 sm:text-sm">
+                      <Rich max={1}>{t.text}</Rich>
+                    </p>
                   </div>
                 </div>
               </Reveal>

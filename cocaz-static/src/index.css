@@ -2,6 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Type roles. Each face has one job:
+     Gravita GEO   headings and figures
+     Onest         body copy
+     Gravita HUM   references (labels, buttons, links), bold and italic emphasis
+     Grand Hotel   the script accent */
+@font-face {
+  font-family: "Gravita GEO";
+  src: url("./fonts/gravita-geo-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gravita GEO";
+  src: url("./fonts/gravita-geo-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gravita GEO";
+  src: url("./fonts/gravita-geo-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gravita HUM";
+  src: url("./fonts/gravita-hum-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gravita HUM";
+  src: url("./fonts/gravita-hum-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gravita HUM";
+  src: url("./fonts/gravita-hum-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gravita HUM";
+  src: url("./fonts/gravita-hum-500-italic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* ---------------------------------------------------------------- tokens
    Every colour, radius and rhythm value on the site comes from this block.
    Rebrand here; no component holds a hardcoded value. */
@@ -16,6 +71,24 @@
   --gold-deep: 240 180 0;
   --leaf: 31 138 59;
   --flame: 196 22 28;
+
+  /* tints, each with a saturated partner: peach and ember, lilac and violet,
+     sage and moss, butter and gold */
+  --peach: 250 226 208;
+  --ember: 240 118 52;
+  --lilac: 229 221 245;
+  --violet: 137 104 214;
+  --sage: 220 236 211;
+  --moss: 44 128 80;
+  --butter: 251 240 196;
+
+  /* type roles */
+  --font-display: "Gravita GEO", "Onest Variable", system-ui, sans-serif;
+  --font-ref: "Gravita HUM", "Onest Variable", system-ui, sans-serif;
+
+  /* inline links: a marker stroke under the phrase that fills on hover */
+  --link-mark: rgb(var(--gold));
+  --link-hover: rgb(var(--ink));
 
   /* shape */
   --r-tile: 2.5rem;
@@ -78,6 +151,7 @@
   h2,
   h3,
   h4 {
+    font-family: var(--font-display);
     text-wrap: balance;
   }
 
@@ -97,6 +171,20 @@
 
   p {
     text-wrap: pretty;
+  }
+
+  em,
+  i {
+    font-family: var(--font-ref);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  strong,
+  b {
+    font-family: var(--font-ref);
+    font-weight: 700;
+    color: var(--strong, inherit);
   }
 
   ::selection {
@@ -151,12 +239,15 @@
     --mute: rgb(255 255 255 / 0.62);
     --hair: rgb(255 255 255 / 0.14);
     --tile: rgb(255 255 255 / 0.07);
+    --strong: #fff;
   }
 
   .ground-gold {
     @apply bg-gold;
     background-image: var(--pat-hatch);
     --mute: rgb(var(--ink-soft));
+    --link-mark: rgb(var(--ink));
+    --link-hover: rgb(var(--gold));
     --hair: rgb(var(--ink) / 0.18);
   }
 
@@ -288,9 +379,88 @@
     }
   }
 
+  /* ------------------------------------------------------------ inline links
+     A phrase in running text that goes somewhere. It wears the reference face
+     and a marker stroke that grows to fill the phrase on hover. */
+  .ilink {
+    font-family: var(--font-ref);
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(var(--link-mark), var(--link-mark));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 0.16em;
+    border-radius: 2px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: background-size 0.35s var(--ease), color 0.35s var(--ease);
+  }
+
+  .ilink:hover,
+  .ilink:focus-visible {
+    background-size: 100% 100%;
+    color: var(--link-hover);
+  }
+
+  /* ------------------------------------------------------------------- orbs
+     Glossy bubbles that sit behind and between tiles. One highlight, one
+     colour pair from the tokens, and a soft coloured shadow underneath. */
+  .orb,
+  .orb-ring {
+    position: absolute;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .orb {
+    background: radial-gradient(circle at 32% 28%, #fff 0%, rgb(var(--c1)) 16%, rgb(var(--c2)) 72%);
+    box-shadow:
+      0 28px 36px -22px rgb(var(--c2) / 0.6),
+      inset -8px -12px 22px rgb(var(--ink) / 0.1);
+  }
+
+  .orb-gold {
+    --c1: var(--gold);
+    --c2: var(--gold-deep);
+  }
+
+  .orb-ember {
+    --c1: var(--peach);
+    --c2: var(--ember);
+  }
+
+  .orb-violet {
+    --c1: var(--lilac);
+    --c2: var(--violet);
+  }
+
+  .orb-moss {
+    --c1: var(--sage);
+    --c2: var(--moss);
+  }
+
+  .orb-ring {
+    border: 1px solid rgb(255 255 255 / 0.7);
+    background: radial-gradient(circle at 30% 25%, rgb(255 255 255 / 0.75), rgb(255 255 255 / 0.12) 45%, transparent 70%);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+
+  .orb-drift {
+    animation: orb-drift 7s ease-in-out infinite;
+  }
+
+  @keyframes orb-drift {
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+
   /* --------------------------------------------------------------- controls */
   .btn {
-    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-4 text-[11px] font-bold uppercase tracking-[0.08em];
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-4 font-ref text-[11px] font-bold uppercase tracking-[0.08em];
     transition: background-color 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
   }
 
@@ -315,11 +485,11 @@
   }
 
   .chip {
-    @apply inline-flex items-center gap-2 rounded-[var(--r-sharp)] bg-white px-3 py-2 text-[10px] font-bold uppercase tracking-[0.08em] text-ink;
+    @apply inline-flex items-center gap-2 rounded-[var(--r-sharp)] bg-white px-3 py-2 font-ref text-[10px] font-bold uppercase tracking-[0.08em] text-ink;
   }
 
   .link-underline {
-    @apply inline-flex items-center gap-2.5 border-b border-current pb-1.5 text-[11px] font-bold uppercase tracking-[0.08em];
+    @apply inline-flex items-center gap-2.5 border-b border-current pb-1.5 font-ref text-[11px] font-bold uppercase tracking-[0.08em];
     transition: gap 0.35s var(--ease);
   }
 
@@ -343,6 +513,7 @@
   }
 
   .num {
+    font-family: var(--font-display);
     font-variant-numeric: tabular-nums lining-nums;
     letter-spacing: -0.03em;
   }

@@ -26,7 +26,9 @@ const Join = () => {
               <h1 className="mt-4 text-[clamp(2.1rem,5.2cqw,4.4rem)] leading-[0.98] sm:mt-5">
                 Become a <Script className="block pt-1 text-[1.12em]">member</Script>
               </h1>
-              <p className="text-mute mt-5 max-w-lg text-[15px] leading-relaxed">Membership is open to creatives of every discipline and every age.</p>
+              <p className="text-mute mt-5 max-w-lg text-[15px] leading-relaxed">
+                Membership is open to creatives of <em>every discipline</em> and every age.
+              </p>
               <ul className="mt-6 flex flex-wrap gap-1.5">
                 {disciplines.map((d) => (
                   <li key={d} className="rounded-full border border-[var(--hair)] bg-white/50 px-3 py-1.5 text-[11px] font-semibold text-ink-soft">

@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { creatorServices, img, partnerStories, process, programmes } from "../data/site";
 import { Bite, CtaBanner, Icon, Label, PageHero, Reveal, Script, Section, SectionHead, Sheet } from "../components/ui";
+import { Rich } from "../lib/rich";
+
+const tints = ["bg-sage", "bg-lilac", "bg-peach", "bg-butter"];
+const stepTones = ["bg-gold text-ink", "bg-ember text-white", "bg-violet text-white", "bg-moss text-white"];
 
 const core = programmes.filter((p) => p.to.startsWith("/services/"));
 
@@ -59,7 +63,7 @@ const Services = () => (
       <div className="mt-8 grid gap-2.5 sm:mt-10 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4 lg:gap-4">
         {creatorServices.map((s, i) => (
           <Reveal key={s.title} i={i % 4}>
-            <div className="tile relative flex h-full items-start gap-4 overflow-hidden p-4 sm:block sm:p-6">
+            <div className={`tile relative flex h-full items-start gap-4 overflow-hidden p-4 sm:block sm:p-6 ${tints[i % tints.length]}`}>
               <span className="num pointer-events-none absolute -top-2 right-4 hidden text-7xl font-bold text-ink/[0.06] sm:block" aria-hidden="true">
                 0{i + 1}
               </span>
@@ -68,7 +72,9 @@ const Services = () => (
               </span>
               <div>
                 <h3 className="text-base sm:mt-10 sm:text-lg">{s.title}</h3>
-                <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2">{s.text}</p>
+                <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2">
+                  <Rich max={1}>{s.text}</Rich>
+                </p>
               </div>
             </div>
           </Reveal>
@@ -98,7 +104,9 @@ const Services = () => (
                 <span className="chip glass-light absolute left-4 top-4">Notable partner</span>
                 <div className="glass rounded-inner absolute inset-x-2.5 bottom-2.5 p-5">
                   <h3 className="text-2xl font-bold uppercase leading-none">{p.name}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-white/75">{p.text}</p>
+                  <p className="mt-2 text-[13px] leading-relaxed text-white/75">
+                    <Rich links={false}>{p.text}</Rich>
+                  </p>
                 </div>
               </article>
             ) : (
@@ -109,7 +117,9 @@ const Services = () => (
                 <div className="pr-2 lg:p-3 lg:pt-5">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-mute">{p.sector}</p>
                   <h3 className="mt-1 text-base lg:text-xl">{p.name}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-ink-mute lg:mt-2">{p.text}</p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-ink-mute lg:mt-2">
+                    <Rich links={false}>{p.text}</Rich>
+                  </p>
                 </div>
               </article>
             )}
@@ -133,10 +143,12 @@ const Services = () => (
         <ol className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:gap-4">
           {process.map((step, i) => (
             <Reveal as="li" key={step.title} i={i % 2} className="tile flex gap-4 p-5 sm:block sm:p-7">
-              <span className="num grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold text-sm font-bold text-ink">0{i + 1}</span>
+              <span className={`num grid h-11 w-11 shrink-0 place-items-center rounded-full text-sm font-bold ${stepTones[i]}`}>0{i + 1}</span>
               <div>
                 <h3 className="text-base sm:mt-8 sm:text-xl">{step.title}</h3>
-                <p className="text-mute mt-1 text-[13px] leading-relaxed sm:mt-2 sm:text-sm">{step.text}</p>
+                <p className="text-mute mt-1 text-[13px] leading-relaxed sm:mt-2 sm:text-sm">
+                  <Rich max={1}>{step.text}</Rich>
+                </p>
               </div>
             </Reveal>
           ))}

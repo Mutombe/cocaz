@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Facebook, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { ArrowUpRight, Facebook, Mail, MapPin, Phone } from "lucide-react";
 import { contact, nav } from "../data/site";
 import { u } from "../lib/units";
-import { FlagRule, Logo, Script } from "./ui";
+import { FlagRule, Logo, Script, XIcon } from "./ui";
 
 // Home is reached through the logo tab, as in the reference
 const links = nav.filter((item) => item.to !== "/");
 const ease = [0.22, 0.61, 0.36, 1];
-const socialIcons = { Facebook, X: Twitter };
+const socialIcons = { Facebook, X: XIcon };
 
 /* Two lines that cross into an X when the menu is open */
 const Burger = ({ open, onClick, className = "" }) => (
@@ -67,7 +67,7 @@ const Menu = ({ onClose }) => (
             {({ isActive }) => (
               <>
                 <span className={`num w-6 text-[11px] font-semibold ${isActive ? "text-ink/60" : "text-gold"}`}>0{i + 1}</span>
-                <span className="flex-1 text-[clamp(1.5rem,4.5svh,2.5rem)] font-bold uppercase leading-none tracking-[-0.035em]">{item.label}</span>
+                <span className="flex-1 font-display text-[clamp(1.5rem,4.5svh,2.5rem)] font-bold uppercase leading-none tracking-[-0.035em]">{item.label}</span>
                 <ArrowUpRight size={22} strokeWidth={1.75} className={isActive ? "" : "text-white/40"} aria-hidden="true" />
               </>
             )}

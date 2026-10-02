@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Eye, Mail, Rocket } from "lucide-react";
 import { contact, img, leaders, mission, story, timeline, values, vision } from "../data/site";
 import { CtaBanner, Icon, Label, PageHero, Reveal, Script, Section, SectionHead, Sheet } from "../components/ui";
+import { Rich } from "../lib/rich";
+import { Orb } from "../components/deco";
+
+const tints = ["bg-sage", "bg-lilac", "bg-peach", "bg-butter", "bg-lilac", "bg-sage"];
+const years = ["bg-ink text-gold", "bg-ember text-white", "bg-violet text-white", "bg-moss text-white"];
 
 const About = () => (
   <Sheet>
@@ -41,7 +46,7 @@ const About = () => (
           </h2>
           {story.map((p) => (
             <p key={p.slice(0, 24)} data-prose="" className="text-mute mt-4 text-[15px] leading-relaxed sm:mt-5 sm:text-base">
-              {p}
+              <Rich>{p}</Rich>
             </p>
           ))}
         </Reveal>
@@ -53,12 +58,14 @@ const About = () => (
           { icon: Rocket, label: "Our mission", text: mission, tone: "bg-gold text-ink", sub: "text-ink", pat: "var(--pat-hatch)", size: "auto" },
         ].map((b, i) => (
           <Reveal key={b.label} i={i}>
-            <div className={`rounded-tile flex h-full min-h-[200px] flex-col p-7 sm:min-h-[260px] sm:p-10 ${b.tone}`} style={{ backgroundImage: b.pat, backgroundSize: b.size }}>
-              <p className={`flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${b.sub}`}>
+            <div className={`rounded-tile relative flex h-full min-h-[200px] flex-col overflow-hidden p-7 sm:min-h-[260px] sm:p-10 ${b.tone}`} style={{ backgroundImage: b.pat, backgroundSize: b.size }}>
+              <Orb tone={i ? "violet" : "ember"} drift className="-right-8 -top-10 w-32 sm:w-40" />
+              <Orb ring className="right-24 top-6 w-10 sm:right-32" />
+              <p className={`relative flex items-center gap-2.5 font-ref text-[10px] font-bold uppercase tracking-[0.12em] ${b.sub}`}>
                 <b.icon size={15} strokeWidth={2.25} aria-hidden="true" />
                 {b.label}
               </p>
-              <p className="mt-auto pt-8 text-xl font-medium leading-tight tracking-[-0.025em] sm:pt-10 sm:text-[1.9rem]">{b.text}</p>
+              <p className="relative mt-auto pt-8 font-display text-xl font-medium leading-tight tracking-[-0.025em] sm:pt-10 sm:text-[1.9rem]">{b.text}</p>
             </div>
           </Reveal>
         ))}
@@ -71,13 +78,15 @@ const About = () => (
       <div className="mt-8 grid gap-2.5 sm:mt-10 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4">
         {values.map((v, i) => (
           <Reveal key={v.title} i={i % 3}>
-            <div className="tile flex h-full items-start gap-4 p-4 sm:block sm:p-7">
+            <div className={`tile flex h-full items-start gap-4 p-4 sm:block sm:p-7 ${tints[i]}`}>
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white">
                 <Icon name={v.icon} size={18} strokeWidth={2.25} />
               </span>
               <div>
                 <h3 className="text-base sm:mt-8 sm:text-xl">{v.title}</h3>
-                <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2 sm:text-sm">{v.text}</p>
+                <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2 sm:text-sm">
+                  <Rich max={1}>{v.text}</Rich>
+                </p>
               </div>
             </div>
           </Reveal>
@@ -98,12 +107,14 @@ const About = () => (
         <ol className="relative grid gap-1 before:absolute before:bottom-6 before:left-[23px] before:top-6 before:w-px before:bg-ink/15 sm:before:left-[27px]">
           {timeline.map((t, i) => (
             <Reveal as="li" key={t.title} i={i % 4} className="relative flex gap-4 rounded-3xl py-3 sm:gap-5 sm:p-3">
-              <span className="num relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full bg-ink text-[11px] font-bold text-gold ring-4 ring-paper sm:h-14 sm:w-14">
+              <span className={`num relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full text-[11px] font-bold ring-4 ring-paper sm:h-14 sm:w-14 ${years[i % years.length]}`}>
                 {t.year}
               </span>
               <div className="pt-1 sm:pt-2">
                 <h3 className="text-base sm:text-lg">{t.title}</h3>
-                <p className="text-mute mt-1 text-[13px] leading-relaxed sm:text-sm">{t.text}</p>
+                <p className="text-mute mt-1 text-[13px] leading-relaxed sm:text-sm">
+                  <Rich max={1}>{t.text}</Rich>
+                </p>
               </div>
             </Reveal>
           ))}
@@ -145,7 +156,9 @@ const About = () => (
         ))}
       </div>
       <Reveal className="panel mt-2.5 flex flex-col gap-4 p-5 sm:mt-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-        <p className="text-sm text-white/80">Write to the secretariat.</p>
+        <p className="text-sm text-white/80">
+          <Rich>Write to the secretariat.</Rich>
+        </p>
         <a href={`mailto:${contact.email}`} className="btn-ink">
           <Mail size={14} aria-hidden="true" />
           Email the team

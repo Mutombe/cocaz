@@ -199,9 +199,9 @@ export const partners = [
 /* ----------------------------------------------------------------- About */
 
 export const story = [
-  "COCAZ, the Content Creators Association of Zimbabwe, was founded in 2020 to give Zimbabwe's creative voices proper backing.",
+  "COCAZ, the Content Creators Association of Zimbabwe, was **founded in 2020** to give Zimbabwe's creative voices proper backing.",
   "We believe digital content can inspire, educate and connect people across borders.",
-  "Our team supports members with marketing, monetisation and management, so they can earn a living from their work.",
+  "Our team supports members with marketing, monetisation and management, so they can *earn a living from their work*.",
 ];
 
 export const values = [
@@ -266,13 +266,13 @@ export const partnerStories = [
     name: "CoolSplash",
     sector: "Beverage",
     logo: "partner-coolsplash.png",
-    text: "Our first major partnership, started in 2023 with creator-led drinks campaigns.",
+    text: "Our first major partnership, **started in 2023** with creator-led drinks campaigns.",
   },
   {
     name: "Buy Zimbabwe",
     sector: "Campaign",
     logo: "partner-buyzim.png",
-    text: "Video production backing quality Zimbabwean brands: jobs, wealth and pride.",
+    text: "Video production backing quality Zimbabwean brands: *jobs, wealth and pride*.",
   },
   {
     name: "Autoward Electronics",
@@ -297,7 +297,7 @@ export const serviceDetails = {
       title: "Mandi",
       image: "mandi.jpg",
       alt: "Poster artwork for the film Mandi",
-      text: "A film inspired by “The Woman King”, set in pre-colonial Zimbabwe.",
+      text: "A film inspired by *The Woman King*, set in pre-colonial Zimbabwe.",
       points: ["A fearless woman warrior lead", "Large-scale battle sequences", "Rich cultural storytelling"],
       note: "In production",
     },
@@ -381,12 +381,12 @@ export const events = [
     image: "event-aisha.jpg",
     alt: "Poster for Aisha, a Samuel Salatiel film",
     poster: true,
-    text: "The launch of “Aisha”, a Timeline Studios production, with creators from both sides of the Zambezi.",
+    text: "The launch of *Aisha*, a Timeline Studios production, with creators from both sides of the Zambezi.",
     featured: true,
   },
   {
     title: "Seminar with Nigerian Actors",
-    short: "Seminar with Nigerian actors",
+    short: "Nigerian actors seminar",
     category: "Seminar",
     date: "15 March 2025",
     stamp: "15.03.25",
@@ -399,7 +399,7 @@ export const events = [
   },
   {
     title: "Women's Perspectives: Shaping the Future of Film and Television",
-    short: "Women's Perspectives summit",
+    short: "Women's Perspectives",
     category: "Summit",
     date: "28 November 2024",
     stamp: "28.11.24",
@@ -419,7 +419,7 @@ export const events = [
     image: "bootcamp1.jpg",
     alt: "Film-Makers Boot Camp poster",
     poster: true,
-    text: "Team building, creative advocacy and content creation with Simukaupenye Integrated Youth Academy.",
+    text: "Team building, creative advocacy and content creation with **Simukaupenye Integrated Youth Academy**.",
   },
   {
     title: "Zim Content Merge with Zambian Creators",

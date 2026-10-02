@@ -4,10 +4,10 @@ import { contact } from "../data/site";
 import { PageHero, Reveal, Section, Sheet } from "../components/ui";
 
 const details = [
-  { icon: PhoneCall, label: "Phone", value: contact.phone, href: contact.phoneHref },
+  { icon: PhoneCall, label: "Phone", value: contact.phone, href: contact.phoneHref, tint: "bg-sage" },
   { icon: MessageCircle, label: "WhatsApp", value: "Chat with us", href: contact.whatsapp, gold: true },
-  { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}`, wide: true },
-  { icon: MapPin, label: "Address", value: contact.addressLines, wide: true },
+  { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}`, wide: true, tint: "bg-lilac" },
+  { icon: MapPin, label: "Address", value: contact.addressLines, wide: true, tint: "bg-peach" },
 ];
 
 const Contact = () => {
@@ -72,10 +72,10 @@ const Contact = () => {
                 <Reveal key={d.label} i={i % 2} className={d.wide ? "col-span-2 sm:col-span-1" : ""}>
                   <Cmp
                     {...(d.href ? { href: d.href, target: d.href.startsWith("http") ? "_blank" : undefined, rel: "noopener noreferrer" } : {})}
-                    className={`rounded-tile flex h-full flex-col p-4 sm:min-h-[150px] sm:p-6 ${d.wide ? "min-h-0" : "min-h-[132px]"} ${d.gold ? "bg-gold" : "bg-white"} ${d.href ? "lift" : ""}`}
+                    className={`rounded-tile flex h-full flex-col p-4 sm:min-h-[150px] sm:p-6 ${d.wide ? "min-h-0" : "min-h-[132px]"} ${d.gold ? "bg-gold" : d.tint} ${d.href ? "lift" : ""}`}
                     style={d.gold ? { backgroundImage: "var(--pat-hatch)" } : undefined}
                   >
-                    <span className={`grid h-10 w-10 place-items-center rounded-full ${d.gold ? "bg-ink text-white" : "bg-stone"}`}>
+                    <span className={`grid h-10 w-10 place-items-center rounded-full ${d.gold ? "bg-ink text-white" : "bg-white"}`}>
                       <d.icon size={17} strokeWidth={2.25} aria-hidden="true" />
                     </span>
                     <p className="mt-auto pt-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-mute">{d.label}</p>

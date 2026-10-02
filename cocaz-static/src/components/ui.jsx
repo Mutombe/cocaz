@@ -25,6 +25,8 @@ import {
 } from "lucide-react";
 import { img } from "../data/site";
 import { watch } from "../lib/reveal";
+import { Rich } from "../lib/rich";
+import { Orb } from "./deco";
 
 const icons = {
   Award,
@@ -65,11 +67,18 @@ export const Reveal = ({ children, i = 0, className = "", as: Tag = "div", style
 
 /* Small uppercase eyebrow */
 export const Label = ({ children, className = "" }) => (
-  <p className={`text-mute text-[10px] font-semibold uppercase tracking-[0.12em] ${className}`}>{children}</p>
+  <p className={`text-mute font-ref text-[10px] font-bold uppercase tracking-[0.12em] ${className}`}>{children}</p>
 );
 
 /* The accent face. Used a handful of times across the whole site, never for anything functional. */
 export const Script = ({ children, className = "" }) => <span className={`script ${className}`}>{children}</span>;
+
+/* The X mark, drawn here because the icon set only carries the old bird */
+export const XIcon = ({ size = 16, className = "", ...props }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" className={className} {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 /* The four flag colours as a thin brand rule */
 export const FlagRule = ({ className = "" }) => (
@@ -167,8 +176,12 @@ export const PageHero = ({ kicker, title, script, lead, image, alt, position = "
             <img src={img(image)} alt={alt} style={{ objectPosition: position }} className="absolute inset-0 h-full w-full object-cover" />
           </Reveal>
         )}
-        <Reveal i={1} className="panel order-1 flex flex-col justify-center px-6 py-9 sm:px-10 sm:py-14 lg:order-2">
-          <Label>{kicker}</Label>
+        <Reveal i={1} className="panel relative order-1 flex flex-col justify-center overflow-hidden px-6 py-9 sm:px-10 sm:py-14 lg:order-2">
+          <Orb tone="ember" drift className="-right-8 -top-10 w-28 sm:w-40" />
+          <Orb tone="violet" className="right-16 top-14 hidden w-10 sm:block" />
+          <Orb ring className="right-6 top-24 hidden w-16 sm:block" />
+          <div className="relative">
+            <Label>{kicker}</Label>
           <h1 className="mt-4 text-[clamp(2.1rem,5.2cqw,4.4rem)] leading-[0.98] sm:mt-5">
             {title}
             {script && (
@@ -180,10 +193,11 @@ export const PageHero = ({ kicker, title, script, lead, image, alt, position = "
           </h1>
           {lead && (
             <p data-prose="" className="text-mute mt-5 max-w-xl text-[15px] leading-relaxed sm:mt-6">
-              {lead}
+              <Rich>{lead}</Rich>
             </p>
           )}
           {children && <div className="mt-7 grid gap-2.5 sm:mt-8 sm:flex sm:flex-wrap sm:items-center sm:gap-3">{children}</div>}
+          </div>
         </Reveal>
       </div>
     </div>
@@ -201,7 +215,7 @@ export const SectionHead = ({ label, title, text, action, className = "" }) => (
       <div className="flex flex-col gap-5 md:items-end md:text-right">
         {text && (
           <p data-prose="" className="text-mute max-w-md text-[15px] leading-relaxed">
-            {text}
+            <Rich>{text}</Rich>
           </p>
         )}
         {action}
@@ -222,7 +236,7 @@ export const Ticker = ({ items, ground = "gold" }) => (
   <div className={`${grounds[ground]} my-[var(--band-gap)] overflow-hidden py-4 sm:py-5`} aria-hidden="true">
     <div className="flex w-max animate-marquee-slow items-center">
       {[...items, ...items].map((item, i) => (
-        <span key={i} className="flex items-center text-sm font-bold uppercase tracking-[-0.01em] sm:text-lg">
+        <span key={i} className="flex items-center font-display text-sm font-bold uppercase tracking-[-0.01em] sm:text-lg">
           <span className="px-5 sm:px-7">{item}</span>
           <Asterisk size={18} strokeWidth={2.25} />
         </span>
@@ -258,6 +272,8 @@ export const CtaBanner = ({
         </Link>
       </div>
       <div className="relative h-40 w-60 shrink-0 self-end sm:h-56 sm:w-80 md:self-auto">
+        <Orb tone="violet" drift className="-top-6 left-8 w-12 sm:w-16" />
+        <Orb tone="ember" className="-bottom-3 right-2 z-10 w-9 sm:w-12" />
         <img src={img(image)} alt={alt} loading="lazy" className="absolute right-0 top-0 aspect-square h-full rounded-full object-cover" />
         <SpinBadge text={badge} className="absolute bottom-0 left-0 aspect-square h-[64%]">
           <ArrowUpRight size={22} strokeWidth={2.25} aria-hidden="true" />

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { ArrowUp, Facebook, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { ArrowUp, Facebook, Mail, MapPin, Phone } from "lucide-react";
 import { contact, FOUNDED, partners, tagline } from "../data/site";
-import { FlagRule, Logo, Script } from "./ui";
+import { Orb } from "./deco";
+import { FlagRule, Logo, Script, XIcon } from "./ui";
 
 const stats = [
   { value: "300+", label: "Creators" },
@@ -31,12 +32,14 @@ const columns = [
   },
 ];
 
-const socialIcons = { Facebook, X: Twitter };
+const socialIcons = { Facebook, X: XIcon };
 
 const Footer = () => (
-  <footer className="ground-dark mb-[var(--band-gap)] mt-[var(--band-gap)]">
+  <footer className="ground-dark relative mb-[var(--band-gap)] mt-[var(--band-gap)] overflow-hidden">
+    <Orb tone="ember" drift className="-right-8 -top-10 w-28 sm:w-40" />
+    <Orb tone="violet" className="right-36 top-8 hidden w-9 sm:block" />
     <div className="container-x">
-      <div className="inset-x-page py-12 sm:py-16">
+      <div className="inset-x-page relative py-12 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end">
           <div>
             <Link to="/" aria-label="COCAZ home" className="inline-block">
@@ -52,7 +55,7 @@ const Footer = () => (
             {stats.map((s) => (
               <div key={s.label} className="tile px-3 py-4 sm:px-5 sm:py-6">
                 <dt className="num text-2xl font-bold text-gold sm:text-4xl">{s.value}</dt>
-                <dd className="text-mute mt-1 text-[10px] font-semibold uppercase tracking-[0.08em] sm:text-[11px]">{s.label}</dd>
+                <dd className="text-mute mt-1 font-ref text-[10px] font-bold uppercase tracking-[0.08em] sm:text-[11px]">{s.label}</dd>
               </div>
             ))}
           </dl>
@@ -61,7 +64,7 @@ const Footer = () => (
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-[var(--hair)] pt-10 lg:grid-cols-[1fr_1fr_1.5fr_auto]">
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="text-mute text-[10px] font-semibold uppercase tracking-[0.12em]">{col.title}</h3>
+              <h3 className="text-mute font-ref text-[10px] font-bold uppercase tracking-[0.12em]">{col.title}</h3>
               <ul className="mt-4 grid gap-2.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
@@ -75,7 +78,7 @@ const Footer = () => (
           ))}
 
           <div className="col-span-2 lg:col-span-1">
-            <h3 className="text-mute text-[10px] font-semibold uppercase tracking-[0.12em]">Contact us</h3>
+            <h3 className="text-mute font-ref text-[10px] font-bold uppercase tracking-[0.12em]">Contact us</h3>
             <ul className="mt-4 grid gap-3 text-sm text-white/75">
               <li className="flex gap-3">
                 <Phone size={16} className="mt-0.5 shrink-0 text-gold" aria-hidden="true" />
