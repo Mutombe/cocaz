@@ -418,7 +418,7 @@ const ProgrammeCard = ({ item }) => (
     className="w-[78%] shrink-0 snap-start sm:w-auto"
   >
     <Bite as={Link} to={item.to} className="lift h-full" card={`flex flex-col p-2 sm:p-2.5 ${item.highlight ? "bg-gold" : "bg-white"}`}>
-      <div className="rounded-inner relative h-40 overflow-hidden sm:h-52">
+      <div className="bite-inset relative h-40 sm:h-52">
         <img
           src={img(item.image)}
           alt={item.alt}

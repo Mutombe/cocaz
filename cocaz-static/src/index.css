@@ -180,6 +180,27 @@
     --b: var(--bite);
     --n: var(--notch);
     --r: calc(var(--bite) * 0.5);
+  }
+
+  /* A picture set inside a bite card: the same cut, offset by the card padding,
+     so the picture curves around the bite with an even margin. */
+  .bite-inset {
+    border-radius: var(--r-inner);
+    overflow: hidden;
+    --pad: 0.5rem;
+    --b: var(--bite);
+    --n: calc(var(--notch) - var(--pad));
+    --r: calc(var(--bite) * 0.5 + var(--pad));
+  }
+
+  @media (min-width: 640px) {
+    .bite-inset {
+      --pad: 0.625rem;
+    }
+  }
+
+  .bite-card,
+  .bite-inset {
     -webkit-mask:
       linear-gradient(#000 0 0) left bottom / 100% calc(100% - var(--b) - var(--n)) no-repeat,
       linear-gradient(#000 0 0) left top / calc(100% - var(--b) - var(--n)) 100% no-repeat,
