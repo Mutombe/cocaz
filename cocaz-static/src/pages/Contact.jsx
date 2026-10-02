@@ -72,15 +72,15 @@ const Contact = () => {
                 <Reveal key={d.label} i={i % 2} className={d.wide ? "col-span-2 sm:col-span-1" : ""}>
                   <Cmp
                     {...(d.href ? { href: d.href, target: d.href.startsWith("http") ? "_blank" : undefined, rel: "noopener noreferrer" } : {})}
-                    className={`rounded-tile flex h-full flex-col p-4 sm:min-h-[150px] sm:p-6 ${d.wide ? "min-h-0" : "min-h-[132px]"} ${d.gold ? "bg-gold" : d.tint} ${d.href ? "lift" : ""}`}
+                    className={`rounded-tile flex h-full flex-col p-4 sm:min-h-[9.375rem] sm:p-6 ${d.wide ? "min-h-0" : "min-h-[8.25rem]"} ${d.gold ? "bg-gold" : d.tint} ${d.href ? "lift" : ""}`}
                     style={d.gold ? { backgroundImage: "var(--pat-hatch)" } : undefined}
                   >
                     <span className={`grid h-10 w-10 place-items-center rounded-full ${d.gold ? "bg-ink text-white" : "bg-white"}`}>
                       <d.icon size={17} strokeWidth={2.25} aria-hidden="true" />
                     </span>
-                    <p className="mt-auto pt-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-mute">{d.label}</p>
+                    <p className="mt-auto pt-4 text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-ink-mute">{d.label}</p>
                     {[].concat(d.value).map((line, n) => (
-                      <p key={line} className={`text-[13px] font-semibold leading-snug [overflow-wrap:anywhere] sm:text-sm ${n ? "" : "mt-1"}`}>
+                      <p key={line} className={`text-[0.8125rem] font-semibold leading-snug [overflow-wrap:anywhere] sm:text-sm ${n ? "" : "mt-1"}`}>
                         {line}
                       </p>
                     ))}
@@ -90,7 +90,7 @@ const Contact = () => {
             })}
 
             {/* The address panel sits behind the map, so a failed embed still leaves something useful */}
-            <div className="rounded-tile relative col-span-2 h-[240px] overflow-hidden bg-stone sm:h-[280px]">
+            <div className="rounded-tile relative col-span-2 h-[15rem] overflow-hidden bg-stone sm:h-[17.5rem]">
               <div className="absolute inset-0 grid place-items-center p-6 text-center">
                 <div>
                   <MapPin size={20} className="mx-auto" aria-hidden="true" />

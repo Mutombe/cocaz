@@ -95,8 +95,8 @@
   --r-inner: 1.9rem;
   --r-band: 3rem;
   --r-sharp: 6px; /* the deliberate hard corner, set against the soft ones */
-  --bite: 62px;
-  --notch: 18px;
+  --bite: 3.875rem;
+  --notch: 1.125rem;
 
   /* rhythm */
   --band-gap: 0.75rem;
@@ -126,14 +126,33 @@
     --r-tile: 1.75rem;
     --r-inner: 1.3rem;
     --r-band: 2rem;
-    --bite: 54px;
-    --notch: 14px;
+    --bite: 3.375rem;
+    --notch: 0.875rem;
     --band-gap: 0.4rem;
     --section-y: 3rem;
   }
 }
 
 @layer base {
+  /* One artboard. The root size follows the layout width, so every size set in
+     rem keeps its proportion and text breaks the same way on every screen:
+     phones scale with their width, desktops with the page container. */
+  html {
+    font-size: clamp(14.5px, calc(100vw / 24.375), 17.75px);
+  }
+
+  @media (min-width: 640px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: clamp(13px, calc(min(100vw - 48px, clamp(820px, 128.7svh, 1360px)) / 72.375), 18.8px);
+    }
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -169,8 +188,10 @@
     @apply font-semibold tracking-[-0.025em];
   }
 
-  p {
-    text-wrap: pretty;
+  p,
+  li,
+  dd {
+    text-wrap: balance;
   }
 
   em,
@@ -207,7 +228,7 @@
 
   @media (min-width: 1024px) {
     .container-x {
-      width: min(100% - 3rem, clamp(820px, 128.7svh, 1360px));
+      width: min(100% - 48px, clamp(820px, 128.7svh, 1360px));
     }
   }
 
@@ -426,19 +447,20 @@
     --c2: var(--gold-deep);
   }
 
-  .orb-ember {
-    --c1: var(--peach);
-    --c2: var(--ember);
+  /* green, red and black from the flag; gold is defined above */
+  .orb-leaf {
+    --c1: 120 205 135;
+    --c2: var(--leaf);
   }
 
-  .orb-violet {
-    --c1: var(--lilac);
-    --c2: var(--violet);
+  .orb-flame {
+    --c1: 246 124 112;
+    --c2: var(--flame);
   }
 
-  .orb-moss {
-    --c1: var(--sage);
-    --c2: var(--moss);
+  .orb-ink {
+    --c1: 128 136 146;
+    --c2: var(--ink);
   }
 
   .orb-ring {
@@ -522,7 +544,7 @@
 @layer utilities {
   /* Clears the logo tab that hangs from the top of every page */
   .pt-nav {
-    padding-top: calc(max(64px, 9.79cqw) + 1.25rem);
+    padding-top: calc(max(4rem, 9.79cqw) + 1.25rem);
   }
 
   .py-section {

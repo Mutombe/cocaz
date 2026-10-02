@@ -26,19 +26,19 @@ const Join = () => {
               <h1 className="mt-4 text-[clamp(2.1rem,5.2cqw,4.4rem)] leading-[0.98] sm:mt-5">
                 Become a <Script className="block pt-1 text-[1.12em]">member</Script>
               </h1>
-              <p className="text-mute mt-5 max-w-lg text-[15px] leading-relaxed">
+              <p className="text-mute mt-5 max-w-lg text-[0.9375rem] leading-relaxed">
                 Membership is open to creatives of <em>every discipline</em> and every age.
               </p>
               <ul className="mt-6 flex flex-wrap gap-1.5">
                 {disciplines.map((d) => (
-                  <li key={d} className="rounded-full border border-[var(--hair)] bg-white/50 px-3 py-1.5 text-[11px] font-semibold text-ink-soft">
+                  <li key={d} className="rounded-full border border-[var(--hair)] bg-white/50 px-3 py-1.5 text-[0.6875rem] font-semibold text-ink-soft">
                     {d}
                   </li>
                 ))}
               </ul>
             </Reveal>
 
-            <Reveal i={1} className="grid gap-2.5 sm:grid-cols-[1fr_220px] sm:gap-3 lg:gap-4">
+            <Reveal i={1} className="grid gap-2.5 sm:grid-cols-[1fr_13.75rem] sm:gap-3 lg:gap-4">
               <form onSubmit={submit} className="tile p-5 sm:p-8">
                 <h2 className="text-2xl">Apply online</h2>
                 <div className="mt-5 grid gap-4">
@@ -68,18 +68,18 @@ const Join = () => {
                   <CheckCircle2 size={14} strokeWidth={2.5} aria-hidden="true" />
                   Sign up
                 </button>
-                <p className="mt-3 text-center text-[11px] text-ink-mute">Opens your email app with the form ready.</p>
+                <p className="mt-3 text-center text-[0.6875rem] text-ink-mute">Opens your email app with the form ready.</p>
               </form>
 
               {/* QR beside its caption on a phone, stacked beside the form on larger screens */}
-              <div className="rounded-tile grid grid-cols-[112px_1fr] items-center gap-4 bg-ink p-4 text-white sm:flex sm:flex-col sm:justify-center sm:p-6 sm:text-center" style={{ backgroundImage: "var(--pat-grid)", backgroundSize: "34px 34px" }}>
-                <img src={img("membership-qr.jpg")} alt="QR code linking to the COCAZ membership form" loading="lazy" width="700" height="700" className="h-auto w-full rounded-2xl sm:order-2 sm:mt-5 sm:max-w-[180px]" />
+              <div className="rounded-tile grid grid-cols-[7rem_1fr] items-center gap-4 bg-ink p-4 text-white sm:flex sm:flex-col sm:justify-center sm:p-6 sm:text-center" style={{ backgroundImage: "var(--pat-grid)", backgroundSize: "34px 34px" }}>
+                <img src={img("membership-qr.jpg")} alt="QR code linking to the COCAZ membership form" loading="lazy" width="700" height="700" className="h-auto w-full rounded-2xl sm:order-2 sm:mt-5 sm:max-w-[11.25rem]" />
                 <div className="sm:contents">
-                  <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-gold sm:order-1 sm:justify-center">
+                  <p className="flex items-center gap-2 text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-gold sm:order-1 sm:justify-center">
                     <ScanLine size={14} aria-hidden="true" />
                     Quick join
                   </p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-white/70 sm:order-3 sm:mt-5 sm:text-xs">Scan the code to open the membership form.</p>
+                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-white/70 sm:order-3 sm:mt-5 sm:text-xs">Scan the code to open the membership form.</p>
                 </div>
               </div>
             </Reveal>

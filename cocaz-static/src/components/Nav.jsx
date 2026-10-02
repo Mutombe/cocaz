@@ -21,9 +21,9 @@ const Burger = ({ open, onClick, className = "" }) => (
     aria-label={open ? "Close menu" : "Open menu"}
     className={`grid h-11 w-11 place-items-center rounded-full transition-colors duration-300 ease-brand lg:hidden ${className}`}
   >
-    <span className="relative block h-[9px] w-[22px]">
-      <span className={`absolute left-0 top-0 block h-[1.5px] w-full bg-current transition-transform duration-300 ease-brand ${open ? "translate-y-[3.75px] rotate-45" : ""}`} />
-      <span className={`absolute bottom-0 left-0 block h-[1.5px] w-full bg-current transition-transform duration-300 ease-brand ${open ? "-translate-y-[3.75px] -rotate-45" : ""}`} />
+    <span className="relative block h-[0.5625rem] w-[1.375rem]">
+      <span className={`absolute left-0 top-0 block h-[1.5px] w-full bg-current transition-transform duration-300 ease-brand ${open ? "translate-y-[0.2344rem] rotate-45" : ""}`} />
+      <span className={`absolute bottom-0 left-0 block h-[1.5px] w-full bg-current transition-transform duration-300 ease-brand ${open ? "-translate-y-[0.2344rem] -rotate-45" : ""}`} />
     </span>
   </button>
 );
@@ -43,7 +43,7 @@ const Menu = ({ onClose }) => (
     style={{ backgroundImage: "var(--pat-grid)", backgroundSize: "34px 34px" }}
   >
     <div className="flex items-start justify-between px-5">
-      <Link to="/" onClick={onClose} aria-label="COCAZ home" className="grid h-16 w-[150px] place-items-center rounded-b-[20px] bg-gold">
+      <Link to="/" onClick={onClose} aria-label="COCAZ home" className="grid h-16 w-[9.375rem] place-items-center rounded-b-[1.25rem] bg-gold">
         <Logo className="h-[58%]" />
       </Link>
       <div className="flex h-16 items-center">
@@ -66,7 +66,7 @@ const Menu = ({ onClose }) => (
           >
             {({ isActive }) => (
               <>
-                <span className={`num w-6 text-[11px] font-semibold ${isActive ? "text-ink/60" : "text-gold"}`}>0{i + 1}</span>
+                <span className={`num w-6 text-[0.6875rem] font-semibold ${isActive ? "text-ink/60" : "text-gold"}`}>0{i + 1}</span>
                 <span className="flex-1 font-display text-[clamp(1.5rem,4.5svh,2.5rem)] font-bold uppercase leading-none tracking-[-0.035em]">{item.label}</span>
                 <ArrowUpRight size={22} strokeWidth={1.75} className={isActive ? "" : "text-white/40"} aria-hidden="true" />
               </>
@@ -155,9 +155,9 @@ const Nav = () => {
             className="absolute top-0 grid place-items-center bg-gold"
             style={{
               left: u(28),
-              width: `max(150px, ${u(116)})`,
-              height: `max(64px, ${u(62)})`,
-              borderRadius: `0 0 max(20px, ${u(22)}) max(20px, ${u(22)})`,
+              width: `max(9.375rem, ${u(116)})`,
+              height: `max(4rem, ${u(62)})`,
+              borderRadius: `0 0 max(1.25rem, ${u(22)}) max(1.25rem, ${u(22)})`,
             }}
           >
             <Logo className="h-[58%]" />
@@ -209,11 +209,11 @@ const Nav = () => {
             transition={{ duration: 0.45, ease }}
             className="fixed inset-x-0 top-3 z-40 px-3"
           >
-            <div className="mx-auto flex h-14 max-w-[980px] items-center justify-between rounded-full bg-white/90 pl-6 pr-1.5 shadow-float backdrop-blur-xl">
+            <div className="mx-auto flex h-14 max-w-[61.25rem] items-center justify-between rounded-full bg-white/90 pl-6 pr-1.5 shadow-float backdrop-blur-xl">
               <Link to="/" aria-label="COCAZ home">
                 <Logo className="h-7" />
               </Link>
-              <nav aria-label="Primary" className="hidden items-center gap-7 text-[13px] font-medium lg:flex">
+              <nav aria-label="Primary" className="hidden items-center gap-7 text-[0.8125rem] font-medium lg:flex">
                 {links.map((item) => (
                   <NavLink key={item.to} to={item.to} className={({ isActive }) => (isActive ? "underline underline-offset-8" : "hover:underline hover:underline-offset-8")}>
                     {item.label}

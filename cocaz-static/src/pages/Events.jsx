@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, CalendarDays, MapPin, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import { events, img } from "../data/site";
-import { CtaBanner, PageHero, Section, SectionHead, Sheet } from "../components/ui";
+import { CtaBanner, FactRows, PageHero, Section, SectionHead, Sheet } from "../components/ui";
 import { Rich } from "../lib/rich";
 
 /* Two masks make the bleed: the cover dissolves at its bottom edge, and the
    blurred copy behind the card fades in over the body. */
 const COVER_FADE = "linear-gradient(to bottom, #000 76%, transparent 100%)";
 const AMBIENT_MASK = "linear-gradient(to bottom, transparent 34%, #000 70%)";
+
+const today = new Date().toISOString().slice(0, 10);
+const upcoming = (e) => Boolean(e.iso) && e.iso >= today;
 
 const categories = ["All", ...new Set(events.map((e) => e.category))];
 
@@ -24,9 +27,9 @@ const Events = () => {
         title="Where creators"
         script="meet and learn"
         lead="Premieres, seminars and boot camps that bring Zimbabwe's creators and industry professionals together."
-        image="zam3.jpg"
-        alt="Two COCAZ creators in branded caps talking on air in a radio studio"
-        position="50% 40%"
+        image="mcaz-duo.jpg"
+        alt="Two creators at a workshop table in front of a COCAZ banner"
+        position="50% 45%"
       >
         <Link to="/contact" className="btn-ink group">
           Host an event with us
@@ -38,7 +41,7 @@ const Events = () => {
       </PageHero>
 
       <Section>
-        <SectionHead label="Event highlights" title="Premieres, seminars and boot camps" text="A look back at where COCAZ and its members have shown up. For what is next, get in touch." />
+        <SectionHead label="Event highlights" title="Premieres, seminars and boot camps" text="What is coming up, and a look back at where COCAZ and its members have shown up." />
 
         <div className="no-scrollbar -mx-3 mt-7 flex gap-1.5 overflow-x-auto px-3 sm:mx-0 sm:mt-9 sm:flex-wrap sm:px-0" role="tablist" aria-label="Filter events by category">
           {categories.map((c) => (
@@ -67,7 +70,7 @@ const Events = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
-                className="rounded-tile group relative flex flex-col overflow-hidden bg-white"
+                className="rounded-tile group relative row-span-4 grid grid-rows-subgrid gap-y-0 overflow-hidden bg-white"
               >
                 {/* Ambient bleed: a blurred, saturated copy of the card's own picture tints the body */}
                 <img
@@ -89,31 +92,24 @@ const Events = () => {
                     className={`relative h-full w-full transition-transform duration-700 ease-brand group-hover:scale-105 ${e.poster ? "object-contain p-3" : "object-cover"}`}
                   />
                   <span className="chip glass-light absolute left-3.5 top-3.5">{e.category}</span>
-                  {e.featured && (
+                  {(upcoming(e) || e.featured) && (
                     <span className="chip absolute right-3.5 top-3.5 !bg-gold">
                       <Star size={11} fill="currentColor" aria-hidden="true" />
-                      Featured
+                      {upcoming(e) ? "Upcoming" : "Featured"}
                     </span>
                   )}
                 </div>
-                <div className="relative -mt-5 flex flex-1 flex-col px-5 pb-5 sm:px-6 sm:pb-6">
-                  <h3 className="text-lg leading-snug sm:text-xl">{e.title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
-                    <Rich max={1}>{e.text}</Rich>
-                  </p>
-                  <ul className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 border-t border-ink/15 pt-4 text-xs font-medium text-ink-soft max-sm:mt-4">
-                    {e.date && (
-                      <li className="flex items-center gap-1.5">
-                        <CalendarDays size={13} aria-hidden="true" />
-                        {e.date}
-                      </li>
-                    )}
-                    <li className="flex items-center gap-1.5">
-                      <MapPin size={13} aria-hidden="true" />
-                      {e.location}
-                    </li>
-                  </ul>
-                </div>
+                <h3 className="relative -mt-5 px-5 text-lg leading-snug sm:px-6 sm:text-xl">{e.title}</h3>
+                <p className="relative mt-2 px-5 text-[0.8125rem] leading-relaxed text-ink-soft sm:px-6">
+                  <Rich max={1}>{e.text}</Rich>
+                </p>
+                <FactRows
+                  className="relative mx-5 mb-3 mt-4 self-end sm:mx-6 sm:mb-4"
+                  items={[
+                    { label: "When", value: e.date ?? "Past event" },
+                    { label: "Where", value: e.location },
+                  ]}
+                />
               </motion.article>
             ))}
           </AnimatePresence>
@@ -127,8 +123,8 @@ const Events = () => {
         text="Plan an event with our team."
         button="Contact us"
         to="/contact"
-        image="stock-concert.jpg"
-        alt="Concert crowd in front of a brightly lit stage"
+        image="road-stage.jpg"
+        alt="A crowd in front of a roadshow stage in a city square"
         badge="events by cocaz • host with us •"
       />
     </Sheet>

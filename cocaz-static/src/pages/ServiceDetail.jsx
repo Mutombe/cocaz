@@ -75,12 +75,12 @@ const ServiceDetail = () => {
         <Section>
           <Reveal className="rounded-tile grid overflow-hidden bg-ink text-white lg:grid-cols-2" style={{ backgroundImage: "var(--pat-grid)", backgroundSize: "34px 34px" }}>
             <div className="order-2 flex flex-col justify-center p-7 sm:p-12 lg:order-1">
-              <p className="flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">
+              <p className="flex items-center gap-2.5 text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-gold">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-gold" />
                 {s.feature.label}, {s.feature.note.toLowerCase()}
               </p>
               <h2 className="mt-4 text-5xl font-bold uppercase leading-none tracking-[-0.035em] sm:mt-5 sm:text-7xl">{s.feature.title}</h2>
-              <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70 sm:mt-5">
+              <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-white/70 sm:mt-5">
                 <Rich>{s.feature.text}</Rich>
               </p>
               <ul className="mt-6 grid gap-3">
@@ -105,7 +105,7 @@ const ServiceDetail = () => {
             <Reveal>
               <Label>Overview</Label>
               <h2 className="mt-3 text-[clamp(1.7rem,3.5cqw,2.9rem)] leading-[1.08] sm:mt-4">{s.intro.title}</h2>
-              <p data-prose="" className="text-mute mt-4 text-[15px] leading-relaxed sm:mt-5 sm:text-base">
+              <p data-prose="" className="text-mute mt-4 text-[0.9375rem] leading-relaxed sm:mt-5 sm:text-base">
                 <Rich>{s.intro.text}</Rich>
               </p>
             </Reveal>
@@ -148,7 +148,7 @@ const ServiceDetail = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
                   <span className="chip glass-light absolute left-4 top-4">{a.badge}</span>
                   <div className="glass rounded-inner absolute inset-x-2.5 bottom-2.5 p-5 sm:inset-x-3 sm:bottom-3 sm:p-7">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">{a.genre}</p>
+                    <p className="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-gold">{a.genre}</p>
                     <h3 className="mt-2 text-3xl font-bold uppercase leading-none sm:text-4xl">{a.name}</h3>
                     <p className="mt-3 max-w-md text-sm leading-relaxed text-white/75">{a.text}</p>
                   </div>
@@ -167,18 +167,18 @@ const ServiceDetail = () => {
           <div className="mt-8 grid gap-2.5 sm:mt-10 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4">
             {s.cards.map((c, i) => (
               <Reveal key={c.title} i={i % 3}>
-                <article className="tile group grid h-full grid-cols-[96px_1fr] items-center gap-4 p-2 sm:block sm:p-2.5">
+                <article className="tile group grid h-full grid-cols-[6rem_1fr] items-center gap-4 p-2 sm:block sm:p-2.5">
                   <div className="rounded-inner aspect-square overflow-hidden sm:aspect-[16/10]">
                     <img src={img(c.image)} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105" />
                   </div>
                   <div className="py-1 pr-2 sm:p-4">
                     <h3 className="text-base sm:text-lg">{c.title}</h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2">
+                    <p className="mt-1 text-[0.8125rem] leading-relaxed text-ink-mute sm:mt-2 sm:min-h-[2lh]">
                       <Rich max={1}>{c.text}</Rich>
                     </p>
                     <ul className="mt-4 hidden flex-wrap gap-1.5 sm:flex">
                       {c.points.map((p) => (
-                        <li key={p} className="rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-ink-soft">
+                        <li key={p} className="rounded-full bg-white px-3 py-1.5 text-[0.6875rem] font-semibold text-ink-soft">
                           {p}
                         </li>
                       ))}
@@ -206,7 +206,7 @@ const ServiceDetail = () => {
                   </span>
                   <div>
                     <h3 className="text-base sm:mt-8 sm:text-xl">{t.title}</h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2 sm:text-sm">
+                    <p className="mt-1 text-[0.8125rem] leading-relaxed text-ink-mute sm:mt-2 sm:text-sm">
                       <Rich max={1}>{t.text}</Rich>
                     </p>
                   </div>

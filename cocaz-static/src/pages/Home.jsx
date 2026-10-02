@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Asterisk, CalendarDays, Focus, MapPin, Play, Quote, X } from "lucide-react";
-import { audiences, creators, disciplines, events, img, partners, programmeFilters, programmes, VIDEO } from "../data/site";
-import { Bite, CtaBanner, FlagRoundel, Icon, Label, Reveal, Script, Section, SectionHead, Sheet, SpinBadge, TextLink, Ticker } from "../components/ui";
+import { audiences, creators, disciplines, event, events, img, partners, programmeFilters, programmes, VIDEO } from "../data/site";
+import { Bite, CtaBanner, FactStrip, FlagRoundel, Icon, Label, Reveal, Script, Section, SectionHead, Sheet, SpinBadge, TextLink, Ticker } from "../components/ui";
 import { Rich } from "../lib/rich";
 import { Orb, Shape } from "../components/deco";
 import { u } from "../lib/units";
@@ -12,7 +12,10 @@ const ease = [0.22, 0.61, 0.36, 1];
 
 /* ------------------------------------------------------------ hero parts */
 
-const news = events.filter((e) => e.stamp).map((e) => ({ title: e.short, date: e.stamp }));
+const news = events
+  .filter((e) => e.stamp)
+  .slice(0, 3)
+  .map((e) => ({ title: e.short, date: e.stamp }));
 const badgeText = "explore now • how it works • join us •";
 const lead = "COCAZ is Zimbabwe's association for content creators, with the training, resources and network to help them thrive.";
 const film = "Get ready for Mandi, our film in production";
@@ -126,9 +129,9 @@ const HeroDesktop = ({ onPlay }) => {
 
           <motion.div {...rise(0.05)} className="absolute overflow-hidden" style={{ ...box(28, 76, 105, 214), borderRadius: R }}>
             <img
-              src={img("hero.jpg")}
-              alt="A smiling Zimbabwean creator in vibrant print holding a COCAZ membership card"
-              className="h-full w-full object-cover object-[58%_20%]"
+              src={img("aisha-stairs.jpg")}
+              alt="A COCAZ delegate in a Zimbabwe flag blazer on the steps at a film premiere"
+              className="h-full w-full object-cover object-[50%_42%]"
             />
           </motion.div>
 
@@ -189,7 +192,7 @@ const HeroDesktop = ({ onPlay }) => {
 
           <motion.div {...rise(0.36)} className="absolute" style={box(28, 435, 119, 119)}>
             <button type="button" onClick={onPlay} className="group relative block h-full w-full overflow-hidden bg-ink text-left text-white" style={{ borderRadius: R }}>
-              <img src={img("stock-concert.jpg")} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45 transition duration-700 ease-brand group-hover:scale-105 group-hover:opacity-60" />
+              <img src={img("road-crowd.jpg")} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-700 ease-brand group-hover:scale-105 group-hover:opacity-60" />
               <span className="glass absolute flex items-center rounded-full font-semibold" style={{ left: u(10), top: u(10), gap: u(6), padding: `${u(4)} ${u(10)} ${u(4)} ${u(4)}`, fontSize: `max(10px, ${u(7)})` }}>
                 <span className="grid place-items-center rounded-full bg-gold text-ink" style={{ width: u(22), height: u(22) }}>
                   <Play style={{ width: u(8), height: u(8) }} fill="currentColor" className="translate-x-px" aria-hidden="true" />
@@ -200,8 +203,10 @@ const HeroDesktop = ({ onPlay }) => {
           </motion.div>
 
           {/* ---- panel, right ---- */}
-          <Orb tone="ember" drift style={{ left: u(556), top: u(44), width: u(40) }} />
-          <Orb tone="violet" style={{ left: u(540), top: u(88), width: u(13) }} />
+          <Orb tone="flame" drift style={{ left: u(556), top: u(44), width: u(40) }} />
+          <Orb tone="leaf" style={{ left: u(538), top: u(88), width: u(14) }} />
+          <Orb tone="gold" style={{ left: u(598), top: u(96), width: u(9) }} />
+          <Orb tone="ink" style={{ left: u(529), top: u(54), width: u(7) }} />
           <Orb ring style={{ left: u(470), top: u(300), width: u(26) }} />
           <span className="absolute border border-[var(--hair)]" style={{ ...box(274, 61, 331, 244), borderRadius: R }} aria-hidden="true" />
 
@@ -325,8 +330,9 @@ const HeroMobile = ({ onPlay }) => {
       <div className="container-x">
         <div className="pt-nav inset-x-page flex min-h-[100svh] flex-col gap-2.5 pb-3 [@media(max-height:560px)]:min-h-0" data-hero>
           <div className="panel relative overflow-hidden px-5 py-6 sm:px-9 sm:py-9">
-            <Orb tone="ember" drift className="-right-7 -top-9 w-24" />
-            <Orb tone="violet" className="right-16 top-4 w-6" />
+            <Orb tone="flame" drift className="-right-7 -top-9 w-24" />
+            <Orb tone="leaf" className="-top-2 right-[4.5rem] w-5" />
+            <Orb tone="gold" className="right-3 top-[4.25rem] w-3.5" />
             <div className="relative">
             <h1 className="text-[clamp(2.2rem,10.6cqw,4.6rem)] leading-none">
               Let&rsquo;s create
@@ -352,10 +358,10 @@ const HeroMobile = ({ onPlay }) => {
           </div>
 
           {/* portrait beside two stacked tiles, with the disc riding the seam between them */}
-          <div className="grid min-h-[200px] flex-1 grid-cols-[1.08fr_1fr] gap-2.5">
+          <div className="grid min-h-[12.5rem] flex-1 grid-cols-[1.08fr_1fr] gap-2.5">
             <div className="rounded-tile relative overflow-hidden">
-              <img src={img("hero.jpg")} alt="A smiling Zimbabwean creator holding a COCAZ membership card" className="absolute inset-0 h-full w-full object-cover object-[58%_22%]" />
-              <span className="absolute bottom-2.5 left-2.5 flex items-center gap-2 glass-light rounded-full py-1 pl-1 pr-3 text-[10px] font-bold uppercase tracking-[0.06em]">
+              <img src={img("aisha-stairs.jpg")} alt="A COCAZ delegate in a Zimbabwe flag blazer on the steps at a film premiere" className="absolute inset-0 h-full w-full object-cover object-[50%_42%]" />
+              <span className="absolute bottom-2.5 left-2.5 flex items-center gap-2 glass-light rounded-full py-1 pl-1 pr-3 text-[0.625rem] font-bold uppercase tracking-[0.06em]">
                 <FlagRoundel className="w-5" />
                 Since 2020
               </span>
@@ -370,7 +376,7 @@ const HeroMobile = ({ onPlay }) => {
                     <img key={a.src} src={img(a.src)} alt="" style={{ objectPosition: a.position }} className={`h-8 w-8 rounded-full border-2 border-white object-cover ${i ? "-ml-2.5" : ""}`} />
                   ))}
                 </span>
-                <p className="text-[13px] font-semibold leading-tight">
+                <p className="text-[0.8125rem] font-semibold leading-tight">
                   Our
                   <br />
                   creators
@@ -388,10 +394,10 @@ const HeroMobile = ({ onPlay }) => {
             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold">
               <Asterisk size={16} aria-hidden="true" />
             </span>
-            <Link to="/events" className="min-w-0 flex-1 truncate text-[13px]">
+            <Link to="/events" className="min-w-0 flex-1 truncate text-[0.8125rem]">
               {news[index].title}
             </Link>
-            <span className="num text-[13px]">{news[index].date}</span>
+            <span className="num text-[0.8125rem]">{news[index].date}</span>
             <span className="flex gap-1.5">
               {news.map((n, i) => (
                 <button key={n.date} type="button" aria-label={n.title} onClick={() => setIndex(i)} className={`h-2 w-2 rounded-full border border-ink ${i === index ? "bg-ink" : ""}`} />
@@ -442,17 +448,12 @@ const ProgrammeCard = ({ item }) => (
           {item.tag}
         </span>
       </div>
-      <div className="flex flex-1 flex-col px-3 pb-3 pt-4 sm:px-4 sm:pb-4 sm:pt-5">
-        <h3 className="text-lg sm:text-xl">{item.title}</h3>
-        <p className="mt-1.5 text-[13px] leading-relaxed text-ink-mute">{item.text}</p>
-        <div className="mt-auto grid grid-cols-2 gap-3 pt-5">
-          {item.stats.map((s) => (
-            <div key={s.label} className="border-t border-ink/15 pt-2.5">
-              <p className="num text-base font-bold leading-tight">{s.value}</p>
-              <p className="mt-0.5 text-[11px] leading-tight text-ink-mute">{s.label}</p>
-            </div>
-          ))}
+      <div className="flex flex-1 flex-col px-2 pb-1 pt-4 sm:pb-0.5 sm:pt-5">
+        <div className="px-2 pb-5">
+        <h3 className="whitespace-nowrap text-lg sm:text-xl">{item.title}</h3>
+        <p className="mt-1.5 min-h-[2lh] text-[0.8125rem] leading-relaxed text-ink-mute lg:min-h-0">{item.text}</p>
         </div>
+        <FactStrip items={item.stats} tone={item.highlight ? "bg-white/45" : "bg-stone"} className="mt-auto" />
       </div>
     </Bite>
   </motion.div>
@@ -500,8 +501,8 @@ const Programmes = () => {
           className="rounded-tile group relative flex w-[60%] shrink-0 snap-start flex-col justify-between overflow-hidden bg-ink p-6 text-white sm:w-auto sm:p-8"
           style={{ backgroundImage: "var(--pat-grid)", backgroundSize: "34px 34px" }}
         >
-          <Orb tone="ember" drift className="-right-6 -top-8 w-28" />
-          <Orb tone="violet" className="right-20 top-10 w-8" />
+          <Orb tone="flame" drift className="-right-6 -top-8 w-28" />
+          <Orb tone="leaf" className="right-20 top-10 w-8" />
           <Asterisk size={34} strokeWidth={1.5} className="relative text-gold transition-transform duration-700 ease-brand group-hover:rotate-90" aria-hidden="true" />
           <p className="mt-10 text-2xl leading-tight tracking-[-0.02em] sm:text-3xl">
             Eight more ways we back <Script className="text-[1.3em] text-gold">creators</Script>
@@ -532,15 +533,15 @@ const Audiences = () => (
         const t = audienceTones[i];
         return (
           <Reveal key={a.title} i={i % 2}>
-            <Bite as={Link} to={a.to} className="lift h-full" card={`relative flex min-h-[260px] flex-col p-6 sm:min-h-[320px] sm:p-9 ${t.card}`}>
-              <Shape name={t.shape} className="pointer-events-none absolute -right-5 top-14 h-[44%] opacity-80 transition-transform duration-700 ease-brand group-hover:scale-105 sm:-right-10 sm:top-1/2 sm:h-[84%] sm:-translate-y-1/2 sm:opacity-100" />
+            <Bite as={Link} to={a.to} className="lift h-full" card={`relative flex min-h-[16.25rem] flex-col p-6 sm:min-h-[20rem] sm:p-9 ${t.card}`}>
+              <Shape name={t.shape} className="pointer-events-none absolute -right-[14%] top-0 h-full opacity-70 transition-transform duration-700 ease-brand group-hover:scale-[1.03] sm:right-0 sm:opacity-100" />
               <span className="chip relative w-fit">
                 <span className={`h-2.5 w-2.5 rounded-full ${t.dot}`} />
                 {a.status}
               </span>
               <div className="relative mt-auto max-w-[13.75rem] pt-8 sm:max-w-[16rem] sm:pt-14">
                 <h3 className="text-2xl font-bold uppercase leading-none sm:text-3xl">{a.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft sm:mt-4">{a.text}</p>
+                <p className="mt-3 min-h-[3lh] text-sm leading-relaxed text-ink-soft sm:mt-4">{a.text}</p>
                 <span className="link-underline mt-5 sm:mt-7">
                   {a.cta}
                   <ArrowRight size={14} strokeWidth={2.5} aria-hidden="true" />
@@ -574,11 +575,11 @@ const Creators = () => (
             <img src={img(c.image)} alt={`${c.name}, ${c.role}`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-700 ease-brand group-hover:scale-105" />
             <div className="glass rounded-inner absolute inset-x-2 bottom-2 p-3 sm:inset-x-2.5 sm:bottom-2.5 sm:p-5">
               <Quote size={16} className="hidden text-gold sm:block" fill="currentColor" aria-hidden="true" />
-              <p className="mt-2 hidden text-[13px] leading-snug text-white/85 sm:block">
+              <p className="mt-2 hidden h-[3lh] text-[0.75rem] leading-snug text-white/85 sm:block">
                 <em>{c.quote}</em>
               </p>
-              <h3 className="text-base font-bold uppercase leading-tight sm:mt-3 sm:text-xl">{c.name}</h3>
-              <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gold">{c.role}</p>
+              <h3 className="whitespace-nowrap text-[0.8125rem] font-bold uppercase leading-tight sm:mt-3 sm:text-lg">{c.name}</h3>
+              <p className="mt-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-gold">{c.role}</p>
             </div>
           </Bite>
         </Reveal>
@@ -588,7 +589,7 @@ const Creators = () => (
 );
 
 const EventHighlights = () => {
-  const [first, ...rest] = [events[0], events[4], events[1]];
+  const [first, ...rest] = [event("aisha"), event("braai"), event("agn")];
   return (
     <Section>
       <SectionHead
@@ -599,9 +600,10 @@ const EventHighlights = () => {
       />
       <div className="mt-8 grid gap-2.5 sm:mt-10 sm:gap-3 lg:grid-cols-[1.15fr_1fr] lg:gap-4">
         <Reveal>
-          <Bite as={Link} to="/events" className="lift h-full" card="relative min-h-[380px] bg-[#17a39a] text-white sm:min-h-[440px]">
-            <img src={img(first.image)} alt={first.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain object-right transition-transform duration-700 ease-brand group-hover:scale-[1.03]" />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/45 via-ink/10 to-transparent" />
+          <Bite as={Link} to="/events" className="lift h-full" card="relative min-h-[23.75rem] bg-ink text-white sm:min-h-[27.5rem]">
+            <img src={img(first.image)} alt={first.alt} loading="lazy" style={{ objectPosition: first.position }}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-[1.03]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent to-50%" />
             <span className="chip glass-light absolute left-4 top-4">{first.category}</span>
             <div className="glass rounded-inner absolute bottom-2.5 left-2.5 right-2.5 max-w-sm p-5 sm:bottom-3 sm:left-3 sm:right-auto sm:p-7">
               <h3 className="text-2xl font-bold uppercase leading-none sm:text-3xl">{first.title}</h3>
@@ -624,22 +626,24 @@ const EventHighlights = () => {
         <div className="grid gap-2.5 sm:gap-3 lg:gap-4">
           {rest.map((e, i) => (
             <Reveal key={e.title} i={i + 1}>
-              <Link to="/events" className="tile lift group grid h-full grid-cols-[104px_1fr] p-2 sm:grid-cols-[210px_1fr] sm:p-2.5">
-                <div className="rounded-inner relative min-h-[104px] overflow-hidden">
+              <Link to="/events" className="tile lift group grid h-full grid-cols-[6.5rem_1fr] p-2 sm:grid-cols-[13.125rem_1fr] sm:p-2.5">
+                <div className="rounded-inner relative min-h-[6.5rem] overflow-hidden">
                   <img src={img(e.image)} alt={e.alt} loading="lazy" style={{ objectPosition: e.position }} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-105" />
                 </div>
                 <div className="flex flex-col justify-center py-2 pl-4 pr-2 sm:p-6">
                   <span className="chip w-fit !bg-stone !px-2.5 !py-1.5 sm:!px-3.5 sm:!py-2">{e.category}</span>
                   <h3 className="mt-2.5 text-base leading-snug sm:mt-4 sm:text-xl">{e.title}</h3>
-                  <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-medium text-ink-mute sm:mt-auto sm:pt-5 sm:text-xs">
+                  <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.6875rem] font-medium text-ink-mute sm:mt-auto sm:pt-5 sm:text-xs">
                     <span className="flex items-center gap-1.5">
                       <CalendarDays size={13} aria-hidden="true" />
-                      {e.date}
+                      {e.date ?? e.location}
                     </span>
-                    <span className="hidden items-center gap-1.5 sm:flex">
-                      <MapPin size={13} aria-hidden="true" />
-                      {e.location}
-                    </span>
+                    {e.date && (
+                      <span className="hidden items-center gap-1.5 sm:flex">
+                        <MapPin size={13} aria-hidden="true" />
+                        {e.location}
+                      </span>
+                    )}
                   </p>
                 </div>
               </Link>
@@ -648,7 +652,7 @@ const EventHighlights = () => {
         </div>
       </div>
 
-      <Reveal className="panel mt-2.5 grid items-center gap-5 px-5 py-6 sm:mt-3 sm:px-10 sm:py-8 lg:mt-4 lg:grid-cols-[200px_1fr] lg:gap-8">
+      <Reveal className="panel mt-2.5 grid items-center gap-5 px-5 py-6 sm:mt-3 sm:px-10 sm:py-8 lg:mt-4 lg:grid-cols-[12.5rem_1fr] lg:gap-8">
         <Label>Trusted by local brands</Label>
         <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_12%,#000_88%,transparent)]">
           <div className="flex w-max animate-marquee items-center gap-12 pr-12 hover:[animation-play-state:paused] sm:gap-16 sm:pr-16">
@@ -659,7 +663,7 @@ const EventHighlights = () => {
                 alt={i < partners.length ? p.name : ""}
                 aria-hidden={i >= partners.length}
                 loading="lazy"
-                className={`h-11 w-auto max-w-[150px] object-contain sm:h-16 sm:max-w-[190px] ${p.rounded ? "rounded-lg" : ""}`}
+                className={`h-11 w-auto max-w-[9.375rem] object-contain sm:h-16 sm:max-w-[11.875rem] ${p.rounded ? "rounded-lg" : ""}`}
               />
             ))}
           </div>

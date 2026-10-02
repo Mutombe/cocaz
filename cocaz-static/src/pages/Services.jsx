@@ -16,9 +16,9 @@ const Services = () => (
       title="Services for"
       script="creators and brands"
       lead="The tools, knowledge and connections creators need to make a living from their work."
-      image="svc-content.jpg"
-      alt="A creator recording a video to camera with a phone and microphone"
-      position="60% 40%"
+      image="road-creator.jpg"
+      alt="A creator performing at a brand activation stand"
+      position="50% 62%"
     >
       <Link to="/contact" className="btn-ink group">
         Work with us
@@ -72,7 +72,7 @@ const Services = () => (
               </span>
               <div>
                 <h3 className="text-base sm:mt-10 sm:text-lg">{s.title}</h3>
-                <p className="mt-1 text-[13px] leading-relaxed text-ink-mute sm:mt-2">
+                <p className="mt-1 text-[0.8125rem] leading-relaxed text-ink-mute sm:mt-2">
                   <Rich max={1}>{s.text}</Rich>
                 </p>
               </div>
@@ -98,26 +98,26 @@ const Services = () => (
         {partnerStories.map((p, i) => (
           <Reveal key={p.name} i={i}>
             {p.image ? (
-              <article className="rounded-tile relative h-full min-h-[300px] overflow-hidden bg-ink text-white lg:min-h-[380px]">
+              <article className="rounded-tile relative h-full min-h-[18.75rem] overflow-hidden bg-ink text-white lg:min-h-[23.75rem]">
                 <img src={img(p.image)} alt={`${p.name} campaign artwork`} loading="lazy" style={{ objectPosition: p.position }} className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent to-50%" />
                 <span className="chip glass-light absolute left-4 top-4">Notable partner</span>
                 <div className="glass rounded-inner absolute inset-x-2.5 bottom-2.5 p-5">
                   <h3 className="text-2xl font-bold uppercase leading-none">{p.name}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-white/75">
+                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-white/75">
                     <Rich links={false}>{p.text}</Rich>
                   </p>
                 </div>
               </article>
             ) : (
-              <article className="tile grid h-full grid-cols-[88px_1fr] items-center gap-4 p-2.5 lg:block lg:p-3">
+              <article className="tile grid h-full grid-cols-[5.5rem_1fr] items-center gap-4 p-2.5 lg:block lg:p-3">
                 <div className="rounded-inner aspect-square bg-stone p-3 lg:aspect-auto lg:h-32 lg:p-5">
                   <img src={img(p.logo)} alt={`${p.name} logo`} loading="lazy" className="h-full w-full object-contain" />
                 </div>
                 <div className="pr-2 lg:p-3 lg:pt-5">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-mute">{p.sector}</p>
+                  <p className="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-ink-mute">{p.sector}</p>
                   <h3 className="mt-1 text-base lg:text-xl">{p.name}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-ink-mute lg:mt-2">
+                  <p className="mt-1 text-[0.8125rem] leading-relaxed text-ink-mute lg:mt-2">
                     <Rich links={false}>{p.text}</Rich>
                   </p>
                 </div>
@@ -136,7 +136,7 @@ const Services = () => (
             From the first brief <Script className="text-[1.25em] text-gold">to the results</Script>
           </h2>
           <div className="rounded-tile mt-7 hidden overflow-hidden lg:block">
-            <img src={img("svc-post.jpg")} alt="An editing suite with a campaign cut on screen" loading="lazy" className="aspect-[16/11] w-full object-cover" />
+            <img src={img("road-square.jpg")} alt="A city square filled with people around a roadshow stage" loading="lazy" className="aspect-[16/11] w-full object-cover" />
           </div>
         </Reveal>
         {/* number beside the text, so four steps do not become four screens */}
@@ -146,7 +146,7 @@ const Services = () => (
               <span className={`num grid h-11 w-11 shrink-0 place-items-center rounded-full text-sm font-bold ${stepTones[i]}`}>0{i + 1}</span>
               <div>
                 <h3 className="text-base sm:mt-8 sm:text-xl">{step.title}</h3>
-                <p className="text-mute mt-1 text-[13px] leading-relaxed sm:mt-2 sm:text-sm">
+                <p className="text-mute mt-1 text-[0.8125rem] leading-relaxed sm:mt-2 sm:text-sm">
                   <Rich max={1}>{step.text}</Rich>
                 </p>
               </div>

@@ -67,7 +67,7 @@ export const Reveal = ({ children, i = 0, className = "", as: Tag = "div", style
 
 /* Small uppercase eyebrow */
 export const Label = ({ children, className = "" }) => (
-  <p className={`text-mute font-ref text-[10px] font-bold uppercase tracking-[0.12em] ${className}`}>{children}</p>
+  <p className={`text-mute font-ref text-[0.625rem] font-bold uppercase tracking-[0.12em] ${className}`}>{children}</p>
 );
 
 /* The accent face. Used a handful of times across the whole site, never for anything functional. */
@@ -154,6 +154,31 @@ export const Bite = ({ as: Tag = "div", className = "", card = "", icon, childre
 /* Written out in full so the stylesheet build can see every ground class */
 const grounds = { white: "ground-white", dark: "ground-dark", gold: "ground-gold" };
 
+/* A ruled strip of facts that closes a card: equal cells, one hairline between
+   them, figure above its label. Every card in a row ends on the same line. */
+export const FactStrip = ({ items, className = "", tone = "bg-stone" }) => (
+  <dl className={`grid grid-cols-2 divide-x divide-ink/10 rounded-[var(--r-inner)] ${tone} ${className}`}>
+    {items.map((it) => (
+      <div key={it.label} className="flex min-w-0 flex-col-reverse gap-1.5 px-4 py-3">
+        <dt className="truncate font-ref text-[0.625rem] font-bold uppercase leading-none tracking-[0.08em] text-ink-mute">{it.label}</dt>
+        <dd className="num truncate text-lg font-bold leading-none">{it.value}</dd>
+      </div>
+    ))}
+  </dl>
+);
+
+/* Label on the left, value on the right, one rule between rows */
+export const FactRows = ({ items, className = "" }) => (
+  <dl className={`divide-y divide-ink/10 border-t border-ink/10 ${className}`}>
+    {items.map((it) => (
+      <div key={it.label} className="flex items-baseline justify-between gap-4 py-2.5">
+        <dt className="shrink-0 font-ref text-[0.625rem] font-bold uppercase leading-none tracking-[0.08em] text-ink-mute">{it.label}</dt>
+        <dd className="truncate text-right text-[0.8125rem] font-medium leading-none">{it.value}</dd>
+      </div>
+    ))}
+  </dl>
+);
+
 export const Sheet = ({ children }) => <main className="relative z-10">{children}</main>;
 
 /* Sections alternate their ground down the page. Anything other than paper is a
@@ -172,13 +197,14 @@ export const PageHero = ({ kicker, title, script, lead, image, alt, position = "
     <div className="container-x">
       <div className={`pt-nav inset-x-page grid gap-2.5 pb-2 sm:gap-3 lg:gap-4 ${image ? "lg:grid-cols-[.72fr_1.28fr]" : ""}`}>
         {image && (
-          <Reveal className="relative order-2 h-52 overflow-hidden rounded-[var(--r-tile)_var(--r-sharp)_var(--r-tile)_var(--r-tile)] sm:h-80 lg:order-1 lg:h-auto lg:min-h-[420px]">
+          <Reveal className="relative order-2 h-52 overflow-hidden rounded-[var(--r-tile)_var(--r-sharp)_var(--r-tile)_var(--r-tile)] sm:h-80 lg:order-1 lg:h-auto lg:min-h-[26.25rem]">
             <img src={img(image)} alt={alt} style={{ objectPosition: position }} className="absolute inset-0 h-full w-full object-cover" />
           </Reveal>
         )}
         <Reveal i={1} className="panel relative order-1 flex flex-col justify-center overflow-hidden px-6 py-9 sm:px-10 sm:py-14 lg:order-2">
-          <Orb tone="ember" drift className="-right-8 -top-10 w-28 sm:w-40" />
-          <Orb tone="violet" className="right-16 top-14 hidden w-10 sm:block" />
+          <Orb tone="flame" drift className="-right-8 -top-10 w-28 sm:w-40" />
+          <Orb tone="leaf" className="right-16 top-14 hidden w-10 sm:block" />
+          <Orb tone="gold" className="right-32 top-5 hidden w-6 sm:block" />
           <Orb ring className="right-6 top-24 hidden w-16 sm:block" />
           <div className="relative">
             <Label>{kicker}</Label>
@@ -192,7 +218,7 @@ export const PageHero = ({ kicker, title, script, lead, image, alt, position = "
             )}
           </h1>
           {lead && (
-            <p data-prose="" className="text-mute mt-5 max-w-xl text-[15px] leading-relaxed sm:mt-6">
+            <p data-prose="" className="text-mute mt-5 max-w-xl text-[0.9375rem] leading-relaxed sm:mt-6">
               <Rich>{lead}</Rich>
             </p>
           )}
@@ -214,7 +240,7 @@ export const SectionHead = ({ label, title, text, action, className = "" }) => (
     {(text || action) && (
       <div className="flex flex-col gap-5 md:items-end md:text-right">
         {text && (
-          <p data-prose="" className="text-mute max-w-md text-[15px] leading-relaxed">
+          <p data-prose="" className="text-mute max-w-md text-[0.9375rem] leading-relaxed">
             <Rich>{text}</Rich>
           </p>
         )}
@@ -265,15 +291,15 @@ export const CtaBanner = ({
           {title}
           <Script className="block pt-1 text-[1.15em]">{script}</Script>
         </h2>
-        <p className="text-mute mt-5 max-w-md text-[15px] leading-relaxed">{text}</p>
+        <p className="text-mute mt-5 max-w-md text-[0.9375rem] leading-relaxed">{text}</p>
         <Link to={to} className="btn-ink group mt-7 w-full sm:w-auto">
           {button}
           <ArrowRight size={14} strokeWidth={2.5} className="transition-transform duration-300 ease-brand group-hover:translate-x-1" aria-hidden="true" />
         </Link>
       </div>
       <div className="relative h-40 w-60 shrink-0 self-end sm:h-56 sm:w-80 md:self-auto">
-        <Orb tone="violet" drift className="-top-6 left-8 w-12 sm:w-16" />
-        <Orb tone="ember" className="-bottom-3 right-2 z-10 w-9 sm:w-12" />
+        <Orb tone="leaf" drift className="-top-6 left-8 w-12 sm:w-16" />
+        <Orb tone="flame" className="-bottom-3 right-2 z-10 w-9 sm:w-12" />
         <img src={img(image)} alt={alt} loading="lazy" className="absolute right-0 top-0 aspect-square h-full rounded-full object-cover" />
         <SpinBadge text={badge} className="absolute bottom-0 left-0 aspect-square h-[64%]">
           <ArrowUpRight size={22} strokeWidth={2.25} aria-hidden="true" />

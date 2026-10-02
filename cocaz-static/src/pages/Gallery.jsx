@@ -95,7 +95,7 @@ const Gallery = () => {
           </div>
 
           {/* image tiles stay two up on a phone */}
-          <div className="mt-5 grid auto-rows-[150px] grid-flow-dense grid-cols-2 gap-2.5 sm:auto-rows-[220px] sm:grid-cols-3 sm:gap-3 lg:grid-cols-4 lg:gap-4">
+          <div className="mt-5 grid auto-rows-[9.375rem] grid-flow-dense grid-cols-2 gap-2.5 sm:auto-rows-[13.75rem] sm:grid-cols-3 sm:gap-3 lg:grid-cols-4 lg:gap-4">
             {shown.map((item, i) => (
               <motion.button
                 key={item.src}
@@ -118,7 +118,7 @@ const Gallery = () => {
                     <Play size={18} fill="currentColor" className="translate-x-px" aria-hidden="true" />
                   </span>
                 )}
-                <p className="glass rounded-inner absolute inset-x-2 bottom-2 translate-y-2 px-3.5 py-3 text-[13px] font-semibold leading-snug text-white opacity-0 transition duration-300 ease-brand group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                <p className="glass rounded-inner absolute inset-x-2 bottom-2 translate-y-2 px-3.5 py-3 text-[0.8125rem] font-semibold leading-snug text-white opacity-0 transition duration-300 ease-brand group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                   {item.caption}
                 </p>
               </motion.button>
